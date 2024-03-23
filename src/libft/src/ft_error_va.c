@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   ft_error_va.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 21:47:26 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/23 23:23:52 by rkersten         ###   ########.fr       */
+/*   Created: 2024/01/11 17:10:36 by rkersten          #+#    #+#             */
+/*   Updated: 2024/01/11 17:16:11 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/mini_rt.h"
+#include "../inc/libft.h"
+#include <stdarg.h>
+#include <stdbool.h>
 
-int	open_file(char const *s)
+bool	ft_error_va(char *errmsg, ...)
 {
-	int32_t	fd;
+	va_list	args;
+	char	*arg;
 
-	fd = open(s, O_RDONLY);
-	return (fd);
-}
-
-static	void	skip_space(char **p)
-{
-	while (**p == 32
-		|| (**p >= 8 && **p <= 12))
-		(*p)++;
-}
-
-bool	read_file(t_file *file, t_scene *scene)
-{
-	if (open_file(file->filename) < 0)
-		return (1);
-	file->line = get_next_line(file->fd);
-	if (file->line)
-		parse_line(file->line);
+	arg = errmsg;
+	write(2, errmsg, ft_strlen(errmsg));
+	va_start(args, errmsg);
+	while (arg != NULL)
+	{
+		arg = va_arg(args, char *);
+		if (arg != NULL)
+			write(2, arg, ft_strlen(arg));
+	}
+	write(2, "\n", 1);
+	va_end(args);
+	return (false);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
+/*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 21:42:31 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/23 22:03:56 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/23 23:25:50 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define TYPES_H
 # include "library.h"
 
-typedef struct s_camera		t_camera;
 typedef struct s_ambient	t_ambient;
+typedef struct s_camera		t_camera;
 typedef struct s_color		t_color;
 typedef struct s_coordinate	t_coordinate;
 typedef struct s_cylinder	t_cylinder;
@@ -41,6 +41,15 @@ typedef struct s_color
 	uint8_t	green;
 	uint8_t	blue;
 }	t_color;
+typedef struct s_file_info
+{
+	bool	ambient;
+	bool	camera;
+	bool	light;
+	uint8_t	cylinder_count;
+	uint8_t	plane_count;
+	uint8_t	shpere_count;
+}	t_file_info;
 typedef struct s_coordinate
 {
 	float	x;
@@ -60,6 +69,7 @@ typedef struct s_file
 	char const	*filename;
 	char		*line;
 	int32_t		fd;
+	t_file_info	content;
 }	t_file;
 typedef struct s_light
 {

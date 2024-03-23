@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   ft_substr_len.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 21:47:26 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/23 23:23:52 by rkersten         ###   ########.fr       */
+/*   Created: 2024/02/18 11:49:07 by rkersten          #+#    #+#             */
+/*   Updated: 2024/03/23 22:41:09 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/mini_rt.h"
+#include "../inc/libft.h"
 
-int	open_file(char const *s)
+static	bool	is_in_charset(char c, char const*charset)
 {
-	int32_t	fd;
+	uint64_t	i;
 
-	fd = open(s, O_RDONLY);
-	return (fd);
+	i = 0;
+	while (charset[i]
+		&& i < UINT64_MAX)
+	{
+		if (charset[i++] == c)
+			return (1);
+	}
+	return (0);
 }
 
-static	void	skip_space(char **p)
+uint64_t	ft_substr_len(char *s, char const *charset)
 {
-	while (**p == 32
-		|| (**p >= 8 && **p <= 12))
-		(*p)++;
-}
+	uint64_t	i;
 
-bool	read_file(t_file *file, t_scene *scene)
-{
-	if (open_file(file->filename) < 0)
-		return (1);
-	file->line = get_next_line(file->fd);
-	if (file->line)
-		parse_line(file->line);
+	i = 0;
+	while (s[i]
+		&& !is_in_charset(s[i], charset)
+		&& i++ < SIZE_MAX);
+	return (i);
 }

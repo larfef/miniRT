@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   check_type_identifier.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 21:47:26 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/23 23:23:52 by rkersten         ###   ########.fr       */
+/*   Created: 2024/03/23 23:09:44 by rkersten          #+#    #+#             */
+/*   Updated: 2024/03/23 23:27:22 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/mini_rt.h"
 
-int	open_file(char const *s)
+bool	check_type_identifier(char *id, bool *is_dup, t_file *file)
 {
-	int32_t	fd;
+	int32_t		ret;
+	uint64_t	len;
 
-	fd = open(s, O_RDONLY);
-	return (fd);
-}
-
-static	void	skip_space(char **p)
-{
-	while (**p == 32
-		|| (**p >= 8 && **p <= 12))
-		(*p)++;
-}
-
-bool	read_file(t_file *file, t_scene *scene)
-{
-	if (open_file(file->filename) < 0)
+	len = ft_substr_len(file->line, WHITESPACE);
+	if (len > 2)
 		return (1);
-	file->line = get_next_line(file->fd);
-	if (file->line)
-		parse_line(file->line);
+	ret = ft_strncmp(file->line, id, len);
+	if (ret
+		|| (!ret
+		&& *is_dup))
+		return (1);
+	else if (!ret)
+		*is_dup = true;
+	return (0);
 }
