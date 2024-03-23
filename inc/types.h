@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 21:42:31 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/23 21:45:02 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/23 22:03:56 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ typedef struct s_cylinder
 	t_color			color;
 	t_vector		axis;
 }	t_cylinder;
+typedef struct s_file
+{
+	char const	*filename;
+	char		*line;
+	int32_t		fd;
+}	t_file;
 typedef struct s_light
 {
 	float			brightness;

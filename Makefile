@@ -1,11 +1,12 @@
-NAME	=	miniRT
-BIN		=	bin
-CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror
-INC		=	-Iinc
-OBJS	=	$(addprefix $(BIN)/, $(notdir $(SRCS:.c=.o)))
-SRC		=	main
-SRCS	=	$(addsuffix .c, $(addprefix src/, $(SRC)))
+NAME			=	miniRT
+BIN				=	bin
+CC				=	cc
+CFLAGS			=	-Wall -Wextra -Werror
+INC				=	-Iinc
+OBJS			=	$(addprefix $(BIN)/, $(notdir $(SRCS:.c=.o)))
+FILE_PARSING	= 	read_file
+SRC				=	main
+SRCS			=	$(addsuffix .c, $(addprefix src/, $(SRC)))
 
 all: $(NAME)
 
