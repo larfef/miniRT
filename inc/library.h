@@ -1,7 +1,8 @@
 #ifndef LIBRARY_H
 # define LIBRARY_H
-# include "../src/file_parsing/gnl/get_next_line.h"
+# include "../src/gnl/get_next_line.h"
 # include "../src/libft/inc/libft.h"
+# include "../src/mlx42/include/MLX42/MLX42.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdarg.h>

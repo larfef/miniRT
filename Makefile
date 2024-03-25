@@ -16,10 +16,12 @@ $(BIN):
 $(BIN)/%.o:src/%.c | $(BIN)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+$(NAME): $(OBJS)
+	make -C src/mlx42/build -j4
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -Lsrc/mlx42/build -L/Users/$(USER)/.brew/opt/glfw/lib/ -lglfw -lmlx -framework Cocoa -framework OpenGL -framework IOKit
 
 clean:
+	make -C src/mlx42/build clean
 	/bin/rm -rf $(BIN)
 
 fclean: clean
