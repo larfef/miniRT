@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 21:42:31 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/25 17:06:25 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:30:05 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,24 @@ typedef struct s_file
 	int32_t		fd;
 	t_file_info	content;
 }	t_file;
+typedef enum s_element_type
+{
+	AMBIENT,
+	CAMERA,
+	CYLINDER,
+	INVALID,
+	LIGHT,
+	PLANE,
+	NEWLINE,
+	SPHERE
+}	t_element_type;
+typedef struct s_parsing
+{
+	bool	is_ambient;
+	bool	is_light;
+	bool	is_camera;
+	t_element_type	current_line;
+} t_parsing;
 typedef struct s_light
 {
 	float			brightness;
