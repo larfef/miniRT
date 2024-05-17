@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 21:47:26 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/17 20:10:08 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/17 20:59:30 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,15 @@ static bool	is_in_range(char *str, int type, int range[2])
 
 static bool	ambient_light_parsing(char *line)
 {
-	if (is_in_range(line, 0, ))
+	int	range[2] = {0, 1};
+
+	if (!is_in_range(line, 0, range))
+		return (1);;
+	line += 3;
+	skip_space();
+	range[0] = 0;
+	range[1] = 255;
+	if (is_in_range())
 }
 
 static bool	parse_line(const char *line, t_parsing *file_data)
