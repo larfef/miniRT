@@ -35,6 +35,7 @@ clean:
 	/bin/rm -rf $(BIN)
 
 fclean: clean
+	make -C src/libft fclean
 	/bin/rm -f $(NAME)
 
 re: clean fclean all
