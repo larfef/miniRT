@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   check_3d_vector.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 21:47:26 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/18 16:29:59 by rkersten         ###   ########.fr       */
+/*   Created: 2024/05/18 17:54:36 by rkersten          #+#    #+#             */
+/*   Updated: 2024/05/18 18:04:35 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parsing.h"
-#include "../gnl/get_next_line.h"
-#include <stdlib.h>
 
-void	read_file(t_file *file)
+bool	check_3d_vector(char **p)
 {
-	char	*tmp;
+	double		tmp;
+	int8_t		i;
 
-	open_file(file);
-	while (1)
+	i = -1;
+	while (++i != 3)
 	{
-		tmp = get_next_line(file->fd);
-		file->line = tmp;
-		if (!file->line)
-			return ;
-		if (parse_line(file))
-		{
-			free(tmp);
-			return ;
-		}
-		free(tmp);
+		if (check_number_lenght(*p, 3))
+			return (1);
+		tmp = ft_atod(*p);
+		if (tmp < 0 || tmp > 1)
+			return (1);
+		skip_double(p);
+		if (i < 2 && **p != ',')
+			return (1);
+		if (i == 2 && **p != ' ')
+			return (1);
+		(*p)++;
 	}
+	return (0);
 }

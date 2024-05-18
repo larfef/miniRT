@@ -6,13 +6,14 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:42:18 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/17 19:14:42 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/18 17:26:32 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <stdint.h>
 # include <stdbool.h>
 # include "../libft/inc/libft.h"
+# include "../../inc/parsing.h"
 
 static void	move_ptr(t_atod *p)
 {
@@ -55,8 +56,9 @@ double	ft_atod(const char *str)
 {
     t_atod  arg;
 
-    ft_memset(&arg, '\0', sizeof(arg));
-    arg->fraction_divisor = 1;
-	arg->str = str;
+    ft_memset((void *)&arg, '\0', sizeof(arg));
+    arg.fraction_divisor = 1;
+	arg.str = str;
+    arg.sign = 1;
     return (get_double(&arg));
 }

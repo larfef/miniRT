@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   set_duplicate_check.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 21:47:26 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/18 16:29:59 by rkersten         ###   ########.fr       */
+/*   Created: 2024/05/18 13:50:18 by rkersten          #+#    #+#             */
+/*   Updated: 2024/05/18 13:52:35 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parsing.h"
-#include "../gnl/get_next_line.h"
-#include <stdlib.h>
+#include "parsing_types.h"
 
-void	read_file(t_file *file)
+void	set_duplicate_check(t_file *file_data)
 {
-	char	*tmp;
-
-	open_file(file);
-	while (1)
-	{
-		tmp = get_next_line(file->fd);
-		file->line = tmp;
-		if (!file->line)
-			return ;
-		if (parse_line(file))
-		{
-			free(tmp);
-			return ;
-		}
-		free(tmp);
-	}
+	if (file_data->current_line == AMBIENT)
+		file_data->is_ambient = true;
+	if (file_data->current_line == CAMERA)
+		file_data->is_camera = true;
+	if (file_data->current_line == LIGHT)
+		file_data->is_light = true;
 }

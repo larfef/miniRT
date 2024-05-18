@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 21:47:26 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/18 16:29:59 by rkersten         ###   ########.fr       */
+/*   Created: 2024/05/18 13:55:12 by rkersten          #+#    #+#             */
+/*   Updated: 2024/05/18 17:29:11 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft/inc/libft.h"
 #include "../../inc/parsing.h"
-#include "../gnl/get_next_line.h"
-#include <stdlib.h>
 
-void	read_file(t_file *file)
+bool	parse_line(t_file *file_data)
 {
-	char	*tmp;
-
-	open_file(file);
-	while (1)
-	{
-		tmp = get_next_line(file->fd);
-		file->line = tmp;
-		if (!file->line)
-			return ;
-		if (parse_line(file))
-		{
-			free(tmp);
-			return ;
-		}
-		free(tmp);
-	}
+	skip_space(&file_data->line);
+	set_current_line_type(file_data);
+	if (file_data->current_line == INVALID)
+		return (1);
+	if (file_data->current_line == NEWLINE)
+		return (0);
+	if (file_data->current_line == AMBIENT
+		&& !ambient_light_parsing(file_data->line))
+		return (0);
+	return (1);
 }
