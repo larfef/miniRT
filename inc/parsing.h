@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:06:17 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/18 18:04:14 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/23 13:29:50 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@
 # include <stdint.h>
 # include <stdbool.h>
 bool	ambient_light_parsing(char *line);
-bool	check_number_lenght(char *s, int8_t lenght_max);
+bool	camera_parsing(char *line);
+bool	check_3d_vector(char **p);
+bool	is_brightness_valid(char *line);
+bool	is_length_valid(char *s, int8_t lenght_max);
 bool	check_rgb(char **p);
+bool	is_coordinates_valid(char **p);
 bool	is_duplicate_element(t_file *file_data);
 bool	is_end_of_line_valid(char *line);
 bool	is_in_range(char **p, int type);

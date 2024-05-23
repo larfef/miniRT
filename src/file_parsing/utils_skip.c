@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:47:27 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/18 18:03:50 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/23 13:07:09 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ void	skip_double(char **p)
 
 void	skip_digit(char **p)
 {
-	while (ft_isdigit(**p))
+	while (ft_isdigit(**p)
+		|| **p == '-'
+		|| **p == '.')
 		(*p)++;
 }
 

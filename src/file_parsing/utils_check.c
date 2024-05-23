@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:57:24 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/18 16:54:11 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/23 13:13:48 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ bool is_duplicate_element(t_file *file_data)
 bool	is_end_of_line_valid(char *line)
 {
 	skip_space(&line);
-	if (*line == '\n')
+	if (!(*line)
+		|| *line == '\n')
 		return (true);
 	return (false);
 }

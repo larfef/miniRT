@@ -4,7 +4,9 @@ CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror -g
 INC				=	-Iinc -Isrc/libft/inc/ -Isrc/gnl/
 OBJS			=	$(addprefix $(BIN)/, $(notdir $(SRCS:.c=.o)))
-FILE_PARSING	= 	ambient_light_parsing check_rgb ft_atod open_file parse_line read_file set_current_line_type set_duplicate_check utils_check utils_skip
+FILE_PARSING	= 	ambient_light_parsing camera_parsing check_3d_vector is_length_valid check_rgb ft_atod\
+					is_coordinates_valid is_brightness_valid open_file parse_line read_file set_current_line_type\
+					set_duplicate_check utils_check utils_skip
 GNL				=	get_next_line get_next_line_utils	
 SRC				=	main
 SRCS			=	$(addsuffix .c, $(addprefix src/, $(SRC))) \

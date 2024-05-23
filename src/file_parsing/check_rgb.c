@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:01:18 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/18 17:35:32 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:55:32 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	check_rgb(char **p)
 	while (++i != 3)
 	{
 		tmp = ft_atoi(*p);
-		if (tmp < 0 && tmp > 255)
+		if (tmp < 0 || tmp > 255)
 			return (1);
 		skip_digit(p);
 		if (i < 2 && **p != ',')

@@ -6,11 +6,12 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 17:31:20 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/18 18:11:45 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/23 13:17:59 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parsing.h"
+#include "../libft/inc/libft.h"
 
 static bool	check_fov(char **p)
 {
@@ -24,6 +25,7 @@ static bool	check_fov(char **p)
 
 bool	camera_parsing(char *line)
 {
+	//line++ can be made during the function call
 	line++;
 	skip_space(&line);
 	if (!is_coordinates_valid(&line))
@@ -32,12 +34,12 @@ bool	camera_parsing(char *line)
 	if (check_3d_vector(&line))
 		return (1);
 	skip_space(&line);
-	if (!ft_is_digit(&line))
+	if (!ft_isdigit(*line))
 		return (1);
 	if (check_fov(&line))
 		return (1);
 	skip_digit(&line);
-	if (!is_end_of_line_valid(&line))
+	if (!is_end_of_line_valid(line))
 		return (1);
 	return (0);
 }

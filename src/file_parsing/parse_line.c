@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:55:12 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/18 17:29:11 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:55:05 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,8 @@ bool	parse_line(t_file *file_data)
 	if (file_data->current_line == AMBIENT
 		&& !ambient_light_parsing(file_data->line))
 		return (0);
+	if (file_data->current_line == CAMERA
+		&& !camera_parsing(file_data->line))
+		return(0);
 	return (1);
 }

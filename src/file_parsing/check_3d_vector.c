@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 17:54:36 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/18 18:04:35 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/23 13:27:48 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	check_3d_vector(char **p)
 	i = -1;
 	while (++i != 3)
 	{
-		if (check_number_lenght(*p, 3))
+		if (!is_length_valid(*p, 3))
 			return (1);
 		tmp = ft_atod(*p);
 		if (tmp < 0 || tmp > 1)
