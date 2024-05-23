@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_rgb.c                                        :+:      :+:    :+:   */
+/*   plane_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 14:01:18 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/23 12:55:32 by rkersten         ###   ########.fr       */
+/*   Created: 2024/05/23 15:28:11 by rkersten          #+#    #+#             */
+/*   Updated: 2024/05/23 15:30:14 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/inc/libft.h"
 #include "../../inc/parsing.h"
+#include "../libft/inc/libft.h"
 
-bool	check_rgb(char **p)
+bool	plane_parsing(char *line)
 {
-	int	i;
-	int	tmp;
-
-	i = -1;
-	while (++i != 3)
-	{
-		tmp = ft_atoi(*p);
-		if (tmp < 0 || tmp > 255)
-			return (1);
-		skip_digit(p);
-		if (i < 2 && **p != ',')
-			return (1);
-		(*p)++;
-	}
+	line += 2;
+	skip_space(&line);
+	if (!is_coordinates_valid(&line))
+		return (1);
+	skip_space(&line);
+	if (check_3d_vector(&line))
+		return (1);
+	skip_space(&line);
+	if (!ft_isdigit(*line))
+		return (1);
+	if (!is_rgb_valid(&line))
+		return (1);
+	skip_space(&line);
+	if (!is_end_of_line_valid(line))
+		return (1);
 	return (0);
 }

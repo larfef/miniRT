@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 21:47:26 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/18 16:29:59 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:25:44 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,14 @@ void	read_file(t_file *file)
 		tmp = get_next_line(file->fd);
 		file->line = tmp;
 		if (!file->line)
+			if (errno == ENOMEM)
+				exit(error_message(NULL, ENOMEM));
+		if (!file->line) // add check if mandatory elements are present before eof
 			return ;
 		if (parse_line(file))
 		{
 			free(tmp);
-			return ;
+			exit(error_message(NULL, file->errnum));
 		}
 		free(tmp);
 	}

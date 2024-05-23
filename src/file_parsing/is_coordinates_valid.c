@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 17:33:48 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/23 13:28:02 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:46:06 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	is_coordinates_valid(char **p)
 	{
 		if (!is_length_valid(*p, 15))
 			return (false);
-		skip_digit(p);
+		skip_double(p);
 		if (i < 2 && **p != ',')
 			return (false);
 		if (i == 2 && **p != ' ')

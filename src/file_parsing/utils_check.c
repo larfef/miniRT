@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:57:24 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/23 13:13:48 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:58:15 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,6 @@ bool	is_space(char c)
 {
 	if (c == 32
 		|| (c >= 8 && c <= 12))
-		return (true);
-	return (false);
-}
-
-bool is_duplicate_element(t_file *file_data)
-{
-	if ((file_data->current_line == AMBIENT && file_data->is_ambient)
-		|| (file_data->current_line == CAMERA && file_data->is_camera)
-		|| (file_data->current_line == LIGHT && file_data->is_light))
 		return (true);
 	return (false);
 }
@@ -51,7 +42,7 @@ bool	is_in_range(char **p, int type)
 	}
 	//int
 	if (type == 1
-		&& !check_rgb(p))
+		&& !is_rgb_valid(p))
 		return (true);
 	return (false);
 }

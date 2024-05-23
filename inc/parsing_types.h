@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_type.h                                     :+:      :+:    :+:   */
+/*   parsing_types.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:48:00 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/18 14:33:03 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:48:58 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ typedef struct s_file
 	bool		is_light;
 	bool		is_camera;
 	char		*line;
-	char const	*file_path;
+	char const	*file;
+	uint8_t		errnum;
 	int32_t		fd;
 	t_element_type	current_line;
 }	t_file;
