@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:57:24 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/23 14:58:15 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:09:20 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,40 +32,17 @@ bool	is_end_of_line_valid(char *line)
 
 bool	is_in_range(char **p, int type)
 {
-	double	tmp;
+	float	tmp;
 	//double
 	if (type == 0)
 	{
-		tmp = ft_atod(*p);
+		tmp = ft_atof(*p);
 		if (tmp >= 0.0 && tmp <= 1.0)
 			return (true);
 	}
 	//int
 	if (type == 1
 		&& !is_rgb_valid(p))
-		return (true);
-	return (false);
-}
-
-bool	is_valid_character(char **p, char c, t_file *file_data)
-{
-	if (c == 'A' || c == 'L' || c == 'C')
-	{
-		if (c == 'A')
-			file_data->is_ambient = true;
-		if (c == 'C')
-			file_data->is_camera = true;
-		if (c == 'L')
-			file_data->is_light = true;
-		*p += 1;
-		return (true);
-	}
-	if (!ft_strncmp(&c, "cy ", 3)
-		|| !ft_strncmp(&c, "pl ", 3)
-		|| !ft_strncmp(&c, "sp ", 3))
-	{
-		*p += 2;
-		return (true);
-	}
-	return (false);
+		return (false);
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:08:24 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/23 15:23:53 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:32:13 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	sphere_parsing(char *line)
 	skip_space(&line);
 	if (!is_length_valid(line, LEN_MAX))
 		return (false);
-	skip_double(&line);
+	skip_float(&line);
 	skip_space(&line);
 	if (!ft_isdigit(*line))
 		return (1);

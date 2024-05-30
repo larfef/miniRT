@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 13:16:57 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/23 14:47:05 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:32:06 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	light_parsing(char *line)
 		return (1);
 	if (!is_brightness_valid(line))
 		return(1);
-	skip_double(&line);
+	skip_float(&line);
 	skip_space(&line);
 	if (!ft_isdigit(*line))
 		return (1);

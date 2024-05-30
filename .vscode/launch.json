@@ -5,7 +5,7 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/miniRT",
-      "args": [],
+      "args": ["scene_test.rt"],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],

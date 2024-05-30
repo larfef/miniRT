@@ -6,13 +6,13 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:47:27 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/23 14:46:36 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:32:51 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/inc/libft.h"
 
-void	skip_double(char **p)
+void	skip_float(char **p)
 {
 	if (**p == '-')
 		(*p)++;
@@ -31,13 +31,6 @@ void	skip_digit(char **p)
 	while (ft_isdigit(**p))
 		(*p)++;
 }
-
-// bool	check_empty_line(char *c)
-// {
-// 	if (c == '\n')
-// 		return (true);
-// 	return (false);
-// }
 
 void	skip_space(char **p)
 {

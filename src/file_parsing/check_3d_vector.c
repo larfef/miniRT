@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 17:54:36 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/23 13:27:48 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:31:17 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	check_3d_vector(char **p)
 {
-	double		tmp;
+	float		tmp;
 	int8_t		i;
 
 	i = -1;
@@ -22,10 +22,10 @@ bool	check_3d_vector(char **p)
 	{
 		if (!is_length_valid(*p, 3))
 			return (1);
-		tmp = ft_atod(*p);
+		tmp = ft_atof(*p);
 		if (tmp < 0 || tmp > 1)
 			return (1);
-		skip_double(p);
+		skip_float(p);
 		if (i < 2 && **p != ',')
 			return (1);
 		if (i == 2 && **p != ' ')

@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:38:22 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/23 15:42:48 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:31:43 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ bool	cylinder_parsing(char *line)
 	skip_space(&line);
 	if (!is_length_valid(line, LEN_MAX))
 		return (false);
-	skip_double(&line);
+	skip_float(&line);
 	skip_space(&line);
 	if (!is_length_valid(line, LEN_MAX))
 		return (false);
-	skip_double(&line);
+	skip_float(&line);
 	skip_space(&line);
 	if (!ft_isdigit(*line))
 		return (1);
