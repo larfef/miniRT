@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plane_parsing.c                                    :+:      :+:    :+:   */
+/*   init_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 15:28:11 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/23 15:30:14 by rkersten         ###   ########.fr       */
+/*   Created: 2024/05/31 09:46:04 by rkersten          #+#    #+#             */
+/*   Updated: 2024/05/31 09:49:36 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parsing.h"
+#include "../../inc/init_stack.h"
 #include "../libft/inc/libft.h"
 
-bool	plane_parsing(char *line)
+void	init_stack(t_scene *scene)
 {
-	line += 2;
-	skip_space(&line);
-	if (!is_coordinates_valid(&line))
-		return (1);
-	skip_space(&line);
-	if (check_3d_vector(&line))
-		return (1);
-	skip_space(&line);
-	if (!ft_isdigit(*line))
-		return (1);
-	if (!is_rgb_valid(&line))
-		return (1);
-	skip_space(&line);
-	if (!is_end_of_line_valid(line))
-		return (1);
-	return (0);
+	ft_memset(scene, '\0', sizeof(*scene));
+	
 }

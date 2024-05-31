@@ -1,12 +1,12 @@
 NAME			=	miniRT
 BIN				=	bin
 CC				=	cc
-CFLAGS			=	-Wall -Wextra -Werror 
+CFLAGS			=	-Wall -Wextra -Werror -g
 INC				=	-Iinc -Isrc/libft/inc/ -Isrc/gnl/
 OBJS			=	$(addprefix $(BIN)/, $(notdir $(SRCS:.c=.o)))
-FILE_PARSING	= 	ambient_light_parsing camera_parsing check_3d_vector cylinder_parsing exit init_func_ptr_t is_duplicate is_length_valid is_rgb_valid ft_atof\
-					is_coordinates_valid is_brightness_valid is_file_valid is_filename_valid is_minimal_scene_valid light_parsing open_file parse_line read_file\
-					set_current_line_type set_duplicate_check sphere_parsing utils_check utils_skip plane_parsing
+FILE_PARSING	= 	exit init_instructions init_parsing_functions is_duplicate is_length_valid is_line_valid is_orientation_valid is_rgb_valid ft_atof\
+					is_coordinates_valid is_brightness_valid is_file_valid is_filename_valid is_light_ratio_valid is_minimal_scene_valid\
+					open_file parse_line read_file set_current_line_type set_duplicate_check utils_check utils_skip
 GNL				=	get_next_line get_next_line_utils
 SRC				=	main
 SRCS			=	$(addsuffix .c, $(addprefix src/, $(SRC))) \

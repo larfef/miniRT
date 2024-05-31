@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:10:45 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/29 14:18:14 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/31 13:40:41 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	is_file_valid(char const *filename)
 	is_filename_valid(filename);
 	ft_memset(&file, '\0', sizeof(file));
 	file.file = filename;
-	init_func_ptr_t(&file);
+	init_parsing_functions(&file);
 	open_file(&file);
 	read_file(&file);
 	is_minimal_scene_valid(&file);

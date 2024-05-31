@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_func_ptr_t.c                                  :+:      :+:    :+:   */
+/*   check_3d_vector.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 12:43:25 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/29 14:02:06 by rkersten         ###   ########.fr       */
+/*   Created: 2024/05/18 17:54:36 by rkersten          #+#    #+#             */
+/*   Updated: 2024/05/31 14:22:48 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/parsing.h"
+#include "../../inc/parsing.h"
 
-void	init_func_ptr_t(t_file *file)
+bool	is_orientation_valid(char **p)
 {
-	file->parsing_functions[0] = ambient_light_parsing;
-	file->parsing_functions[1] = camera_parsing;
-	file->parsing_functions[2] = light_parsing;
-	file->parsing_functions[3] = cylinder_parsing;
-	file->parsing_functions[4] = plane_parsing;
-	file->parsing_functions[5] = sphere_parsing;
+	float		tmp;
+	int8_t		i;
+
+	i = -1;
+	while (++i != 3)
+	{
+		if (!is_length_valid(*p, 3))
+			return (false);
+		tmp = ft_atof(*p);
+		if (tmp < 0 || tmp > 1)
+			return (false);
+		skip_float(p);
+		if (i < 2 && **p != ',')
+			return (false);
+		if (i == 2 && **p != ' ')
+			return (false);
+		(*p)++;
+	}
+	return (true);
 }

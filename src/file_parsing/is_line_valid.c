@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light_parsing.c                                    :+:      :+:    :+:   */
+/*   is_line_valid.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 13:16:57 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/29 12:32:06 by rkersten         ###   ########.fr       */
+/*   Created: 2024/05/31 13:19:22 by rkersten          #+#    #+#             */
+/*   Updated: 2024/05/31 14:05:01 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parsing.h"
-#include "../libft/inc/libft.h"
 
-bool	light_parsing(char *line)
+bool	is_line_valid(int **tab, t_file *file)
 {
-	line++;
-		skip_space(&line);
-	if (!is_coordinates_valid(&line))
-		return (1);
-	skip_space(&line);
-	if (!ft_isdigit(*line))
-		return (1);
-	if (!is_brightness_valid(line))
-		return(1);
-	skip_float(&line);
-	skip_space(&line);
-	if (!ft_isdigit(*line))
-		return (1);
-	if (!is_rgb_valid(&line))
-		return (1);
-	if (!is_end_of_line_valid(line))
-		return (1);
-	return (0);
+	uint8_t	i;
+
+	i = -1;
+	while (tab[file->current_line][++i] != END
+		&& file->parsing_functions[tab[file->current_line][i]](&file->line));
+	if (tab[file->current_line][i] == END)
+		return (true);
+	return (false);
 }

@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_3d_vector.c                                  :+:      :+:    :+:   */
+/*   is_light_ratio_valid.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 17:54:36 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/29 12:31:17 by rkersten         ###   ########.fr       */
+/*   Created: 2024/05/31 08:38:12 by rkersten          #+#    #+#             */
+/*   Updated: 2024/05/31 12:15:38 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parsing.h"
+#include "../libft/inc/libft.h"
 
-bool	check_3d_vector(char **p)
+bool	is_light_ratio_valid(char **line)
 {
-	float		tmp;
-	int8_t		i;
+	float	tmp;
 
-	i = -1;
-	while (++i != 3)
-	{
-		if (!is_length_valid(*p, 3))
-			return (1);
-		tmp = ft_atof(*p);
-		if (tmp < 0 || tmp > 1)
-			return (1);
-		skip_float(p);
-		if (i < 2 && **p != ',')
-			return (1);
-		if (i == 2 && **p != ' ')
-			return (1);
-		(*p)++;
-	}
-	return (0);
+	tmp = ft_atof(*line);
+	*line += 3;
+	if (tmp >= 0.0 && tmp <= 1.0)
+		return (true);
+	return (false);
 }
