@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:47:27 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/31 13:46:49 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:43:07 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,12 @@ bool	skip_space(char **p)
 		|| (**p >= 8 && **p <= 12 && **p != '\n'))
 		(*p)++;
 	return (1);
+}
+
+void	skip_line_start(t_element_type type, char **p)
+{
+	if (type <= 2)
+		(*p)++;
+	else 
+		*p += 3;
 }

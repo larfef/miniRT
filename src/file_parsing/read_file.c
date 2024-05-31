@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 21:47:26 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/29 14:24:01 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/31 17:22:38 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 void	read_file(t_file *file)
 {
-	open_file(file);
 	while (1)
 	{
 		file->line_start = get_next_line(file->fd);

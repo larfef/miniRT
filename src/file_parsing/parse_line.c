@@ -6,20 +6,12 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:55:12 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/31 14:15:28 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:42:57 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/inc/libft.h"
 #include "../../inc/parsing.h"
-
-void	skip_line_start(t_element_type type, char **p)
-{
-	if (type <= 2)
-		(*p)++;
-	else 
-		*p += 3;
-}
 
 void	parse_line(t_file *file)
 {

@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:12:45 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/31 12:40:12 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:46:32 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@
 # define RGB 3
 # define SKIP_FLOAT 4
 # define SKIP_SPACE 5
-# define IS_SPACE 6
-# define EOL 7
-# define ORIENTATION 8
-# define IS_DIGIT 9
-# define FOV 10
-# define SKIP_DIGIT 11
-# define END 12
+# define EOL 6
+# define ORIENTATION 7
+# define IS_DIGIT 8
+# define FOV 9
+# define SKIP_DIGIT 10
+# define END 11
 #endif

@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_check.c                                      :+:      :+:    :+:   */
+/*   is_end_of_line_valid.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 13:57:24 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/31 16:41:19 by rkersten         ###   ########.fr       */
+/*   Created: 2024/05/31 16:41:23 by rkersten          #+#    #+#             */
+/*   Updated: 2024/05/31 16:49:30 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parsing.h"
-#include "../libft/inc/libft.h"
+#include <stdbool.h>
 
-bool	is_fov_valid(char **p)
+bool	is_end_of_line_valid(char **line)
 {
-	int	tmp;
-
-	tmp = ft_atoi(*p);
-	if (tmp < 0 || tmp > 180)
-		return (false);
-	return (true);
-}
-
-bool	is_digit(char **p)
-{
-	if (**p >= '0' && **p <= '9')
+	if (!(**line)
+		|| **line == '\n')
 		return (true);
 	return (false);
 }

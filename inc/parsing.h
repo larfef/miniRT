@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:06:17 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/31 14:38:16 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:45:23 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	is_file_valid(char const *filename);
 void	is_filename_valid(char const *filename);
 bool	is_line_valid(int **tab, t_file *file);
 bool	is_minimal_scene_valid(t_file *file);
-bool	is_space(char **p);
 bool	light_parsing(char *line);
 void	open_file(t_file *file);
 void	parse_line(t_file *file_data);
@@ -53,6 +52,7 @@ void	read_file(t_file *file);
 void	set_duplicate_check(t_file *file_data);
 void	set_current_line_type(t_file *file_data);
 bool	sphere_parsing(char *line);
+void	skip_line_start(t_element_type type, char **p);
 bool	skip_digit(char **p);
 bool	skip_float(char **p);
 bool	skip_space(char **p);

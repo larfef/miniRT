@@ -5,7 +5,7 @@ CFLAGS			=	-Wall -Wextra -Werror -g
 INC				=	-Iinc -Isrc/libft/inc/ -Isrc/gnl/
 OBJS			=	$(addprefix $(BIN)/, $(notdir $(SRCS:.c=.o)))
 FILE_PARSING	= 	exit init_instructions init_parsing_functions is_duplicate is_length_valid is_line_valid is_orientation_valid is_rgb_valid ft_atof\
-					is_coordinates_valid is_brightness_valid is_file_valid is_filename_valid is_light_ratio_valid is_minimal_scene_valid\
+					is_coordinates_valid is_brightness_valid is_end_of_line_valid is_file_valid is_filename_valid is_light_ratio_valid is_minimal_scene_valid\
 					open_file parse_line read_file set_current_line_type set_duplicate_check utils_check utils_skip
 GNL				=	get_next_line get_next_line_utils
 SRC				=	main
