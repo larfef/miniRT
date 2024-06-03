@@ -13,24 +13,7 @@
 #include "../../inc/parsing.h"
 #include "../libft/inc/libft.h"
 
-bool	is_fov_valid(char **p)
-{
-	int	tmp;
-
-	tmp = ft_atoi(*p);
-	if (tmp < 0 || tmp > 180)
-		return (false);
-	return (true);
-}
-
-bool	is_digit(char **p)
-{
-	if (**p >= '0' && **p <= '9')
-		return (true);
-	return (false);
-}
-
-//bool	is_fov_valid(char **p, void *ptr, int option)
+//bool	is_fov_valid(char **p)
 //{
 //	int	tmp;
 //
@@ -40,9 +23,30 @@ bool	is_digit(char **p)
 //	return (true);
 //}
 //
-//bool	is_digit(char **p, void *ptr, int option)
+//bool	is_digit(char **p)
 //{
 //	if (**p >= '0' && **p <= '9')
 //		return (true);
 //	return (false);
 //}
+
+bool	is_fov_valid(char **p, void *ptr, int option)
+{
+	int	tmp;
+
+	(void)ptr;
+	(void)option;
+	tmp = ft_atoi(*p);
+	if (tmp < 0 || tmp > 180)
+		return (false);
+	return (true);
+}
+
+bool	is_digit(char **p, void *ptr, int option)
+{
+	(void)ptr;
+	(void)option;
+	if (**p >= '0' && **p <= '9')
+		return (true);
+	return (false);
+}

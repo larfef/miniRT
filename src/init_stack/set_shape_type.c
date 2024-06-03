@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_file_valid.c                                    :+:      :+:    :+:   */
+/*   set_shape_type.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 12:10:45 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/31 17:22:03 by rkersten         ###   ########.fr       */
+/*   Created: 2024/05/18 13:49:12 by rkersten          #+#    #+#             */
+/*   Updated: 2024/05/31 09:51:31 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/parsing.h"
-#include "../libft/inc/libft.h"
+# include "../../inc/init_stack_types.h"
 
-void	is_file_valid(t_file *file)
+void	set_shape_type(t_shape_type *type, char c)
 {
-	open_file(file);
-	read_file(NULL, file, PARSE);
-	is_minimal_scene_valid(file);
-	printf("miniRT: Valid file\n");
-	close(file->fd);
+	if (c == 's')
+		*type = _SPHERE;
+	else if (c == 'c')
+		*type = _CYLINDER;
+	else if (c == 'p')
+		*type = _PLANE;
 }

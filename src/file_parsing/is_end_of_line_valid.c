@@ -12,18 +12,20 @@
 
 #include <stdbool.h>
 
-bool	is_end_of_line_valid(char **line)
-{
-	if (!(**line)
-		|| **line == '\n')
-		return (true);
-	return (false);
-}
-
-//bool	is_end_of_line_valid(char **line, void *ptr, int option)
+//bool	is_end_of_line_valid(char **line)
 //{
 //	if (!(**line)
 //		|| **line == '\n')
 //		return (true);
 //	return (false);
 //}
+
+bool	is_end_of_line_valid(char **line, void *ptr, int option)
+{
+	(void)ptr;
+	(void)option;
+	if (!(**line)
+		|| **line == '\n')
+		return (true);
+	return (false);
+}

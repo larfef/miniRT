@@ -11,10 +11,12 @@
 /* ************************************************************************** */
 
 #include "../../inc/init_stack.h"
+#include "../../inc/parsing.h"
 #include "../libft/inc/libft.h"
 
-void	init_stack(t_scene *scene)
+void	init_stack(t_scene *scene, t_file *file)
 {
 	ft_memset(scene, '\0', sizeof(*scene));
-	
+	open_file(file);
+	read_file(scene, file, EXTRACT);
 }

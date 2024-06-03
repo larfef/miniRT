@@ -14,8 +14,8 @@
 # define PARSING_TYPES_H
 # include <stdbool.h>
 # include <stdint.h>
-typedef bool	(*func_ptr_t)(char **);
-//typedef bool	(*func_ptr_t)(char **, void *, int);
+//typedef bool	(*func_ptr_t)(char **);
+typedef bool	(*func_ptr_t)(char **, void *, int);
 typedef bool	mandatory_element[3];
 typedef enum s_element_type
 {

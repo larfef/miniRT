@@ -13,54 +13,54 @@
 #include "../../inc/parsing.h"
 #include "../../inc/init_stack.h"
 
-bool	is_orientation_valid(char **p)
-{
-	float		tmp;
-	int8_t		i;
-
-	i = -1;
-	while (++i != 3)
-	{
-		if (!is_length_valid(*p, 3))
-			return (false);
-		tmp = ft_atof(*p);
-		if (tmp < 0 || tmp > 1)
-			return (false);
-		skip_float(p);
-		if (i < 2 && **p != ',')
-			return (false);
-		if (i == 2 && **p != ' ')
-			return (false);
-		(*p)++;
-	}
-	return (true);
-}
-
-//bool	is_orientation_valid(char **p, void *ptr, int option)
+//bool	is_orientation_valid(char **p)
 //{
-//	t_shapes	*shape;
 //	float		tmp;
 //	int8_t		i;
 //
 //	i = -1;
-//	if (option == EXTRACT)
-//		shape = (t_shapes *)ptr;
 //	while (++i != 3)
 //	{
-//		if (option == PARSE
-//			&& !is_length_valid(*p, 3))
+//		if (!is_length_valid(*p, 3))
 //			return (false);
 //		tmp = ft_atof(*p);
-//		if (option == EXTRACT)
-//			shape->orientation[i] = tmp;
-//		if (option == PARSE
-//			&& (tmp < 0 || tmp > 1))
+//		if (tmp < 0 || tmp > 1)
 //			return (false);
 //		skip_float(p);
-//		if (option == PARSE
-//			&& (i < 2 && **p != ','))
+//		if (i < 2 && **p != ',')
+//			return (false);
+//		if (i == 2 && **p != ' ')
 //			return (false);
 //		(*p)++;
 //	}
 //	return (true);
 //}
+
+bool	is_orientation_valid(char **p, void *ptr, int option)
+{
+	t_shapes	*shape;
+	float		tmp;
+	int8_t		i;
+
+	i = -1;
+	if (option == EXTRACT)
+		shape = (t_shapes *)ptr;
+	while (++i != 3)
+	{
+		if (option == PARSE
+			&& !is_length_valid(*p, 3))
+			return (false);
+		tmp = ft_atof(*p);
+		if (option == EXTRACT)
+			shape->orientation[i] = tmp;
+		if (option == PARSE
+			&& (tmp < 0 || tmp > 1))
+			return (false);
+		skip_float(p, NULL, 0);
+		if (option == PARSE
+			&& (i < 2 && **p != ','))
+			return (false);
+		(*p)++;
+	}
+	return (true);
+}

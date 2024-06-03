@@ -11,21 +11,31 @@
 /* ************************************************************************** */
 
 #include "../../inc/parsing.h"
+#include "../../inc/init_stack.h"
 #include "../gnl/get_next_line.h"
+#include "../libft/inc/libft.h"
 #include <stdlib.h>
 
-void	read_file(t_file *file)
+void	read_file(t_scene *scene, t_file *file, int option)
 {
 	while (1)
 	{
 		file->line_start = get_next_line(file->fd);
-		file->line = file->line_start;
-		if (!file->line_start)
-			if (errno == ENOMEM)
+		if (!file->line_start
+			&& errno == ENOMEM)
+		{
+			if (option == PARSE)
 				__exit(file, strerror(ENOMEM));
-		if (!file->line_start)
+			if (option == EXTRACT)
+				___exit(file->line_start, (t_shapes *)scene->scene[_SHAPES]);//free and exit logic
+		}
+		else if (!file->line_start)
 			return ;
-		parse_line(file);
+		file->line = file->line_start;
+		if (option == PARSE)
+			parse_line(file);
+		if (option == EXTRACT)
+			extract_file_data(file, scene);
 		free(file->line_start);
 	}
 }

@@ -34,5 +34,6 @@ int	main(int argc, char **argv)
 	init_parsing_functions(&file);
 	init_file(&file, argv[1]);
 	is_file_valid(&file);
+	init_stack(&scene, &file);
 	return (0);
 }

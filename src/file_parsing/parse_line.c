@@ -15,7 +15,7 @@
 
 void	parse_line(t_file *file)
 {
-	skip_space(&file->line);
+	skip_space(&file->line, NULL, 0);
 	set_current_line_type(file);
 	if (file->current_line == NEWLINE)
 		return ;
