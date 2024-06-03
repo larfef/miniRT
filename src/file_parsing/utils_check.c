@@ -29,3 +29,20 @@ bool	is_digit(char **p)
 		return (true);
 	return (false);
 }
+
+//bool	is_fov_valid(char **p, void *ptr, int option)
+//{
+//	int	tmp;
+//
+//	tmp = ft_atoi(*p);
+//	if (tmp < 0 || tmp > 180)
+//		return (false);
+//	return (true);
+//}
+//
+//bool	is_digit(char **p, void *ptr, int option)
+//{
+//	if (**p >= '0' && **p <= '9')
+//		return (true);
+//	return (false);
+//}

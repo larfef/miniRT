@@ -15,6 +15,7 @@
 # include <stdbool.h>
 # include <stdint.h>
 typedef bool	(*func_ptr_t)(char **);
+//typedef bool	(*func_ptr_t)(char **, void *, int);
 typedef bool	mandatory_element[3];
 typedef enum s_element_type
 {
@@ -33,9 +34,9 @@ typedef struct s_file
 	char			*line;
 	char			*line_start;
 	char const		*file;
-	func_ptr_t		parsing_functions[12];
+	func_ptr_t		parsing_functions[11];
 	int32_t			fd;
-	uint8_t			errnum;
+	int 			**instructions;
 	t_element_type	current_line;
 }	t_file;
 #endif

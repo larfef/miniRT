@@ -23,3 +23,15 @@ bool	is_line_valid(int **tab, t_file *file)
 		return (true);
 	return (false);
 }
+
+//bool	is_line_valid(int **tab, t_file *file)
+//{
+//	uint8_t	i;
+//
+//	i = -1;
+//	while (tab[file->current_line][++i] != END
+//		   && file->parsing_functions[tab[file->current_line][i]](&file->line, NULL, PARSE));
+//	if (tab[file->current_line][i] == END)
+//		return (true);
+//	return (false);
+//}

@@ -13,17 +13,11 @@
 #include "../inc/parsing.h"
 #include "../libft/inc/libft.h"
 
-void	is_file_valid(char const *filename)
+void	is_file_valid(t_file *file)
 {
-	t_file	file;
-
-	is_filename_valid(filename);
-	ft_memset(&file, '\0', sizeof(file));
-	file.file = filename;
-	init_parsing_functions(&file);
-	open_file(&file);
-	read_file(&file);
-	is_minimal_scene_valid(&file);
+	open_file(file);
+	read_file(file);
+	is_minimal_scene_valid(file);
 	printf("miniRT: Valid file\n");
-	close(file.fd);
+	close(file->fd);
 }

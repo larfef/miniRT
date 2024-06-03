@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_line.c                                       :+:      :+:    :+:   */
+/*   init_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 13:55:12 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/31 16:42:57 by rkersten         ###   ########.fr       */
+/*   Created: 2024/05/31 09:46:04 by rkersten          #+#    #+#             */
+/*   Updated: 2024/05/31 09:49:36 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/inc/libft.h"
 #include "../../inc/parsing.h"
+#include "../libft/inc/libft.h"
 
-void	parse_line(t_file *file)
+void	init_file(t_file *file, char *filename)
 {
-	skip_space(&file->line);
-	set_current_line_type(file);
-	if (file->current_line == NEWLINE)
-		return ;
-	if (file->current_line == INVALID)
-		__exit(file, E_INVALID_LINE);
-	is_duplicate(file);
-	skip_line_start(file->current_line, &file->line);
-	if (!is_line_valid(file->instructions, file))
-		__exit(file, E_INVALID_LINE);
-	set_duplicate_check(file);
-	return ;
+	static int	*tab[6];
+
+	ft_memset(file, '\0', sizeof(file));
+	file->file = filename;
+	file->instructions = tab;
+	init_instructions(file->instructions);
 }

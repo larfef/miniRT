@@ -1,16 +1,17 @@
 #ifndef INIT_STACK_TYPES_H
 # define INIT_STACK_TYPES_H
 # include <stdint.h>
-typedef uint64_t	nb_elements[3];
-typedef uint8_t		rgb[3];
-typedef float		coordinates[3];	
-typedef float		size[2];
-typedef float		orientation[3];
+typedef uint64_t		nb_elements[3];
+typedef uint8_t			rgb[3];
+typedef float			coordinates[3];
+typedef float			size[2];
+typedef float			orientation[3];
+typedef struct s_shapes	t_shapes;
 typedef enum e_shape_types
 {
-	CYLINDER,
-	PLANE,
-	SPHERE,
+	_CYLINDER,
+	_PLANE,
+	_SPHERE,
 }	t_shape_types;
 typedef struct s_shapes
 {

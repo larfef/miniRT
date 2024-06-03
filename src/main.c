@@ -11,18 +11,28 @@
 /* ************************************************************************** */
 
 #include "../inc/parsing.h"
-#include "libft/inc/libft.h"
-
+#include "../inc/init_stack.h"
 #include <stdlib.h>
-#include <unistd.h>
 #include <stdio.h>
-int	main(int argc, char **argv)
+
+static	void	check_argc(int argc)
 {
 	if (argc != 2)
 	{
 		printf("miniRT: %s\n", E_ARG);
 		exit(1);
 	}
-	is_file_valid(argv[1]);
+}
+
+int	main(int argc, char **argv)
+{
+	t_scene	scene;
+	t_file	file;
+
+	check_argc(argc);
+	is_filename_valid(argv[1]);
+	init_parsing_functions(&file);
+	init_file(&file, argv[1]);
+	is_file_valid(&file);
 	return (0);
 }

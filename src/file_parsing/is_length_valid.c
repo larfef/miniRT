@@ -13,7 +13,7 @@
 #include "../../inc/parsing.h"
 #include "../libft/inc/libft.h"
 
-bool	is_length_valid(char *s, int8_t lenght_max)
+bool	is_length_valid(char *s, int8_t length_max)
 {
 	int8_t	tmp;
 
@@ -28,7 +28,7 @@ bool	is_length_valid(char *s, int8_t lenght_max)
 	while (ft_isdigit(*s)
 		&& ++tmp < INT8_MAX)
 		s++;
-	if (tmp > lenght_max)
+	if (tmp > length_max)
 		return (false);
 	return (true);
 }

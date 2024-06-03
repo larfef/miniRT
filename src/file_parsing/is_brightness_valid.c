@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../inc/parsing.h"
+#include "../../inc/init_stack.h"
 
 bool	is_brightness_valid(char **line)
 {
@@ -23,3 +24,22 @@ bool	is_brightness_valid(char **line)
 		return (false);
 	return (true);
 }
+
+//bool	is_brightness_valid(char **line, void *ptr, int option)
+//{
+//	t_light *light;
+//	float	brightness;
+//
+//	if (option == PARSE
+//		&&!is_length_valid(*line, 3))
+//		return (1);
+//	brightness = ft_atof(*line);
+//	if (option == PARSE && brightness < 0 || brightness > 1)
+//		return (false);
+//	if (option == EXTRACT)
+//	{
+//		light = (t_light *)ptr;
+//		light->brightness = brightness;
+//	}
+//	return (true);
+//}

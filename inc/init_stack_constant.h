@@ -8,4 +8,5 @@
 # define Z 2
 # define DIAMETER 0
 # define HEIGHT 1
+# define EXTRACT 1
 #endif

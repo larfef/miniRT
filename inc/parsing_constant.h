@@ -31,4 +31,5 @@
 # define FOV 9
 # define SKIP_DIGIT 10
 # define END 11
+# define PARSE 0
 #endif

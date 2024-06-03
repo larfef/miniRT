@@ -19,3 +19,11 @@ bool	is_end_of_line_valid(char **line)
 		return (true);
 	return (false);
 }
+
+//bool	is_end_of_line_valid(char **line, void *ptr, int option)
+//{
+//	if (!(**line)
+//		|| **line == '\n')
+//		return (true);
+//	return (false);
+//}
