@@ -14,7 +14,7 @@
 
 static	void	init_instructions_2(int **p)
 {
-	static int	sphere[] = {SKIP_SPACE, COORDINATES, SKIP_SPACE, SKIP_FLOAT,
+	static int	sphere[] = {SKIP_SPACE, COORDINATES, SKIP_SPACE, SIZE, SKIP_FLOAT,
 		SKIP_SPACE, IS_DIGIT, RGB, SKIP_SPACE, EOL, END};
 	static int	cylinder[] = {SKIP_SPACE, COORDINATES, SKIP_SPACE,
 		ORIENTATION, SKIP_SPACE, SIZE, SKIP_FLOAT, SKIP_SPACE,

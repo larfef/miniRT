@@ -6,6 +6,7 @@
 # include "init_stack_types.h"
 # include "parsing_types.h"
 void	___exit(char *s, t_shapes *list);
+void	free_list(t_shapes *list);
 void	extract_file_data(t_file *file, t_scene *scene);
 void	init_stack(t_scene *scene, t_file *file);
 void	set_element_type(char c, t_elements_types *element_type);

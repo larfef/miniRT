@@ -8,7 +8,7 @@ FILE_PARSING	= 	exit init_instructions init_parsing_functions init_file is_dupli
 					is_coordinates_valid is_brightness_valid is_end_of_line_valid is_file_valid is_filename_valid is_light_ratio_valid is_minimal_scene_valid\
 					is_size_valid open_file parse_line read_file set_current_line_type set_duplicate_check utils_check utils_skip
 GNL				=	get_next_line get_next_line_utils
-INIT_STACK		=	_exit extract_file_data init_stack set_element_type set_shape_type
+INIT_STACK		=	_exit extract_file_data free_list init_stack set_element_type set_shape_type
 SRC				=	main
 SRCS			=	$(addsuffix .c, $(addprefix src/, $(SRC))) \
 					$(addsuffix .c, $(addprefix src/gnl/, $(GNL))) \

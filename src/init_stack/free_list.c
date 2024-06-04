@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   free_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,16 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/init_stack.h"
+#include "../../inc/init_stack_types.h"
 #include <stdlib.h>
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
 
-void	___exit(char *s, t_shapes *list)
+void	free_list(t_shapes *list)
 {
-	free(s);
-	free_list(list);
-	printf("miniRT: %s", strerror(errno));
-	exit(1);
+	t_shapes	*tmp;
+
+	tmp = list;
+	while (tmp)
+	{
+		tmp = list->next;
+		free(list);
+		list = tmp;
+	}
 }
