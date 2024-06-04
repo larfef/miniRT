@@ -21,21 +21,22 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
-bool	is_orientation_valid(char **p, void *ptr, int option);
+bool	is_orientation_valid(char **p, t_scene *scene, int option);
 void	__exit(t_file *file, char *error_message);
 float	ft_atof(const char *str);
 void	init_file(t_file *file, char *filename);
 void	init_instructions(int **p);
 void	init_parsing_functions(t_file *file);
-bool	is_brightness_valid(char **line, void *ptr, int option);
-bool	is_digit(char **p, void *ptr, int option);
-bool	is_fov_valid(char **p, void *ptr, int option);
+bool	is_brightness_valid(char **line, t_scene *scene, int option);
+bool	is_digit(char **p, t_scene *scene, int option);
+bool	is_fov_valid(char **p, t_scene *scene, int option);
 bool	is_length_valid(char *s, int8_t lenght_max);
-bool	is_light_ratio_valid(char **line, void *ptr, int option);
-bool	is_rgb_valid(char **p, void *ptr, int option);
-bool	is_coordinates_valid(char **p, void *ptr, int option);
+bool	is_light_ratio_valid(char **line, t_scene *scene, int option);
+bool	is_rgb_valid(char **p, t_scene *scene, int option);
+bool	is_size_valid(char **line, t_scene *scene, int option);
+bool	is_coordinates_valid(char **p, t_scene *scene, int option);
 bool	is_duplicate(t_file *file);
-bool	is_end_of_line_valid(char **line, void *ptr, int option);
+bool	is_end_of_line_valid(char **line, t_scene *scene, int option);
 void	is_file_valid(t_file *file);
 void	is_filename_valid(char const *filename);
 bool	is_line_valid(int **tab, t_file *file);
@@ -45,8 +46,8 @@ void	parse_line(t_file *file_data);
 void	read_file(t_scene *scene, t_file *file, int option);
 void	set_duplicate_check(t_file *file_data);
 void	set_current_line_type(t_file *file_data);
-void	skip_line_start(t_element_type type, char **p);
-bool	skip_digit(char **p, void *ptr, int option);
-bool	skip_float(char **p, void *ptr, int option);
-bool	skip_space(char **p, void *ptr, int option);
+void	skip_line_start(int type, char **p);
+bool	skip_digit(char **p, t_scene *scene, int option);
+bool	skip_float(char **p, t_scene *scene, int option);
+bool	skip_space(char **p, t_scene *scene, int option);
 #endif

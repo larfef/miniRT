@@ -26,4 +26,5 @@ void	init_parsing_functions(t_file *file)
 	file->parsing_functions[8] = is_digit;
 	file->parsing_functions[9] = is_fov_valid;
 	file->parsing_functions[10] = skip_digit;
+	file->parsing_functions[11] = is_size_valid;
 }

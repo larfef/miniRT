@@ -45,7 +45,7 @@
 //	return (1);
 //}
 
-void	skip_line_start(t_element_type type, char **p)
+void	skip_line_start(int type, char **p)
 {
 	if (type <= 2)
 		(*p)++;
@@ -53,9 +53,9 @@ void	skip_line_start(t_element_type type, char **p)
 		*p += 3;
 }
 
-bool	skip_float(char **p, void *ptr, int option)
+bool	skip_float(char **p, t_scene *scene, int option)
 {
-	(void)ptr;
+	(void)scene;
 	(void)option;
 	if (!is_length_valid(*p, LEN_MAX))
 		return (0);
@@ -70,9 +70,9 @@ bool	skip_float(char **p, void *ptr, int option)
 	return (1);
 }
 
-bool	skip_digit(char **p, void *ptr, int option)
+bool	skip_digit(char **p, t_scene *scene, int option)
 {
-	(void)ptr;
+	(void)scene;
 	(void)option;
 	if (**p == '-')
 		(*p)++;
@@ -81,9 +81,9 @@ bool	skip_digit(char **p, void *ptr, int option)
 	return (1);
 }
 
-bool	skip_space(char **p, void *ptr, int option)
+bool	skip_space(char **p, t_scene *scene, int option)
 {
-	(void)ptr;
+	(void)scene;
 	(void)option;
 	while (**p == 32
 		   || (**p >= 8 && **p <= 12 && **p != '\n'))

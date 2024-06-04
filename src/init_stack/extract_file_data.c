@@ -29,21 +29,21 @@ static bool	list_add_front(t_shapes **list)
 void	extract_file_data(t_file *file, t_scene *scene)
 {
 	uint8_t				i;
-	t_elements_types	element_type;
 
 	skip_space(&file->line, NULL, 0);
 	if (*file->line == '\n')
 		return ;
-	set_element_type(*(file->line), &element_type);
-	if (element_type == _SHAPES)
+	set_element_type(*(file->line), &scene->element_type);
+	set_current_line_type(file);
+	if (scene->element_type == _SHAPES)
 	{
-		if (list_add_front((t_shapes **)&scene->scene[_SHAPES]))
-			___exit(file->line_start, (t_shapes *)scene->scene[_SHAPES]);//free and exit logic
-		set_shape_type(&(((t_shapes *)(scene->scene[_SHAPES]))->type), *(file->line));
+		if (list_add_front(&scene->shapes))
+			___exit(file->line_start, scene->shapes);
+		set_shape_type(&(scene->shapes->type), *(file->line));
 	}
-	skip_line_start(file->current_line, &file->line);
+	skip_line_start((int)scene->element_type, &file->line);
 	i = -1;
 	while (file->instructions[file->current_line][++i] != EOL
-		   && file->parsing_functions[file->instructions[file->current_line][i]](&file->line, scene->scene[element_type], EXTRACT));
+		   && file->parsing_functions[file->instructions[file->current_line][i]](&file->line, scene, scene->element_type));
 	return ;
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_light_ratio_valid.c                             :+:      :+:    :+:   */
+/*   is_size_valid.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,28 +13,20 @@
 #include "../../inc/parsing.h"
 #include "../../inc/init_stack.h"
 
-//bool	is_light_ratio_valid(char **line)
-//{
-//	float	tmp;
-//
-//	tmp = ft_atof(*line);
-//	*line += 3;
-//	if (tmp >= 0.0 && tmp <= 1.0)
-//		return (true);
-//	return (false);
-//}
-
-bool	is_light_ratio_valid(char **line, t_scene *scene, int option)
+bool	is_size_valid(char **line, t_scene *scene, int option)
 {
 	float		tmp;
+	static int	i;
 
+	if (option == PARSE && !is_length_valid(*line, LEN_MAX))
+		return (false);
 	tmp = ft_atof(*line);
-	if (option == _AMBIENT)
-		scene->ambient.light_ratio = tmp;
-	if (option == PARSE)
-		*line += 3;
-	if (option == PARSE &&
-		(tmp < 0.0 && tmp > 1.0))
+	if (option == _SHAPES && i == HEIGHT)
+		scene->shapes->size[HEIGHT] = tmp;
+	else if (option == _SHAPES && i++ == DIAMETER)
+		scene->shapes->size[DIAMETER] = tmp;
+	if (option == PARSE
+		&& tmp <= 0.0)
 		return (false);
 	return (true);
 }

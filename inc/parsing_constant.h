@@ -30,6 +30,9 @@
 # define IS_DIGIT 8
 # define FOV 9
 # define SKIP_DIGIT 10
-# define END 11
-# define PARSE 0
+# define SIZE 11
+# define END 12
+# define PARSE 10
+# define DIAMETER 0
+# define HEIGHT 1
 #endif

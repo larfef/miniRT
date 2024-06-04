@@ -6,7 +6,6 @@ typedef uint8_t			rgb[3];
 typedef float			coordinates[3];
 typedef float			size[2];
 typedef float			orientation[3];
-typedef void *			scene_datas[4];
 typedef struct s_shapes	t_shapes;
 typedef enum e_shape_types
 {
@@ -50,6 +49,10 @@ typedef struct s_light
 typedef struct s_scene
 {
 //	nb_elements	nb_elements;
-	scene_datas scene;
+	t_ambient			ambient;
+	t_camera			camera;
+	t_light				light;
+	t_shapes 			*shapes;
+	t_elements_types	element_type;
 }	t_scene;
 #endif

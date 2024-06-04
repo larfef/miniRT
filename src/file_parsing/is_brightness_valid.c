@@ -25,9 +25,8 @@
 //	return (true);
 //}
 
-bool	is_brightness_valid(char **line, void *ptr, int option)
+bool	is_brightness_valid(char **line, t_scene *scene, int option)
 {
-	t_light *light;
 	float	brightness;
 
 	if (option == PARSE
@@ -37,10 +36,7 @@ bool	is_brightness_valid(char **line, void *ptr, int option)
 	if (option == PARSE
 		&& (brightness < 0 || brightness > 1))
 		return (false);
-	if (option == EXTRACT)
-	{
-		light = (t_light *)ptr;
-		light->brightness = brightness;
-	}
+	if (option != PARSE)
+		scene->light.brightness = brightness;
 	return (true);
 }

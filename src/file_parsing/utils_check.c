@@ -30,21 +30,24 @@
 //	return (false);
 //}
 
-bool	is_fov_valid(char **p, void *ptr, int option)
+bool	is_fov_valid(char **p, t_scene *scene, int option)
 {
 	int	tmp;
 
-	(void)ptr;
+	(void)scene;
 	(void)option;
 	tmp = ft_atoi(*p);
-	if (tmp < 0 || tmp > 180)
+	if (option == PARSE
+		&& (tmp < 0 || tmp > 180))
 		return (false);
+	if (option == _CAMERA)
+		scene->camera.fov = tmp;
 	return (true);
 }
 
-bool	is_digit(char **p, void *ptr, int option)
+bool	is_digit(char **p, t_scene *scene, int option)
 {
-	(void)ptr;
+	(void)scene;
 	(void)option;
 	if (**p >= '0' && **p <= '9')
 		return (true);

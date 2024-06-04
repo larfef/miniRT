@@ -14,7 +14,7 @@
 #include "../inc/init_stack.h"
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <unistd.h>
 static	void	check_argc(int argc)
 {
 	if (argc != 2)
@@ -35,5 +35,7 @@ int	main(int argc, char **argv)
 	init_file(&file, argv[1]);
 	is_file_valid(&file);
 	init_stack(&scene, &file);
+	___exit(NULL, scene.shapes);
+	close(file.fd);
 	return (0);
 }

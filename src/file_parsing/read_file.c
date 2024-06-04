@@ -27,7 +27,7 @@ void	read_file(t_scene *scene, t_file *file, int option)
 			if (option == PARSE)
 				__exit(file, strerror(ENOMEM));
 			if (option == EXTRACT)
-				___exit(file->line_start, (t_shapes *)scene->scene[_SHAPES]);//free and exit logic
+				___exit(file->line_start, scene->shapes);
 		}
 		else if (!file->line_start)
 			return ;

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdbool.h>
-
+#include "../../inc/init_stack_types.h"
 //bool	is_end_of_line_valid(char **line)
 //{
 //	if (!(**line)
@@ -20,9 +20,9 @@
 //	return (false);
 //}
 
-bool	is_end_of_line_valid(char **line, void *ptr, int option)
+bool	is_end_of_line_valid(char **line, t_scene *scene, int option)
 {
-	(void)ptr;
+	(void)scene;
 	(void)option;
 	if (!(**line)
 		|| **line == '\n')

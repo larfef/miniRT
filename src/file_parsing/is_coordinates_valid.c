@@ -32,23 +32,22 @@
 //	return (true);
 //}
 
-//must also set coordinates for camera and light in EXTRACT mode
-bool	is_coordinates_valid(char **p, void *ptr, int option)
+bool	is_coordinates_valid(char **p, t_scene *scene, int option)
 {
 	float		tmp;
 	int			i;
-	t_shapes	*shape;
 
 	i = -1;
-	if (option == EXTRACT)
-		shape = (t_shapes *)ptr;
 	while (++i != 3)
 	{
-		if (option == EXTRACT)
-		{
+		if (option != PARSE)
 			tmp = ft_atof(*p);
-			shape->center[i] = tmp;
-		}
+		if (option == _CAMERA)
+			scene->camera.coordinates[i] = tmp;
+		if (option == _LIGHT)
+			scene->light.coordinates[i] = tmp;
+		if (option == _SHAPES)
+			scene->shapes->center[i] = tmp;
 		if (option == PARSE
 			&& !is_length_valid(*p, 15))
 			return (false);

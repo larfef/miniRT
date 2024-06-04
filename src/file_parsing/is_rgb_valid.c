@@ -33,21 +33,19 @@
 //	return (true);
 //}
 
-bool	is_rgb_valid(char **p, void *ptr, int option)
+bool	is_rgb_valid(char **p, t_scene *scene, int option)
 {
 	int			i;
 	int			tmp;
-	t_shapes	*shape;
 
 	i = -1;
 	while (++i != 3)
 	{
 		tmp = ft_atoi(*p);
-		if (option == EXTRACT)
-		{
-			shape = (t_shapes *)ptr;
-			shape->color[i] = tmp;
-		}
+		if (option == _SHAPES)
+			scene->shapes->color[i] = tmp;
+		if (option == _AMBIENT)
+			scene->ambient.color[i] = tmp;
 		if (option == PARSE
 			&& (tmp < 0 || tmp > 255))
 			return (false);

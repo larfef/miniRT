@@ -36,23 +36,23 @@
 //	return (true);
 //}
 
-bool	is_orientation_valid(char **p, void *ptr, int option)
+bool	is_orientation_valid(char **p, t_scene *scene, int option)
 {
-	t_shapes	*shape;
 	float		tmp;
 	int8_t		i;
 
 	i = -1;
-	if (option == EXTRACT)
-		shape = (t_shapes *)ptr;
 	while (++i != 3)
 	{
 		if (option == PARSE
 			&& !is_length_valid(*p, 3))
 			return (false);
 		tmp = ft_atof(*p);
-		if (option == EXTRACT)
-			shape->orientation[i] = tmp;
+		if (option == _CAMERA)
+			scene->camera.orientation[i] = tmp;
+		if (option == _SHAPES
+			&& scene->shapes->type != _SPHERE)
+			scene->shapes->orientation[i] = tmp;
 		if (option == PARSE
 			&& (tmp < 0 || tmp > 1))
 			return (false);
