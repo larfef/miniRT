@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   close_window.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,44 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/parsing.h"
-#include "../inc/init_stack.h"
-#include "../inc/window_management.h"
-#include "../inc/hooks.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
+#include "../../inc/window_management_types.h"
 
-static	void	check_argc(int argc)
+void close_window(void* param)
 {
-	if (argc != 2)
-	{
-		printf("miniRT: %s\n", E_ARG);
-		exit(1);
-	}
-}
+	mlx_t* mlx = param;
 
-void	window_management()
-{
-
-}
-
-int	main(int argc, char **argv)
-{
-	t_scene		scene;
-	t_file		file;
-	t_window	window;
-
-	check_argc(argc);
-	is_filename_valid(argv[1]);
-	init_parsing_functions(&file);
-	init_file(&file, argv[1]);
-	is_file_valid(&file);
-	init_stack(&scene, &file);
-	close(file.fd);
-	display(&scene, &window);
-	init_hooks(&window);
-	mlx_loop(window.mlx.window);
-	free_list(scene.shapes);
-	return (0);
+	(void)param;
+	if (mlx_is_key_down(mlx->window, MLX_KEY_ESCAPE))
+		mlx_close_window(mlx->window);
 }

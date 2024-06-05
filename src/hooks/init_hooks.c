@@ -10,44 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/parsing.h"
-#include "../inc/init_stack.h"
-#include "../inc/window_management.h"
-#include "../inc/hooks.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
+#include "../../inc/window_management_types.h"
+#include "../../inc/hooks.h"
 
-static	void	check_argc(int argc)
+void	init_hooks(t_window *window)
 {
-	if (argc != 2)
-	{
-		printf("miniRT: %s\n", E_ARG);
-		exit(1);
-	}
-}
-
-void	window_management()
-{
-
-}
-
-int	main(int argc, char **argv)
-{
-	t_scene		scene;
-	t_file		file;
-	t_window	window;
-
-	check_argc(argc);
-	is_filename_valid(argv[1]);
-	init_parsing_functions(&file);
-	init_file(&file, argv[1]);
-	is_file_valid(&file);
-	init_stack(&scene, &file);
-	close(file.fd);
-	display(&scene, &window);
-	init_hooks(&window);
-	mlx_loop(window.mlx.window);
-	free_list(scene.shapes);
-	return (0);
+	mlx_loop_hook(window->mlx.window, close_window, window);
 }
