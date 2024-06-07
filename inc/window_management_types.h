@@ -4,6 +4,7 @@
 typedef struct s_window
 {
 	mlx_t	mlx;
+	mlx_image_t	*image;
 	float	aspect_ratio;
 }	t_window;
 #endif

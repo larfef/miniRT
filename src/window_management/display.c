@@ -21,6 +21,6 @@ void	display(t_scene *scene, t_window *window)
 	set_aspect_ratio((float)WIDTH_RATIO, (float)HEIGHT_RATIO,
 					 &window->aspect_ratio);
 	create_window(window);
-	if (!window->mlx.window)
+	if (window->mlx.window == NULL)
 		___exit(NULL, scene->shapes);
 }
