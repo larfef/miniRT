@@ -10,3 +10,8 @@
 # ifndef HEIGHT_RATIO
 # define HEIGHT_RATIO 9.0
 # endif
+# ifndef VIEWPORT_HEIGHT
+# define VIEWPORT_HEIGHT 2.0
+# define WIDTH 0
+# define HEIGHT 1
+# endif

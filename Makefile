@@ -12,7 +12,7 @@ FILE_PARSING	= 	exit init_instructions init_parsing_functions init_file is_dupli
 GNL				=	get_next_line get_next_line_utils
 HOOKS			=	close_window init_hooks
 INIT_STACK		=	_exit extract_file_data free_list init_stack set_element_type set_shape_type
-RENDERING		=	add_vector substract_vector dot_product cross_product
+RENDERING		=	add_vector substract_vector dot_product cross_product set_color
 WINDOW_MANAGEMENT = create_window display set_aspect_ratio set_image_width
 SRC				=	main
 SRCS			=	$(addsuffix .c, $(addprefix src/, $(SRC))) \
@@ -28,7 +28,7 @@ ifeq ($(UNAME_S), Linux)
 endif
 
 ifeq ($(UNAME_S), Darwin)
-    LDFLAGS += -L/Users/$(USER)/.brew/opt/glfw/lib/ -framework Cocoa -framework OpenGL -framework IOKit
+    LDFLAGS += -lglfw -L/Users/$(USER)/.brew/opt/glfw/lib/ -framework Cocoa -framework OpenGL -framework IOKit
 endif
 
 all: $(NAME)

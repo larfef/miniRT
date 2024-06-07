@@ -11,13 +11,26 @@
 /* ************************************************************************** */
 
 #include "../../inc/window_management.h"
+#include <math.h>
+
+typedef union {
+
+	struct {
+		uint8_t alpha;
+		uint8_t blue;
+		uint8_t green;
+		uint8_t red;
+	} rgba;
+} color;
 
 static	void	test_draw(t_window *window)
 {
+	color	rgb;
 	uint32_t	color;
 	int	x;
 	int	y;
 
+	rgb.value.red =
 	x = -1;
 	y = -1;
 	color = 0;
@@ -26,21 +39,24 @@ static	void	test_draw(t_window *window)
 		while (++x != window->mlx.width)
 		{
 			uint8_t red = (x * 255) / (window->mlx.width - 1);
-			uint8_t green = (y * 255) / (window->mlx.height - 1);;  // You can set green based on your requirements
-			uint8_t blue = 0;   // You can set blue based on your requirements
-
-			color = (red << 24) | (green << 16) | (blue << 8) | 255;
+			uint8_t green = 0;
+			uint8_t blue = (y * 255) / (window->mlx.height - 1);
+			color = (red << 24) | (green << 16) | (blue << 8) | 50;
 			mlx_put_pixel(window->image, x, y, color);
 		}
 		x = -1;
 	}
 }
 
+void	set_window_height(float width, float aspect_ratio, int32_t *height)
+{
+	*height = (uint32_t)roundf(width / aspect_ratio);
+	if (*height < 1)
+		*height = 1;
+}
+
 void	create_window(t_window *window)
 {
-	window->mlx.height = (int32_t)window->mlx.width / window->aspect_ratio;
-	if (window->mlx.height < 1)
-		window->mlx.height = 1;
 	window->mlx.window = mlx_init(window->mlx.width,
 								   window->mlx.height, "miniRT", false);
 	window->image = mlx_new_image(window->mlx.window, window->mlx.width, window->mlx.height);

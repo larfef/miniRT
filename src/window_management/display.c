@@ -13,13 +13,19 @@
 #include "../../inc/init_stack.h"
 #include "../../inc/window_management.h"
 
+void	set_viewport(int32_t image_width, int32_t image_height, float (*viewport)[2])
+{
+	(*viewport)[HEIGHT] = 2.0;
+	(*viewport)[WIDTH] = (*viewport)[HEIGHT] * ((float)image_width / (float)image_height);
+}
+
 void	display(t_scene *scene, t_window *window)
 {
-	(void)scene;
-
 	set_image_width(IMAGE_WIDTH, &window->mlx.width);
 	set_aspect_ratio((float)WIDTH_RATIO, (float)HEIGHT_RATIO,
 					 &window->aspect_ratio);
+	set_window_height(window->mlx.width, window->aspect_ratio, &window->mlx.height);
+	set_viewport(window->mlx.width, window->mlx.height, &window->viewport);
 	create_window(window);
 	if (window->mlx.window == NULL)
 		___exit(NULL, scene->shapes);

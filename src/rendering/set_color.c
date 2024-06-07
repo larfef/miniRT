@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rendering.h                                        :+:      :+:    :+:   */
+/*   set_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 18:48:00 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/31 12:49:19 by rkersten         ###   ########.fr       */
+/*   Created: 2024/03/25 16:58:24 by rkersten          #+#    #+#             */
+/*   Updated: 2024/05/31 17:23:45 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERING_H
-# define RENDERING_H
-# include <stdint.h>
-# define X 0
-# define Y 1
-# define Z 2
-typedef float	vector[3];
-void	add_vector(vector *a, vector *b);
-void	substract_vector(vector *a, vector *b);
-float	dot_product(vector *a, vector *b);
-void	cross_product(vector *a, vector *b, vector *result);
-void	set_color(uint8_t red, uint8_t green, uint8_t blue, uint32_t *color);
-#endif
+#include <stdint.h>
+
+void	set_color(uint8_t red, uint8_t green, uint8_t blue, uint32_t *color)
+{
+	*color = (red << 24) | (green << 16) | (blue << 8) | 50;
+}
