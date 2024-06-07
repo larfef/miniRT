@@ -1,8 +1,10 @@
+UNAME_S			:= $(shell uname -s)
 NAME			=	miniRT
 BIN				=	bin
 CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror -g
-INC				=	-Iinc -Isrc/libft/inc/ -Isrc/gnl/ -Isrc/mlx42/include
+LDFLAGS			:=
+INC				=	-Iinclude -Iinc -Isrc/libft/inc/ -Isrc/gnl/ -Isrc/mlx42/include
 OBJS			=	$(addprefix $(BIN)/, $(notdir $(SRCS:.c=.o)))
 FILE_PARSING	= 	exit init_instructions init_parsing_functions init_file is_duplicate is_length_valid is_line_valid is_orientation_valid is_rgb_valid ft_atof\
 					is_coordinates_valid is_brightness_valid is_end_of_line_valid is_file_valid is_filename_valid is_light_ratio_valid is_minimal_scene_valid\
@@ -10,6 +12,7 @@ FILE_PARSING	= 	exit init_instructions init_parsing_functions init_file is_dupli
 GNL				=	get_next_line get_next_line_utils
 HOOKS			=	close_window init_hooks
 INIT_STACK		=	_exit extract_file_data free_list init_stack set_element_type set_shape_type
+RENDERING		=	add_vector substract_vector dot_product cross_product
 WINDOW_MANAGEMENT = create_window display set_aspect_ratio set_image_width
 SRC				=	main
 SRCS			=	$(addsuffix .c, $(addprefix src/, $(SRC))) \
@@ -17,7 +20,17 @@ SRCS			=	$(addsuffix .c, $(addprefix src/, $(SRC))) \
 					$(addsuffix .c, $(addprefix src/hooks/, $(HOOKS))) \
 					$(addsuffix .c, $(addprefix src/file_parsing/, $(FILE_PARSING))) \
 					$(addsuffix .c, $(addprefix src/init_stack/, $(INIT_STACK))) \
+					$(addsuffix .c, $(addprefix src/rendering/, $(RENDERING))) \
 					$(addsuffix .c, $(addprefix src/window_management/, $(WINDOW_MANAGEMENT)))
+
+ifeq ($(UNAME_S), Linux)
+    LDFLAGS += -ldl -lglfw -pthread -lm
+endif
+
+ifeq ($(UNAME_S), Darwin)
+    LDFLAGS += -L/Users/$(USER)/.brew/opt/glfw/lib/ -framework Cocoa -framework OpenGL -framework IOKit
+endif
+
 all: $(NAME)
 
 $(BIN):
@@ -35,6 +48,9 @@ $(BIN)/%.o:src/gnl/%.c | $(BIN)
 $(BIN)/%.o:src/init_stack/%.c | $(BIN)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
+$(BIN)/%.o:src/rendering/%.c | $(BIN)
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
 $(BIN)/%.o:src/window_management/%.c | $(BIN)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
@@ -44,7 +60,7 @@ $(BIN)/%.o:src/hooks/%.c | $(BIN)
 $(NAME): $(OBJS)
 	make -C src/libft
 	#make -C src/mlx42/build -j4
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -Lsrc/libft -lft -Lsrc/mlx42/build -L/Users/$(USER)/.brew/opt/glfw/lib/ -lglfw -lmlx42 -framework Cocoa -framework OpenGL -framework IOKit
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -Lsrc/libft -lft -Lsrc/mlx42/build -lmlx42 $(LDFLAGS)
 	# -Lsrc/mlx42/build -L/Users/$(USER)/.brew/opt/glfw/lib/
 	# -lglfw -lmlx -framework Cocoa -framework OpenGL -framework IOKit
 

@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_file.c                                        :+:      :+:    :+:   */
+/*   substract_vector.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 13:43:43 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/31 17:24:54 by rkersten         ###   ########.fr       */
+/*   Created: 2024/05/17 18:48:00 by rkersten          #+#    #+#             */
+/*   Updated: 2024/05/31 12:49:19 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include "parsing.h"
+#include "../../inc/rendering.h"
 
-void	open_file(t_file *file)
+void	substract_vector(vector *a, vector *b)
 {
-	file->fd = open(file->file, O_RDONLY);
-	if (file->fd < 0)
-	{
-		printf("miniRT: %s\n", strerror(errno));
-		exit(1);
-	}
+	*a[X] -= *b[X];
+	*a[Y] -= *b[Y];
+	*a[Z] -= *b[Z];
 }

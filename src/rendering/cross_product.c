@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_file.c                                        :+:      :+:    :+:   */
+/*   cross_product.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 13:43:43 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/31 17:24:54 by rkersten         ###   ########.fr       */
+/*   Created: 2024/05/17 18:48:00 by rkersten          #+#    #+#             */
+/*   Updated: 2024/05/31 12:49:19 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include "parsing.h"
+#include "../../inc/rendering.h"
 
-void	open_file(t_file *file)
+void	cross_product(vector *a, vector *b, vector *result)
 {
-	file->fd = open(file->file, O_RDONLY);
-	if (file->fd < 0)
-	{
-		printf("miniRT: %s\n", strerror(errno));
-		exit(1);
-	}
+	*result[X] = (*a[Y] * *b[Z]) - (*a[Z] * *b[Y]);
+	*result[Y] = (*a[Z] * *b[X]) - (*a[X] * *b[Z]);
+	*result[Z] = (*a[X] * *b[Y]) - (*a[Y] * *b[X]);
 }
