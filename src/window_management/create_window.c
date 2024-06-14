@@ -12,25 +12,25 @@
 
 #include "../../inc/window_management.h"
 #include <math.h>
+#include <rendering.h>
 
 static	void	test_draw(t_window *window)
 {
-	uint32_t	color;
+	color		color;
+	t_vector	center;
 	int	x;
 	int	y;
 
 	x = -1;
 	y = -1;
-	color = 0;
 	while (++y != window->mlx.height)
 	{
 		while (++x != window->mlx.width)
 		{
-			uint8_t red = (x * 255) / (window->mlx.width - 1);
-			uint8_t green = 0;
-			uint8_t blue = (y * 255) / (window->mlx.height - 1);
-			color = (red << 24) | (green << 16) | (blue << 8) | 50;
-			mlx_put_pixel(window->image, x, y, color);
+			center = add_vector(multiply_vector(window->pixel_delta[U], x), multiply_vector(window->pixel_delta[V], y));
+			center = add_vector(center, window->pixel00_loc);
+			color = ray_color(&center);
+			mlx_put_pixel(window->image, x, y, color.color);
 		}
 		x = -1;
 	}

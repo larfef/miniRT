@@ -33,16 +33,27 @@ void	set_viewport_vectors(float (*viewport)[2], t_vector (*viewport_vectors)[2])
 	(*viewport_vectors)[V].y = -1 * ((*viewport)[HEIGHT]);
 }
 
-void upper_left_pixel(t_vector camera_center, t_vector focal_length, t_vector (*viewport_vectors)[2], t_vector (*pixel_delta)[2]) {
+t_vector upper_left_pixel(t_vector camera_center, t_vector focal_length, t_vector (*viewport_vectors)[2])
+{
 	t_vector upper_left_pixel;
 
-	(void)pixel_delta;
 	t_vector focal_length_vec = {0, 0, focal_length.z};
 	t_vector half_viewport_u = multiply_vector((*viewport_vectors)[0], 0.5);
 	t_vector half_viewport_v = multiply_vector((*viewport_vectors)[1], 0.5);
 	upper_left_pixel = sub_vector(camera_center, focal_length_vec);
 	upper_left_pixel = sub_vector(upper_left_pixel, half_viewport_u);
 	upper_left_pixel = sub_vector(upper_left_pixel, half_viewport_v);
+	return (upper_left_pixel);
+}
+
+t_vector	pixel00_loc(t_vector (*pixel_delta)[2], t_vector viewport_upper_left)
+{
+	t_vector	pixel00_loc;
+
+	pixel00_loc = add_vector((*pixel_delta)[U], (*pixel_delta[V]));
+	pixel00_loc = multiply_vector(pixel00_loc, 0.5);
+	pixel00_loc = add_vector(viewport_upper_left, pixel00_loc);
+	return (pixel00_loc);
 }
 
 void	display(t_scene *scene, t_window *window)
@@ -55,7 +66,8 @@ void	display(t_scene *scene, t_window *window)
 	set_viewport(window->mlx.width, window->mlx.height, &window->viewport);
 	set_viewport_vectors(&window->viewport, &window->viewport_vectors);
 	set_pixel_delta(window->mlx.width, window->mlx.height, &window->viewport_vectors, &window->pixel_delta);
-	upper_left_pixel(scene->camera.coordinates, window->focal_length, &window->viewport_vectors, &window->pixel_delta);
+	window->viewport_upper_left = upper_left_pixel(scene->camera.coordinates, window->focal_length, &window->viewport_vectors);
+	window->pixel00_loc = pixel00_loc(&window->pixel_delta, window->viewport_upper_left);
 	create_window(window);
 	if (window->mlx.window == NULL)
 		___exit(NULL, scene->shapes);

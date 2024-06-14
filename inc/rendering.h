@@ -14,9 +14,13 @@
 # define RENDERING_H
 # include <stdint.h>
 # include "window_management_types.h"
-t_vector	add_vector(t_vector *a, t_vector *b);
+# include "init_stack_types.h"
+t_vector	add_vector(t_vector a, t_vector b);
 t_vector	sub_vector(t_vector a, t_vector b);
 float		dot_product(t_vector *a, t_vector *b);
 t_vector	cross_product(t_vector *a, t_vector *b);
 t_vector	multiply_vector(t_vector a, float n);
+float		length(t_vector *a);
+t_vector	unit_vector(t_vector *a);
+color		ray_color(t_vector *direction);
 #endif
