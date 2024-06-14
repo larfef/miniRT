@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   substract_vector.c                                 :+:      :+:    :+:   */
+/*   multiply_vector                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,9 +12,12 @@
 
 #include "../../inc/rendering.h"
 
-void	substract_vector(vector *a, vector *b)
+t_vector	multiply_vector(t_vector a, float n)
 {
-	*a[X] -= *b[X];
-	*a[Y] -= *b[Y];
-	*a[Z] -= *b[Z];
+	t_vector	result;
+
+	result.x = a.x * n;
+	result.y = a.y * n;
+	result.z = a.z * n;
+	return (result);
 }

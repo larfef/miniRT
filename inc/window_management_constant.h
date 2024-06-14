@@ -14,4 +14,6 @@
 # define VIEWPORT_HEIGHT 2.0
 # define WIDTH 0
 # define HEIGHT 1
+# define U 0
+# define V 1
 # endif

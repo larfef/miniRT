@@ -13,24 +13,12 @@
 #include "../../inc/window_management.h"
 #include <math.h>
 
-typedef union {
-
-	struct {
-		uint8_t alpha;
-		uint8_t blue;
-		uint8_t green;
-		uint8_t red;
-	} rgba;
-} color;
-
 static	void	test_draw(t_window *window)
 {
-	color	rgb;
 	uint32_t	color;
 	int	x;
 	int	y;
 
-	rgb.value.red =
 	x = -1;
 	y = -1;
 	color = 0;
@@ -50,7 +38,7 @@ static	void	test_draw(t_window *window)
 
 void	set_window_height(float width, float aspect_ratio, int32_t *height)
 {
-	*height = (uint32_t)roundf(width / aspect_ratio);
+	*height = (int32_t)roundf(width / aspect_ratio);
 	if (*height < 1)
 		*height = 1;
 }

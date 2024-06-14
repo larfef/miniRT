@@ -13,13 +13,10 @@
 #ifndef RENDERING_H
 # define RENDERING_H
 # include <stdint.h>
-# define X 0
-# define Y 1
-# define Z 2
-typedef float	vector[3];
-void	add_vector(vector *a, vector *b);
-void	substract_vector(vector *a, vector *b);
-float	dot_product(vector *a, vector *b);
-void	cross_product(vector *a, vector *b, vector *result);
-void	set_color(uint8_t red, uint8_t green, uint8_t blue, uint32_t *color);
+# include "window_management_types.h"
+t_vector	add_vector(t_vector *a, t_vector *b);
+t_vector	sub_vector(t_vector a, t_vector b);
+float		dot_product(t_vector *a, t_vector *b);
+t_vector	cross_product(t_vector *a, t_vector *b);
+t_vector	multiply_vector(t_vector a, float n);
 #endif

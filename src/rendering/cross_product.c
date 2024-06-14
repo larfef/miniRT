@@ -12,9 +12,12 @@
 
 #include "../../inc/rendering.h"
 
-void	cross_product(vector *a, vector *b, vector *result)
+t_vector	cross_product(t_vector *a, t_vector *b)
 {
-	*result[X] = (*a[Y] * *b[Z]) - (*a[Z] * *b[Y]);
-	*result[Y] = (*a[Z] * *b[X]) - (*a[X] * *b[Z]);
-	*result[Z] = (*a[X] * *b[Y]) - (*a[Y] * *b[X]);
+	t_vector	result;
+
+	result.x = (a->y * b->z) - (a->z * b->y);
+	result.y = (a->z * b->x) - (a->x * b->z);
+	result.z = (a->x * b->y) - (a->y * b->x);
+	return (result);
 }

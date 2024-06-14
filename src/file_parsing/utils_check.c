@@ -53,3 +53,8 @@ bool	is_digit(char **p, t_scene *scene, int option)
 		return (true);
 	return (false);
 }
+
+void	set_float(float value, float *destination)
+{
+	*destination = value;
+}

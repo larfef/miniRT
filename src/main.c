@@ -14,6 +14,7 @@
 #include "../inc/init_stack.h"
 #include "../inc/window_management.h"
 #include "../inc/hooks.h"
+#include "libft/inc/libft.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -45,6 +46,7 @@ int	main(int argc, char **argv)
 	is_file_valid(&file);
 	init_stack(&scene, &file);
 	close(file.fd);
+	ft_memset(&window, 0, sizeof(window));
 	display(&scene, &window);
 	init_hooks(&window);
 	mlx_loop(window.mlx.window);

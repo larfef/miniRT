@@ -50,4 +50,5 @@ void	skip_line_start(int type, char **p);
 bool	skip_digit(char **p, t_scene *scene, int option);
 bool	skip_float(char **p, t_scene *scene, int option);
 bool	skip_space(char **p, t_scene *scene, int option);
+void	set_float(float value, float *destination);
 #endif

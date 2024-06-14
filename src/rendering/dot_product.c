@@ -12,7 +12,7 @@
 
 #include "../../inc/rendering.h"
 
-float	dot_product(vector *a, vector *b)
+float	dot_product(t_vector *a, t_vector *b)
 {
-	return ((*a[X] * *b[X]) + (*a[Y] * *b[Y]) + (*a[Z] * *b[Z]));
+	return ((a->x * b->x) + (a->y * b->y) + (a->z * b->z));
 }

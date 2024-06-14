@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_vector.c                                       :+:      :+:    :+:   */
+/*   sub_vector.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,12 +12,12 @@
 
 #include "../../inc/rendering.h"
 
-t_vector	add_vector(t_vector *a, t_vector *b)
+t_vector	sub_vector(t_vector a, t_vector b)
 {
 	t_vector	result;
 
-	result.x = a->x + b->x;
-	result.y = a->y + b->y;
-	result.z = a->z + b->z;
+	result.x = a.x - b.x;
+	result.y = a.y - b.y;
+	result.z = a.z - b.z;
 	return (result);
 }

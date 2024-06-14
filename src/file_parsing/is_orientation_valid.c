@@ -49,10 +49,10 @@ bool	is_orientation_valid(char **p, t_scene *scene, int option)
 			return (false);
 		tmp = ft_atof(*p);
 		if (option == _CAMERA)
-			scene->camera.orientation[i] = tmp;
+			set_float(tmp, (float *)&scene->camera.orientation + i);
 		if (option == _SHAPES
 			&& scene->shapes->type != _SPHERE)
-			scene->shapes->orientation[i] = tmp;
+			set_float(tmp, (float *)&scene->shapes->orientation + i);
 		if (option == PARSE
 			&& (tmp < 0 || tmp > 1))
 			return (false);

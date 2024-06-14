@@ -43,11 +43,11 @@ bool	is_coordinates_valid(char **p, t_scene *scene, int option)
 		if (option != PARSE)
 			tmp = ft_atof(*p);
 		if (option == _CAMERA)
-			scene->camera.coordinates[i] = tmp;
+			set_float(tmp, (float *)&scene->camera.coordinates + i);
 		if (option == _LIGHT)
-			scene->light.coordinates[i] = tmp;
+			set_float(tmp, (float *)&scene->light.coordinates + i);
 		if (option == _SHAPES)
-			scene->shapes->center[i] = tmp;
+			set_float(tmp, (float *)&scene->shapes->center + i);
 		if (option == PARSE
 			&& !is_length_valid(*p, 15))
 			return (false);
