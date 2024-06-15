@@ -29,10 +29,9 @@ color ray_color(t_vector *direction)
 {
 	float		a;
 	float		rgb[3];
-
 	t_vector	unit_direction;
 
-	unit_direction = unit_vector((direction));
+	unit_direction = unit_vector(direction);
 	a = 0.5 * (unit_direction.y + 1.0);
 	rgb[0] = ((1.0 - a) * 1.0) + (a * 0.5);
 	rgb[1] = ((1.0 - a) * 1.0) + (a * 0.7);

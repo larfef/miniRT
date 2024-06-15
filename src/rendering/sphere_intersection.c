@@ -25,7 +25,8 @@ bool	sphere_intersection(t_vector *center, float radius, t_vector *direction)
 	c = dot_product(center, center) - (radius * radius);
 	discriminant = (b * b) - (4 * a * c);
 
-	if (discriminant < 0)
-		return (-1.0);
-	return (((-1 * b) - sqrtf()
+	return (discriminant >= 0);
+	// if (discriminant < 0)
+	// 	return (-1.0);
+	// return (((-1 * b) - sqrt(discriminant)) / (2.0 * a);
 }

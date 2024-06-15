@@ -23,4 +23,5 @@ t_vector	multiply_vector(t_vector a, float n);
 float		length(t_vector *a);
 t_vector	unit_vector(t_vector *a);
 color		ray_color(t_vector *direction);
+bool	sphere_intersection(t_vector *center, float radius, t_vector *direction);
 #endif

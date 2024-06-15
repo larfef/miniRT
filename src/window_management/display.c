@@ -68,7 +68,7 @@ void	display(t_scene *scene, t_window *window)
 	set_pixel_delta(window->mlx.width, window->mlx.height, &window->viewport_vectors, &window->pixel_delta);
 	window->viewport_upper_left = upper_left_pixel(scene->camera.coordinates, window->focal_length, &window->viewport_vectors);
 	window->pixel00_loc = pixel00_loc(&window->pixel_delta, window->viewport_upper_left);
-	create_window(window);
+	create_window(window, scene);
 	if (window->mlx.window == NULL)
 		___exit(NULL, scene->shapes);
 }
