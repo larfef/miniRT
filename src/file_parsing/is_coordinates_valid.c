@@ -13,25 +13,6 @@
 #include "../../inc/parsing.h"
 #include "../../inc/init_stack.h"
 
-//bool	is_coordinates_valid(char **p)
-//{
-//	int		i;
-//
-//	i = -1;
-//	while (++i != 3)
-//	{
-//		if (!is_length_valid(*p, 15))
-//			return (false);
-//		skip_float(p);
-//		if (i < 2 && **p != ',')
-//			return (false);
-//		if (i == 2 && **p != ' ')
-//			return (false);
-//		(*p)++;
-//	}
-//	return (true);
-//}
-
 bool	is_coordinates_valid(char **p, t_scene *scene, int option)
 {
 	float		tmp;

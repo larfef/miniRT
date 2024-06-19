@@ -1,14 +1,8 @@
 #ifndef WINDOW_MANAGEMENT_TYPE_H
 #define WINDOW_MANAGEMENT_TYPE_H
 # include "../src/mlx42/include/MLX42/MLX42.h"
+# include "types.h"
 typedef float	viewport[2];
-//typedef float	vector[3];
-typedef	struct	s_vector
-{
-	float	x;
-	float	y;
-	float	z;
-}	t_vector;
 typedef struct s_window
 {
 	mlx_t		mlx;

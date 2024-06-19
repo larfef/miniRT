@@ -2,6 +2,7 @@
 # define INIT_STACK_TYPES_H
 # include <stdint.h>
 # include "window_management_types.h"
+# include "types.h"
 typedef float			size[2];
 typedef struct s_shapes	t_shapes;
 typedef enum e_shape_types
