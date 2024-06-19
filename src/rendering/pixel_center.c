@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere_intersection.c                              :+:      :+:    :+:   */
+/*   pixel_center.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,22 +11,10 @@
 /* ************************************************************************** */
 
 #include "../../inc/rendering.h"
-#include <math.h>
 
-bool	sphere_intersection(t_vector *center, float radius, t_vector *direction)
+t_vector	pixel_center(t_vector *pixel00_loc, t_vector *pixel_delta_u, t_vector *pixel_delta_v)
 {
-	float a;
-	float b;
-	float c;
-	float discriminant;
+	t_vector	center;
 
-	a = dot_product(direction, direction);
-	b = -2.0 * dot_product(direction, center);
-	c = dot_product(center, center) - (radius * radius);
-	discriminant = (b * b) - (4 * a * c);
-
-	return (discriminant >= 0);
-	// if (discriminant < 0)
-	// 	return (-1.0);
-	// return (((-1 * b) - sqrt(discriminant)) / (2.0 * a);
+	center = multiply_vector()
 }

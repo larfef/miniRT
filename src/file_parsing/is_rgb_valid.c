@@ -43,9 +43,9 @@ bool	is_rgb_valid(char **p, t_scene *scene, int option)
 	{
 		tmp = ft_atoi(*p);
 		if (option == _SHAPES)
-			scene->shapes->color.color |= (tmp & 0xFF) << (8 * (2 - i));
+			scene->shapes->color.color |= (tmp & 0xFF) << (8 * (3 - i));
 		if (option == _AMBIENT)
-			scene->ambient.color.color |= (tmp & 0xFF) << (8 * (2 - i));
+			scene->ambient.color.color |= (tmp & 0xFF) << (8 * (3 - i));
 		if (option == PARSE
 			&& (tmp < 0 || tmp > 255))
 			return (false);

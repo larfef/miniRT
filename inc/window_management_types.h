@@ -12,5 +12,7 @@ typedef struct s_window
 	t_vector		viewport_vectors[2];
 	t_vector		pixel_delta[2];
 	t_vector		focal_length;
+	t_vector		pixel00_loc;
+	t_vector		viewport_upper_left;
 }	t_window;
 #endif

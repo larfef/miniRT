@@ -10,9 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../inc/rendering.h"
 #include <stdint.h>
+#include "../../inc/init_stack_types.h"
 
-void	set_color(uint8_t red, uint8_t green, uint8_t blue, uint32_t *color)
+color	set_color(float r, float g, float b)
 {
-	*color = (red << 24) | (green << 16) | (blue << 8) | 50;
+	color	color;
+
+	color.t_rgba.red = (uint8_t)(255.999 * r);
+	color.t_rgba.green = (uint8_t)(255.999 * g);
+	color.t_rgba.blue = (uint8_t)(255.999 * b);
+	color.t_rgba.alpha = 0xFF;
+	return (color);
 }
+
+color ray_color(t_vector *direction)
+{
+	float		a;
+	float		rgb[3];
+	t_vector	unit_direction;
+
+	unit_direction = unit_vector(direction);
+	a = 0.5 * (unit_direction.y + 1.0);
+	rgb[0] = ((1.0 - a) * 1.0) + (a * 0.5);
+	rgb[1] = ((1.0 - a) * 1.0) + (a * 0.7);
+	rgb[2] = ((1.0 - a) * 1.0) + (a * 1.0);
+	return (set_color(rgb[0], rgb[1], rgb[2]));
+}
+
+
