@@ -13,20 +13,23 @@
 #include "../../inc/rendering.h"
 #include <math.h>
 
-bool	sphere_intersection(t_vector *center, float radius, t_vector *direction)
+float	sphere_intersection(t_vector *center, float radius, t_vector *direction)
 {
 	float a;
-	float b;
+	float h;
 	float c;
 	float discriminant;
 
-	a = dot_product(direction, direction);
-	b = -2.0 * dot_product(direction, center);
-	c = dot_product(center, center) - (radius * radius);
-	discriminant = (b * b) - (4 * a * c);
+	a = length(direction) * length(direction);
+	h = dot_product(direction, center);
+	c = (length(center) * length(center)) - (radius * radius);
 
-	return (discriminant >= 0);
-	// if (discriminant < 0)
-	// 	return (-1.0);
-	// return (((-1 * b) - sqrt(discriminant)) / (2.0 * a);
+	discriminant = (h*h) - (a*c);
+	if (discriminant < 0) {
+		return ((float)-1.0);
+	}
+	return ((h - sqrt(discriminant)) / a);
 }
+//	a = dot_product(direction, direction);
+//	b = -2.0 * dot_product(direction, center);
+//	discriminant = (b * b) - (4 * a * c);

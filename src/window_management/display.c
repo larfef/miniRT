@@ -15,47 +15,6 @@
 #include "../../inc/rendering.h"
 #include "math.h"
 
-void	set_pixel_delta(int32_t image_width, int32_t image_height, t_vector (*viewport_vectors)[2], t_vector (*pixel_delta)[2])
-{
-	(*pixel_delta)[U] = multiply_vector((*viewport_vectors)[U], (1 / (float)image_width));
-	(*pixel_delta)[V] = multiply_vector((*viewport_vectors)[V], (1 / (float)image_height));
-}
-
-void	set_viewport(int32_t image_width, int32_t image_height, float (*viewport)[2])
-{
-	(*viewport)[V] = 2.0;
-	(*viewport)[U] = (*viewport)[V] * ((float)image_width / (float)image_height);
-}
-
-void	set_viewport_vectors(float (*viewport)[2], t_vector (*viewport_vectors)[2])
-{
-	(*viewport_vectors)[U].x = (*viewport)[WIDTH];
-	(*viewport_vectors)[V].y = -1 * ((*viewport)[HEIGHT]);
-}
-
-t_vector upper_left_pixel(t_vector camera_center, t_vector focal_length, t_vector (*viewport_vectors)[2])
-{
-	t_vector upper_left_pixel;
-
-	t_vector focal_length_vec = {0, 0, focal_length.z};
-	t_vector half_viewport_u = multiply_vector((*viewport_vectors)[0], 0.5);
-	t_vector half_viewport_v = multiply_vector((*viewport_vectors)[1], 0.5);
-	upper_left_pixel = sub_vector(camera_center, focal_length_vec);
-	upper_left_pixel = sub_vector(upper_left_pixel, half_viewport_u);
-	upper_left_pixel = sub_vector(upper_left_pixel, half_viewport_v);
-	return (upper_left_pixel);
-}
-
-t_vector	pixel00_loc(t_vector (*pixel_delta)[2], t_vector viewport_upper_left)
-{
-	t_vector	pixel00_loc;
-
-	pixel00_loc = add_vector((*pixel_delta)[U], (*pixel_delta[V]));
-	pixel00_loc = multiply_vector(pixel00_loc, 0.5);
-	pixel00_loc = add_vector(viewport_upper_left, pixel00_loc);
-	return (pixel00_loc);
-}
-
 void	display(t_scene *scene, t_window *window)
 {
 	window->focal_length.z = 1.0;

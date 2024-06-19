@@ -12,8 +12,8 @@ FILE_PARSING	= 	exit init_instructions init_parsing_functions init_file is_dupli
 GNL				=	get_next_line get_next_line_utils
 HOOKS			=	close_window init_hooks
 INIT_STACK		=	_exit extract_file_data free_list init_stack set_element_type set_shape_type
-RENDERING		=	add_vector sub_vector dot_product cross_product set_color multiply_vector unit_vector sphere_intersection
-WINDOW_MANAGEMENT = create_window display set_aspect_ratio set_image_width
+RENDERING		=	add_vector at sub_vector dot_product cross_product set_color multiply_vector unit_vector sphere_intersection
+WINDOW_MANAGEMENT = create_window display pixel00_loc set_aspect_ratio set_image_width set_pixel_delta set_viewport set_viewport_vectors upper_left_pixel
 SRC				=	main
 SRCS			=	$(addsuffix .c, $(addprefix src/, $(SRC))) \
 					$(addsuffix .c, $(addprefix src/gnl/, $(GNL))) \
