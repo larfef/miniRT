@@ -20,24 +20,30 @@ static	void	test_draw(t_window *window, t_scene *scene)
 	t_ray		center;
 	t_vector	N;
 	float 		t;
+	float		cos;
 	int	x;
 	int	y;
 
 	x = -1;
 	y = -1;
 	center.origin = scene->camera.coordinates;
+
 	while (++y != window->mlx.height)
 	{
 		while (++x != window->mlx.width)
 		{
+			color = scene->shapes->color;
 			center.dir = add_vector(multiply_vector(window->pixel_delta[U], x), multiply_vector(window->pixel_delta[V], y));
 			center.dir = add_vector(center.dir, window->pixel00_loc);
 			t = sphere_intersection(&scene->shapes->center, scene->shapes->size[0] / 2, &center.dir);
 			if (t > 0.0) {
-				N = at(&center, t);
-				N = sub_vector(N, scene->shapes->center);
-				N = unit_vector(&N);
-				color = set_color((N.x + 1.0) * 0.5, (N.y + 1.0) * 0.5, (N.z + 1.0) * 0.5);
+				N = multiply_vector(center.dir, 2);
+				cos = get_theta(&scene->light.coordinates, &N);
+				color.t_rgba.alpha = get_alpha(cos);
+				// N = at(&center, t);
+				// N = sub_vector(N, scene->shapes->center);
+				// N = unit_vector(&N);
+				// color = set_color((N.x + 1.0) * 0.5, (N.y + 1.0) * 0.5, (N.z + 1.0) * 0.5);
 			}
 			else
 				color = ray_color(&center.dir);
