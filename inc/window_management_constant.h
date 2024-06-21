@@ -8,12 +8,13 @@
 # define WIDTH_RATIO 16.0
 # endif
 # ifndef HEIGHT_RATIO
-# define HEIGHT_RATIO 9.0
+# define HEIGHT_RATIO 16.0
 # endif
 # ifndef VIEWPORT_HEIGHT
-# define VIEWPORT_HEIGHT 2.0
+# define VIEWPORT_HEIGHT 1.0
 # define WIDTH 0
 # define HEIGHT 1
 # define U 0
 # define V 1
+# define PI 3.14159265358979323846
 # endif

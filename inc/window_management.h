@@ -15,4 +15,5 @@ void		set_viewport_vectors(float (*viewport)[2], t_vector (*viewport_vectors)[2]
 void		create_window(t_window *window, t_scene *scene);
 t_vector 	upper_left_pixel(t_vector camera_center, t_vector focal_length,
 							  t_vector (*viewport_vectors)[2]);
+float	degrees_to_radian(float degrees);
 #endif
