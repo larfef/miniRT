@@ -28,4 +28,5 @@ t_vector	unit_vector(t_vector *a);
 color		ray_color(t_vector *direction);
 color		set_color(float r, float g, float b);
 float		sphere_intersection(t_vector *center, float radius, t_vector *direction);
+//float	sphere_intersection(t_vector *center, float radius, t_ray *ray);
 #endif
