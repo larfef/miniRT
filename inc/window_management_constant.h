@@ -5,10 +5,10 @@
 # define IMAGE_WIDTH 800
 # endif
 # ifndef WIDTH_RATIO
-# define WIDTH_RATIO 16.0
+# define WIDTH_RATIO 1.0
 # endif
 # ifndef HEIGHT_RATIO
-# define HEIGHT_RATIO 9.0
+# define HEIGHT_RATIO 1.0
 # endif
 # ifndef VIEWPORT_HEIGHT
 # define VIEWPORT_HEIGHT 2.0

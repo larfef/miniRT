@@ -65,6 +65,7 @@ static	void	test_draw(t_window *window, t_scene *scene)
 	t_ray		ray;
 	t_vector	pixel_center;
 //	t_vector	direction;
+//	t_vector 	center;
 	t_vector	N;
 	float 		t;
 	float		cos;
@@ -74,7 +75,6 @@ static	void	test_draw(t_window *window, t_scene *scene)
 	x = -1;
 	y = -1;
 	ray.origin = scene->camera.coordinates;
-
 	while (++y != window->mlx.height)
 	{
 		while (++x != window->mlx.width)
@@ -86,7 +86,7 @@ static	void	test_draw(t_window *window, t_scene *scene)
 			ray.dir = sub_vector(pixel_center, scene->camera.coordinates);
 			t = sphere_intersection(&scene->shapes->center, scene->shapes->size[0] / 2, &ray);
 			if (t > 0.0) {
-				N = multiply_vector(pixel_center, 2);
+				N = multiply_vector(ray.dir, 2);
 				cos = get_theta(&scene->light.coordinates, &N);
 				if (cos >= 0)
 				{
@@ -99,7 +99,7 @@ static	void	test_draw(t_window *window, t_scene *scene)
 				color.t_rgba.alpha = 0xFF;
 			}
 			else
-				color = ray_color(&pixel_center);
+				color = ray_color(&ray.dir);
 			mlx_put_pixel(window->image, x, y, color.color);
 		}
 		x = -1;
