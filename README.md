@@ -10,6 +10,9 @@
 fix object deformation where center is not the center of the window
 handle all camera features
 
+//orientation
+add parsing rule to check if the given orientation is normalized
+
 //lighting
 
 handle case where lights is inside the object

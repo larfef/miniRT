@@ -31,7 +31,7 @@ bool	is_orientation_valid(char **p, t_scene *scene, int option)
 			&& scene->shapes->type != _SPHERE)
 			set_float(tmp, (float *)&scene->shapes->orientation + i);
 		if (option == PARSE
-			&& (tmp < 0 || tmp > 1))
+			&& (tmp < -1 || tmp > 1))
 			return (false);
 		skip_float(p, NULL, 0);
 		if (option == PARSE
