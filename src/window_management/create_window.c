@@ -39,7 +39,23 @@ static	void	test_draw(t_window *window, t_scene *scene)
 			if (t > 0.0) {
 				N = multiply_vector(center.dir, 2);
 				cos = get_theta(&scene->light.coordinates, &N);
-				color.t_rgba.alpha = get_alpha(cos);
+				if (cos >= 0) {
+					// color.t_rgba.red = ((color.t_rgba.red - (color.t_rgba.red / 2)) * cos + color.t_rgba.red /2);
+					// color.t_rgba.green = ((color.t_rgba.green - (color.t_rgba.green / 2)) * cos + color.t_rgba.green /2);
+					// color.t_rgba.blue = ((color.t_rgba.blue - (color.t_rgba.blue / 2)) * cos + color.t_rgba.blue /2);
+					color.t_rgba.red = cos * color.t_rgba.red;
+					color.t_rgba.green = cos * color.t_rgba.green;
+					color.t_rgba.blue = cos * color.t_rgba.blue;
+				}
+				else
+				{
+					// color.color = 0xFFFFFFFF;
+					// color.t_rgba.red = color.t_rgba.red / 2 + cos * (color.t_rgba.red / 2);
+					// color.t_rgba.green = (color.t_rgba.green / 2) + cos * (color.t_rgba.green / 2);
+					// color.t_rgba.blue = (color.t_rgba.blue / 2) + cos * (color.t_rgba.blue / 2);
+					color.color = 0x00000000;
+				}
+				color.t_rgba.alpha = 0xFF;
 				// N = at(&center, t);
 				// N = sub_vector(N, scene->shapes->center);
 				// N = unit_vector(&N);

@@ -22,7 +22,7 @@ void	display(t_scene *scene, t_window *window)
 	set_aspect_ratio((float)WIDTH_RATIO, (float)HEIGHT_RATIO,
 					 &window->aspect_ratio);
 	set_window_height(window->mlx.width, window->aspect_ratio, &window->mlx.height);
-	set_viewport(window->mlx.width, window->mlx.height, &window->viewport);
+	set_viewport(window->mlx.width, window->mlx.height, &window->viewport, scene->camera.fov);
 	set_viewport_vectors(&window->viewport, &window->viewport_vectors);
 	set_pixel_delta(window->mlx.width, window->mlx.height, &window->viewport_vectors, &window->pixel_delta);
 	window->viewport_upper_left = upper_left_pixel(scene->camera.coordinates, window->focal_length, &window->viewport_vectors);
