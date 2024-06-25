@@ -13,6 +13,25 @@
 #include "../../inc/rendering.h"
 #include <math.h>
 
+//float	sphere_intersection(t_vector *center, float radius, t_ray *ray)
+//{
+//	float a;
+//	float h;
+//	float c;
+//	float discriminant;
+//	t_vector	oc;
+//
+//	oc = sub_vector(*center, ray->origin);
+//	a = length(&ray->dir) * length(&ray->dir);
+//	h = dot_product(&ray->dir, &oc);
+//	c = (length(&oc) * length(&oc)) - (radius * radius);
+//
+//	discriminant = (h*h) - (a*c);
+//	if (discriminant < 0)
+//		return ((float)-1.0);
+//	return ((h - sqrt(discriminant)) / a);
+//}
+
 float	sphere_intersection(t_vector *center, float radius, t_vector *direction)
 {
 	float a;
@@ -30,6 +49,7 @@ float	sphere_intersection(t_vector *center, float radius, t_vector *direction)
 	}
 	return ((h - sqrt(discriminant)) / a);
 }
+
 //	a = dot_product(direction, direction);
 //	b = -2.0 * dot_product(direction, center);
 //	discriminant = (b * b) - (4 * a * c);

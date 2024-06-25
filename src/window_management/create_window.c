@@ -33,33 +33,22 @@ static	void	test_draw(t_window *window, t_scene *scene)
 		while (++x != window->mlx.width)
 		{
 			color = scene->shapes->color;
+
 			center.dir = add_vector(multiply_vector(window->pixel_delta[U], x), multiply_vector(window->pixel_delta[V], y));
 			center.dir = add_vector(center.dir, window->pixel00_loc);
 			t = sphere_intersection(&scene->shapes->center, scene->shapes->size[0] / 2, &center.dir);
 			if (t > 0.0) {
 				N = multiply_vector(center.dir, 2);
 				cos = get_theta(&scene->light.coordinates, &N);
-				if (cos >= 0) {
-					// color.t_rgba.red = ((color.t_rgba.red - (color.t_rgba.red / 2)) * cos + color.t_rgba.red /2);
-					// color.t_rgba.green = ((color.t_rgba.green - (color.t_rgba.green / 2)) * cos + color.t_rgba.green /2);
-					// color.t_rgba.blue = ((color.t_rgba.blue - (color.t_rgba.blue / 2)) * cos + color.t_rgba.blue /2);
-					color.t_rgba.red = cos * color.t_rgba.red;
-					color.t_rgba.green = cos * color.t_rgba.green;
-					color.t_rgba.blue = cos * color.t_rgba.blue;
+				if (cos >= 0)
+				{
+					color.t_rgba.red *= cos;
+					color.t_rgba.green *= cos;
+					color.t_rgba.blue *= cos;
+					color.t_rgba.alpha = 0xFF;
 				}
 				else
-				{
-					// color.color = 0xFFFFFFFF;
-					// color.t_rgba.red = color.t_rgba.red / 2 + cos * (color.t_rgba.red / 2);
-					// color.t_rgba.green = (color.t_rgba.green / 2) + cos * (color.t_rgba.green / 2);
-					// color.t_rgba.blue = (color.t_rgba.blue / 2) + cos * (color.t_rgba.blue / 2);
-					color.color = 0x00000000;
-				}
-				color.t_rgba.alpha = 0xFF;
-				// N = at(&center, t);
-				// N = sub_vector(N, scene->shapes->center);
-				// N = unit_vector(&N);
-				// color = set_color((N.x + 1.0) * 0.5, (N.y + 1.0) * 0.5, (N.z + 1.0) * 0.5);
+					color.color = 0x000000FF;
 			}
 			else
 				color = ray_color(&center.dir);
@@ -68,6 +57,54 @@ static	void	test_draw(t_window *window, t_scene *scene)
 		x = -1;
 	}
 }
+
+
+//static	void	test_draw(t_window *window, t_scene *scene)
+//{
+//	color		color;
+//	t_ray		ray;
+//	t_vector	pixel_center;
+////	t_vector	direction;
+//	t_vector	N;
+//	float 		t;
+//	float		cos;
+//	int	x;
+//	int	y;
+//
+//	x = -1;
+//	y = -1;
+//	ray.origin = scene->camera.coordinates;
+//
+//	while (++y != window->mlx.height)
+//	{
+//		while (++x != window->mlx.width)
+//		{
+//			color = scene->shapes->color;
+//
+//			pixel_center = add_vector(multiply_vector(window->pixel_delta[U], x), multiply_vector(window->pixel_delta[V], y));
+//			pixel_center = add_vector(pixel_center, window->pixel00_loc);
+//			ray.dir = sub_vector(pixel_center, scene->camera.coordinates);
+//			t = sphere_intersection(&scene->shapes->center, scene->shapes->size[0] / 2, &ray);
+//			if (t > 0.0) {
+//				N = multiply_vector(pixel_center, 2);
+//				cos = get_theta(&scene->light.coordinates, &N);
+//				if (cos >= 0)
+//				{
+//					color.t_rgba.red *= cos;
+//					color.t_rgba.green *= cos;
+//					color.t_rgba.blue *= cos;
+//				}
+//				else
+//					color.color = 0x00000000;
+//				color.t_rgba.alpha = 0xFF;
+//			}
+//			else
+//				color = ray_color(&pixel_center);
+//			mlx_put_pixel(window->image, x, y, color.color);
+//		}
+//		x = -1;
+//	}
+//}
 
 void	set_window_height(float width, float aspect_ratio, int32_t *height)
 {
