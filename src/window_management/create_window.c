@@ -14,63 +14,16 @@
 #include <math.h>
 #include <rendering.h>
 
-//static	void	test_draw(t_window *window, t_scene *scene)
-//{
-//	color		color;
-//	t_ray		center;
-//	t_vector	N;
-//	float 		t;
-//	float		cos;
-//	int	x;
-//	int	y;
-//
-//	x = -1;
-//	y = -1;
-//	center.origin = scene->camera.coordinates;
-//
-//	while (++y != window->mlx.height)
-//	{
-//		while (++x != window->mlx.width)
-//		{
-//			color = scene->shapes->color;
-//
-//			center.dir = add_vector(multiply_vector(window->pixel_delta[U], x), multiply_vector(window->pixel_delta[V], y));
-//			center.dir = add_vector(center.dir, window->pixel00_loc);
-//			t = sphere_intersection(&scene->shapes->center, scene->shapes->size[0] / 2, &center.dir);
-//			if (t > 0.0) {
-//				N = multiply_vector(center.dir, 2);
-//				cos = get_theta(&scene->light.coordinates, &N);
-//				if (cos >= 0)
-//				{
-//					color.t_rgba.red *= cos;
-//					color.t_rgba.green *= cos;
-//					color.t_rgba.blue *= cos;
-//					color.t_rgba.alpha = 0xFF;
-//				}
-//				else
-//					color.color = 0x000000FF;
-//			}
-//			else
-//				color = ray_color(&center.dir);
-//			mlx_put_pixel(window->image, x, y, color.color);
-//		}
-//		x = -1;
-//	}
-//}
-
-
 static	void	test_draw(t_window *window, t_scene *scene)
 {
 	color		color;
 	t_ray		ray;
-	t_vector	pixel_center;
-//	t_vector	direction;
-//	t_vector 	center;
-	t_vector	N;
+//	t_vector	N;
 	float 		t;
-	float		cos;
+//	float		cos;
 	int	x;
 	int	y;
+	t_vector	pixel_center;
 
 	x = -1;
 	y = -1;
@@ -84,19 +37,21 @@ static	void	test_draw(t_window *window, t_scene *scene)
 			pixel_center = add_vector(multiply_vector(window->pixel_delta[U], x), multiply_vector(window->pixel_delta[V], y));
 			pixel_center = add_vector(pixel_center, window->pixel00_loc);
 			ray.dir = sub_vector(pixel_center, scene->camera.coordinates);
+//			ray.dir = pixel_center;
 			t = sphere_intersection(&scene->shapes->center, scene->shapes->size[0] / 2, &ray);
 			if (t > 0.0) {
-				N = multiply_vector(ray.dir, 2);
-				cos = get_theta(&scene->light.coordinates, &N);
-				if (cos >= 0)
-				{
-					color.t_rgba.red *= cos;
-					color.t_rgba.green *= cos;
-					color.t_rgba.blue *= cos;
-				}
-				else
-					color.color = 0x00000000;
-				color.t_rgba.alpha = 0xFF;
+//				N = sub_vector(pixel_center, scene->shapes->center);
+//				cos = get_theta(&scene->light.coordinates, &N);
+//				if (cos >= 0)
+//				{
+//					color.t_rgba.red *= cos;
+//					color.t_rgba.green *= cos;
+//					color.t_rgba.blue *= cos;
+//					color.t_rgba.alpha = 0xFF;
+//				}
+//				else
+//					color.color = 0x000000FF;
+				color.color = 0xFFFFFFFF;
 			}
 			else
 				color = ray_color(&ray.dir);

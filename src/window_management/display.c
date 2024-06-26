@@ -17,15 +17,14 @@
 
 void	display(t_scene *scene, t_window *window)
 {
-	window->focal_length.z = 1.0;
 	set_image_width(IMAGE_WIDTH, &window->mlx.width);
 	set_aspect_ratio((float)WIDTH_RATIO, (float)HEIGHT_RATIO,
 					 &window->aspect_ratio);
 	set_window_height(window->mlx.width, window->aspect_ratio, &window->mlx.height);
-	set_viewport(window->mlx.width, window->mlx.height, &window->viewport);
-	set_viewport_vectors(&window->viewport, &window->viewport_vectors);
+	set_viewport(window->mlx.width, window->mlx.height, &window->viewport, scene->camera.fov);
+	set_viewport_vectors(&window->viewport, &window->viewport_vectors, &scene->camera.orientation);
 	set_pixel_delta(window->mlx.width, window->mlx.height, &window->viewport_vectors, &window->pixel_delta);
-	window->viewport_upper_left = upper_left_pixel(scene->camera.coordinates, window->focal_length, &window->viewport_vectors);
+	window->viewport_upper_left = upper_left_pixel(scene->camera.coordinates, &window->viewport_vectors, scene->camera.orientation);
 	window->pixel00_loc = pixel00_loc(&window->pixel_delta, window->viewport_upper_left);
 	create_window(window, scene);
 	if (window->mlx.window == NULL)

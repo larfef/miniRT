@@ -6,9 +6,21 @@
     snprintf(command, sizeof(command), "lsof -p %d", getpid());
     system(command);
 
+//most important things to do 
+fix object deformation where center is not the center of the window
+handle all camera features
+
+//orientation
+add parsing rule to check if the given orientation is normalized
+
 //lighting
 
 handle case where lights is inside the object
 handle case where lights is behind the object
 handle case where ray from intersection to light and normal vector are not on the same origin
 Add coefficient to alpha to represent the brightness
+Normalize color value 
+
+//ambient
+
+add ambient to the base color of each shapes in the scene
