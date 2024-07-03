@@ -25,8 +25,6 @@ float	sphere_intersection(t_vector *center, float radius, t_ray *ray)
 	a = length(&ray->dir) * length(&ray->dir);
 	h = dot_product(&ray->dir, &oc);
 	c = (length(&oc) * length(&oc)) - (radius * radius);
-
-	//quick fix to inverted orientation issue
 	h *= -1;
 	discriminant = (h * h) - (a * c);
 	if (discriminant < 0)

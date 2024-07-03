@@ -18,9 +18,11 @@ static	void	test_draw(t_window *window, t_scene *scene)
 {
 	color		color;
 	t_ray		ray;
-//	t_vector	N;
+	// from sphere intersection to light
+	t_ray		light;
+	t_vector	N;
 	float 		t;
-//	float		cos;
+	float		cos;
 	int	x;
 	int	y;
 	t_vector	pixel_center;
@@ -40,21 +42,24 @@ static	void	test_draw(t_window *window, t_scene *scene)
 //			ray.dir = pixel_center;
 			t = sphere_intersection(&scene->shapes->center, scene->shapes->size[0] / 2, &ray);
 			if (t > 0.0) {
-//				N = sub_vector(pixel_center, scene->shapes->center);
-//				cos = get_theta(&scene->light.coordinates, &N);
-//				if (cos >= 0)
-//				{
-//					color.t_rgba.red *= cos;
-//					color.t_rgba.green *= cos;
-//					color.t_rgba.blue *= cos;
-//					color.t_rgba.alpha = 0xFF;
-//				}
-//				else
-//					color.color = 0x000000FF;
-				color.color = 0xFFFFFFFF;
+				light.origin = add_vector(ray.origin, multiply_vector(ray.dir, t));
+				light.dir = sub_vector(scene->light.coordinates, light.origin);
+				N = sub_vector(light.origin, scene->shapes->center);
+				N = multiply_vector(N, 1 / (scene->shapes->size[0] / 2));
+				cos = get_cos(&light.dir, &N);
+				if (cos >= 0)
+				{
+					color.t_rgba.red *= cos;
+					color.t_rgba.green *= cos;
+					color.t_rgba.blue *= cos;
+					color.t_rgba.alpha = 0xFF;
+				}
+				else
+					color.color = 0x000000FF;
+//				color.color = 0xFFFFFFFF;
 			}
 			else
-				color = ray_color(&ray.dir);
+				color = ray_color(&pixel_center);
 			mlx_put_pixel(window->image, x, y, color.color);
 		}
 		x = -1;

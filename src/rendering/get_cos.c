@@ -1,6 +1,6 @@
 #include "../../inc/rendering.h"
 
-float	get_theta(t_vector *a, t_vector *b)
+float	get_cos(t_vector *a, t_vector *b)
 {
 	float	len_a;
 	float	len_b;
