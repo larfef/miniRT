@@ -21,6 +21,7 @@ t_vector	sub_vector(t_vector a, t_vector b);
 float		dot_product(t_vector *a, t_vector *b);
 t_vector	cross_product(t_vector *a, t_vector *b);
 float	get_cos(t_vector *a, t_vector *b);
+float	get_sin(t_vector *a, t_vector *b);
 uint8_t	get_alpha(float	f);
 t_vector	multiply_vector(t_vector a, float n);
 float		length(t_vector *a);

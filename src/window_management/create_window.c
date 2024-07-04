@@ -13,6 +13,7 @@
 #include "../../inc/window_management.h"
 #include <math.h>
 #include <rendering.h>
+#include <stdio.h>
 
 static	void	test_draw(t_window *window, t_scene *scene)
 {
@@ -23,6 +24,7 @@ static	void	test_draw(t_window *window, t_scene *scene)
 	t_vector	N;
 	float 		t;
 	float		cos;
+//	float 		sin;
 	int	x;
 	int	y;
 	t_vector	pixel_center;
@@ -39,24 +41,36 @@ static	void	test_draw(t_window *window, t_scene *scene)
 			pixel_center = add_vector(multiply_vector(window->pixel_delta[U], x), multiply_vector(window->pixel_delta[V], y));
 			pixel_center = add_vector(pixel_center, window->pixel00_loc);
 			ray.dir = sub_vector(pixel_center, scene->camera.coordinates);
-//			ray.dir = pixel_center;
 			t = sphere_intersection(&scene->shapes->center, scene->shapes->size[0] / 2, &ray);
 			if (t > 0.0) {
 				light.origin = add_vector(ray.origin, multiply_vector(ray.dir, t));
 				light.dir = sub_vector(scene->light.coordinates, light.origin);
+//				light.dir = unit_vector(&light.dir);
 				N = sub_vector(light.origin, scene->shapes->center);
-				N = multiply_vector(N, 1 / (scene->shapes->size[0] / 2));
+//				N = unit_vector(&N);
 				cos = get_cos(&light.dir, &N);
-				if (cos >= 0)
-				{
+//				printf("Intersection at (%f, %f, %f)\n", light.origin.x, light.origin.y, light.origin.z);
+//				printf("Normal at intersection (%f, %f, %f)\n", N.x, N.y, N.z);
+//				printf("Light direction (%f, %f, %f)\n", light.dir.x, light.dir.y, light.dir.z);
+//				printf("Cosine: %f\n", cos);
+				if (cos >= 1.0 - scene->light.brightness)
+					color.t_rgba.alpha = 255;
+				if (cos < 1.0 - scene->light.brightness && cos > 0) {
+//					float brightness_factor = cos / scene->light.brightness;
 					color.t_rgba.red *= cos;
 					color.t_rgba.green *= cos;
 					color.t_rgba.blue *= cos;
-					color.t_rgba.alpha = 0xFF;
+					color.t_rgba.alpha = 255; // Fully opaque}
 				}
-				else
+				else if (cos < 0)
 					color.color = 0x000000FF;
-//				color.color = 0xFFFFFFFF;
+//				if (cos < 0)
+//				{
+//					sin = get_sin(&light.dir, &N);
+//					color.t_rgba.red *= sin;
+//					color.t_rgba.green *= sin;
+//					color.t_rgba.blue *= sin;
+//				}
 			}
 			else
 				color = ray_color(&pixel_center);
