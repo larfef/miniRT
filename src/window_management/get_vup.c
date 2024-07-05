@@ -15,6 +15,6 @@ t_vector	get_vup(t_vector *w)
 	tmp = cross_product(&vup, w);
 	if (length(&tmp) < 1e-6)
 		vup = (t_vector){1.0, 0.0, 0.0};
-	vup = unit_vector(&vup);
+	normalize(&vup);
 	return (vup);
 }

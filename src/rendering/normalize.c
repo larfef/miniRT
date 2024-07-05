@@ -19,14 +19,15 @@ float	length(t_vector *a)
 	return (sqrt(dot_product(a, a)));
 }
 
-t_vector	unit_vector(t_vector *a)
+void	normalize(t_vector *a)
 {
 	float	len;
 
 	len = length(a);
-	//fix for -0 value if needed
-//	if (a->x == -0.0f) a->x = 0.0f;
-//	if (a->y == -0.0f) a->y = 0.0f;
-//	if (a->z == -0.0f) a->z = 0.0f;
-	return (multiply_vector(*a, 1 / len));
+	if (len > 0)
+	{
+		a->x /= len;
+		a->y /= len;
+		a->z /= len;
+	}
 }

@@ -25,7 +25,7 @@ float	get_sin(t_vector *a, t_vector *b);
 uint8_t	get_alpha(float	f);
 t_vector	multiply_vector(t_vector a, float n);
 float		length(t_vector *a);
-t_vector	unit_vector(t_vector *a);
+void	normalize(t_vector *a);
 color		ray_color(t_vector *direction);
 color		set_color(float r, float g, float b);
 //float		sphere_intersection(t_vector *center, float radius, t_vector *direction);

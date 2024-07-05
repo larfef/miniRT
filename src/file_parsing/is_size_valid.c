@@ -24,7 +24,7 @@ bool	is_size_valid(char **line, t_scene *scene, int option)
 	if (option == _SHAPES && scene->shapes->type != _PLANE && i == DIAMETER)
 	{
 		scene->shapes->size[DIAMETER] = tmp;
-		i = HEIGHT;
+		// i = HEIGHT;
 	}
 	else if (option == _SHAPES && scene->shapes->type == _CYLINDER && i == HEIGHT)
 	{
