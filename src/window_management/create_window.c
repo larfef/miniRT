@@ -23,7 +23,7 @@
 //add check for mlx allocation fails
 
 #ifndef GRADIENT_END
-#define GRADIENT_END (float)-0.0
+#define GRADIENT_END (float)-0.5
 #endif
 
 typedef	struct s_ray_tracing
@@ -66,8 +66,9 @@ void	set_pixel_color(t_ray_tracing *raytracer, float brightness, color color)
 	float cos;
 
 	cos = get_cos(&raytracer->hit_point_to_light.dir, &raytracer->normal);
-	raytracer->color.t_rgba.alpha = 255;
-	if (cos >= 1.0 - brightness) {
+	raytracer->color.t_rgba.alpha = 0;
+	if (cos >= 1.0 - brightness)
+	{
 		// Full color
 		raytracer->color.t_rgba.red = color.t_rgba.red;
 		raytracer->color.t_rgba.green = color.t_rgba.green;
@@ -84,7 +85,7 @@ void	set_pixel_color(t_ray_tracing *raytracer, float brightness, color color)
 	}
 	else if (cos < GRADIENT_END) {
 		// Fully black
-		raytracer->color.color = 0x000000FF;
+		raytracer->color.color = 0x00000000;
 	}
 }
 
@@ -97,9 +98,9 @@ void	trace_rays(t_window *window, t_scene *scene, t_shapes *shape)
 	x = -1;
 	y = -1;
 	raytracer.camera_to_viewport.origin = scene->camera.coordinates;
-	while (++y != window->mlx.height)
+	while (++y != window->height)
 	{
-		while (++x != window->mlx.width)
+		while (++x != window->width)
 		{
 			set_pixel_center(window, &raytracer.pixel_center, x, y);
 			raytracer.camera_to_viewport.dir = sub_vector(raytracer.pixel_center, scene->camera.coordinates);
@@ -111,19 +112,19 @@ void	trace_rays(t_window *window, t_scene *scene, t_shapes *shape)
 				set_hit_point_to_light_dir(&raytracer, scene->light.coordinates);
 				set_sphere_normal_vector(&raytracer, raytracer.hit_point_to_light.origin, shape->center);
 				set_pixel_color(&raytracer, scene->light.brightness, shape->color);
-				mlx_put_pixel(window->image, x, y, raytracer.color.color);
+				mlx_pixel_put(window->mlx, window->window, x, y, raytracer.color.color);
 			}
-			// else
-			// 	raytracer.color = ray_color(&raytracer.pixel_center);
-			// mlx_put_pixel(window->image, x, y, raytracer.color.color);
+//			else
+//				raytracer.color = ray_color(&raytracer.pixel_center);
+//			mlx_pixel_put(window->mlx, window->window, x, y, raytracer.color.color);
 		}
 		x = -1;
 	}
 }
 
-void	set_window_height(float width, float aspect_ratio, int32_t *height)
+void	set_window_height(float width, float aspect_ratio, int *height)
 {
-	*height = (int32_t)roundf(width / aspect_ratio);
+	*height = (int)roundf(width / aspect_ratio);
 	if (*height < 1)
 		*height = 1;
 }
@@ -142,11 +143,11 @@ void	iterate_through_shapes_list(t_window *window, t_scene *scene)
 
 void	create_window(t_window *window, t_scene *scene)
 {
-	window->mlx.window = mlx_init(window->mlx.width,
-								   window->mlx.height, "miniRT", false);
-	window->image = mlx_new_image(window->mlx.window, window->mlx.width, window->mlx.height);
+	window->mlx = mlx_init();
+	window->window = mlx_new_window(window->mlx, window->width, window->height, "miniRT");
+//	window->image = mlx_new_image(window->window, window->width, window->height);
 	iterate_through_shapes_list(window, scene);
-	mlx_image_to_window(window->mlx.window, window->image, 0, 0);
+//	mlx_put_image_to_window(window->mlx, window->window, window->image, 0, 0);
 }
 
 // if (cos >= 1.0 - brightness)

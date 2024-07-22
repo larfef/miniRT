@@ -4,13 +4,13 @@ BIN				=	bin
 CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror -g
 LDFLAGS			:=
-INC				=	-Iinclude -Iinc -Isrc/libft/inc/ -Isrc/gnl/ -Isrc/mlx42/include
+INC				=	-Iinclude -Iinc -Isrc/libft/inc/ -Isrc/gnl/ -Isrc/mlx/
 OBJS			=	$(addprefix $(BIN)/, $(notdir $(SRCS:.c=.o)))
 FILE_PARSING	= 	exit init_instructions init_parsing_functions init_file is_duplicate is_length_valid is_line_valid is_orientation_valid is_rgb_valid ft_atof\
 					is_coordinates_valid is_brightness_valid is_end_of_line_valid is_file_valid is_filename_valid is_light_ratio_valid is_minimal_scene_valid\
 					is_size_valid open_file parse_line read_file set_current_line_type set_duplicate_check utils_check utils_skip
 GNL				=	get_next_line get_next_line_utils
-HOOKS			=	close_window init_hooks
+HOOKS			=	close_window init_hooks k_input
 INIT_STACK		=	_exit extract_file_data free_list init_stack set_element_type set_shape_type
 RENDERING		=	add_vector at sub_vector dot_product cross_product get_cos get_sin get_alpha set_color multiply_vector normalize sphere_intersection
 WINDOW_MANAGEMENT = create_window degrees_to_radian display pixel00_loc get_vup set_aspect_ratio set_image_width set_pixel_delta set_viewport set_viewport_vectors upper_left_pixel
@@ -28,7 +28,7 @@ ifeq ($(UNAME_S), Linux)
 endif
 
 ifeq ($(UNAME_S), Darwin)
-    LDFLAGS += -lglfw -L/Users/$(USER)/.brew/opt/glfw/lib/ -framework Cocoa -framework OpenGL -framework IOKit
+    LDFLAGS +=  -framework OpenGL -framework AppKit
 endif
 
 all: $(NAME)
@@ -60,7 +60,7 @@ $(BIN)/%.o:src/hooks/%.c | $(BIN)
 $(NAME): $(OBJS)
 	make -C src/libft
 	#make -C src/mlx42/build -j4
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -Lsrc/libft -lft -Lsrc/mlx42/build -lmlx42 $(LDFLAGS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -Lsrc/libft -lft -Lsrc/mlx -lmlx $(LDFLAGS)
 	# -Lsrc/mlx42/build -L/Users/$(USER)/.brew/opt/glfw/lib/
 	# -lglfw -lmlx -framework Cocoa -framework OpenGL -framework IOKit
 

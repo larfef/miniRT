@@ -21,7 +21,7 @@ color	set_color(float r, float g, float b)
 	color.t_rgba.red = (uint8_t)(255.999 * r);
 	color.t_rgba.green = (uint8_t)(255.999 * g);
 	color.t_rgba.blue = (uint8_t)(255.999 * b);
-	color.t_rgba.alpha = 0xFF;
+	color.t_rgba.alpha = 0x00;
 	return (color);
 }
 

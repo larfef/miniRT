@@ -15,5 +15,6 @@
 
 void	init_hooks(t_window *window)
 {
-	mlx_loop_hook(window->mlx.window, close_window, window);
+	mlx_hook(window->window, 2, 0, &k_input, window);
+	mlx_hook(window->window, 17, 0, &close_window, window);
 }

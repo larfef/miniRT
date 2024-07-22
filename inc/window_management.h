@@ -6,7 +6,7 @@
 void		display(t_scene *scene, t_window *window);
 t_vector	pixel00_loc(t_vector (*pixel_delta)[2], t_vector viewport_upper_left);
 void		set_aspect_ratio(float x, float y, float *aspect_ratio);
-void		set_window_height(float width, float aspect_ratio, int32_t *height);
+void		set_window_height(float width, float aspect_ratio, int *height);
 void		set_image_width(int width, int *image_width);
 void		set_pixel_delta(int32_t image_width, int32_t image_height,
 							t_vector (*viewport_vectors)[2], t_vector (*pixel_delta)[2]);

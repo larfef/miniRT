@@ -49,9 +49,7 @@ int	main(int argc, char **argv)
 	ft_memset(&window, 0, sizeof(window));
 	display(&scene, &window);
 	init_hooks(&window);
-	mlx_loop(window.mlx.window);
-	mlx_delete_image(window.mlx.window, window.image);
-	mlx_terminate(window.mlx.window);
+	mlx_loop(window.mlx);
 	free_list(scene.shapes);
 	return (0);
 }

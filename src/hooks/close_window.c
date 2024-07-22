@@ -11,12 +11,13 @@
 /* ************************************************************************** */
 
 #include "../../inc/window_management_types.h"
+#include <stdlib.h>
 
-void close_window(void* param)
+int	close_window(void* param)
 {
-	mlx_t* mlx = param;
+	t_window	*window = (t_window *)param;
 
-	(void)param;
-	if (mlx_is_key_down(mlx->window, MLX_KEY_ESCAPE))
-		mlx_close_window(mlx->window);
+	mlx_clear_window(window->mlx, window->window);
+	exit(0);
+	return (0);
 }
