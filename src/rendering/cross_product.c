@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../inc/rendering.h"
+#include "math.h"
 
 t_vector	cross_product(t_vector *a, t_vector *b)
 {
