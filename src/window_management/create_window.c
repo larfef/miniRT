@@ -29,19 +29,18 @@
 typedef	struct s_ray_tracing
 {
 	color		color;
-	t_ray		camera_to_viewport;
-	t_ray		hit_point_to_light;
-	t_vector	pixel_center;
+	t_vector	camera_to_viewport;
+	t_vector	hit_point_to_light;
+	t_point		pixel_center;
 	t_vector	normal;
-	float		cos;
 	float		solution;
-}t_ray_tracing;
+}	t_ray_tracing;
 
-void	set_pixel_center(t_window *window, t_vector *pixel_center, int x, int y)
+void	set_pixel_center(t_window *window, t_point *pixel_center, int x, int y)
 {
-	*pixel_center = add_vector(multiply_vector(window->pixel_delta[U], x),
-					multiply_vector(window->pixel_delta[V], y));
-	*pixel_center = add_vector(*pixel_center, window->pixel00_loc);
+	*pixel_center = add_point(multiply_vector(window->pixel_delta[U], x),
+					multiply_point(window->pixel_delta[V], y));
+	*pixel_center = add_point(*pixel_center, window->pixel00_loc);
 }
 
 void	set_intersection_point(t_ray_tracing *raytracer)

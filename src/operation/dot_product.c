@@ -10,9 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/rendering.h"
+#include "../../inc/types.h"
+
+/*
+	@dev: 3d vectors dot product implementation
+ 	@dev: vectors must share the same origin
+ 	@param: a: vector pointer
+ 	@param: b: vector pointer
+*/
 
 float	dot_product(t_vector *a, t_vector *b)
 {
-	return ((a->x * b->x) + (a->y * b->y) + (a->z * b->z));
+	return ((a->dir.x * b->dir.x) + (a->dir.y * b->dir.y) + (a->dir.z * b->dir.z));
 }

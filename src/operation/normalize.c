@@ -10,14 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/window_management.h"
-#include "../../inc/rendering.h"
-#include <math.h>
+#include "../../inc/operation.h"
 
-float	length(t_vector *a)
-{
-	return (sqrt(dot_product(a, a)));
-}
+/*
+	@dev: normalize (vector length equal to 1 unit length) a given vector
+ 	@param: a: vector pointer
+*/
 
 void	normalize(t_vector *a)
 {
@@ -26,8 +24,8 @@ void	normalize(t_vector *a)
 	len = length(a);
 	if (len > 0)
 	{
-		a->x /= len;
-		a->y /= len;
-		a->z /= len;
+		a->dir.x /= len;
+		a->dir.y /= len;
+		a->dir.z /= len;
 	}
 }

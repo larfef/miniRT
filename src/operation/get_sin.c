@@ -1,4 +1,4 @@
-#include "../../inc/rendering.h"
+#include "../../inc/operation.h"
 
 float	get_sin(t_vector *a, t_vector *b)
 {

@@ -10,15 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/rendering.h"
-#include "math.h"
+#include "../../inc/types.h"
+
+/*
+ 	@dev: cross product implementation between two 3d vectors
+ 	@dev: vector must share the same origin
+ 	@param: a: first vector
+ 	@param: b: second vector
+*/
 
 t_vector	cross_product(t_vector *a, t_vector *b)
 {
 	t_vector	result;
 
-	result.x = (a->y * b->z) - (a->z * b->y);
-	result.y = (a->z * b->x) - (a->x * b->z);
-	result.z = (a->x * b->y) - (a->y * b->x);
+	result.dir.x = (a->dir.y * b->dir.z) - (a->dir.z * b->dir.y);
+	result.dir.y = (a->dir.z * b->dir.x) - (a->dir.x * b->dir.z);
+	result.dir.z = (a->dir.x * b->dir.y) - (a->dir.y * b->dir.x);
 	return (result);
 }
