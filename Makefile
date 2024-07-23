@@ -26,7 +26,7 @@ SRCS			=	$(addsuffix .c, $(addprefix src/, $(SRC))) \
 					$(addsuffix .c, $(addprefix src/window_management/, $(WINDOW_MANAGEMENT)))
 
 ifeq ($(UNAME_S), Linux)
-    LDFLAGS += -ldl -lglfw -pthread -lm
+    LDFLAGS += -lmlx_Linux -lX11 -lXext -lm
 endif
 
 ifeq ($(UNAME_S), Darwin)

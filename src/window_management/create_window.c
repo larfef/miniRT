@@ -113,9 +113,9 @@ void	trace_rays(t_window *window, t_scene *scene, t_shapes *shape)
 				set_pixel_color(&raytracer, scene->light.brightness, shape->color);
 				mlx_pixel_put(window->mlx, window->window, x, y, raytracer.color.color);
 			}
-//			else
-//				raytracer.color = ray_color(&raytracer.pixel_center);
-//			mlx_pixel_put(window->mlx, window->window, x, y, raytracer.color.color);
+			// else
+			// 	raytracer.color = ray_color(&raytracer.pixel_center);
+			// mlx_pixel_put(window->mlx, window->window, x, y, raytracer.color.color);
 		}
 		x = -1;
 	}
