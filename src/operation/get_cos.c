@@ -2,11 +2,11 @@
 
 /*
 	@dev: get cosinus value of the smallest angle between two vectors
- 	@param: a: vector pointer
- 	@param: b: vector pointer
+ 	@param: a: vector struct
+ 	@param: b: vector struct
 */
 
-float	get_cos(t_vector *a, t_vector *b)
+float	get_cos(t_vector a, t_vector b)
 {
 	float	len_a;
 	float	len_b;

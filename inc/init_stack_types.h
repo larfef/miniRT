@@ -31,7 +31,7 @@ typedef union	u_color
 } color;
 typedef struct s_shapes
 {
-	t_vector		center;
+	t_point			center;
 	t_vector		orientation;
 	color			color;
 	size			size;
@@ -46,13 +46,13 @@ typedef struct s_ambient
 } t_ambient;
 typedef struct s_camera
 {
-	t_vector	coordinates;
+	t_point		coordinates;
 	t_vector	orientation;
 	uint8_t		fov;
 }	t_camera;
 typedef struct s_light
 {
-	t_vector	coordinates;
+	t_point		coordinates;
 	float		brightness;
 }	t_light;
 typedef struct s_scene

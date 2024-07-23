@@ -4,10 +4,10 @@
 
 /*
 	@dev: return the length of a given vector
- 	@param: a: vector pointer
+ 	@param: a: vector struct
 */
 
-float	length(t_vector *a)
+float	length(t_vector a)
 {
 	return (sqrt(dot_product(a, a)));
 }
