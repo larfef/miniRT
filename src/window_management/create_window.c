@@ -13,13 +13,12 @@
 #include "../../inc/window_management.h"
 #include <math.h>
 #include <rendering.h>
+#include "../../inc/operation.h"
 #include <stdio.h>
 
 //change to make
 //calculate the radius only once
-//loop trought shapes list
 //change color field name inside color enum by hexa
-//change mlx codam by mlx42
 //add check for mlx allocation fails
 
 #ifndef GRADIENT_END
@@ -38,8 +37,8 @@ typedef	struct s_ray_tracing
 
 void	set_pixel_center(t_window *window, t_point *pixel_center, int x, int y)
 {
-	*pixel_center = add_point(multiply_vector(window->pixel_delta[U], x),
-					multiply_point(window->pixel_delta[V], y));
+	*pixel_center = add_point(multiply_point(window->pixel_delta[U].dir, x),
+					multiply_point(window->pixel_delta[V].dir, y));
 	*pixel_center = add_point(*pixel_center, window->pixel00_loc);
 }
 
@@ -50,14 +49,14 @@ void	set_intersection_point(t_ray_tracing *raytracer)
 					raytracer->solution));
 }
 
-void	set_hit_point_to_light_dir(t_ray_tracing *raytracer, t_vector light_point)
+void	set_hit_point_to_light_dir(t_ray_tracing *raytracer, t_point light_point)
 {
-	raytracer->hit_point_to_light.dir = sub_vector(light_point, raytracer->hit_point_to_light.origin);
+	raytracer->hit_point_to_light.dir = sub_point(light_point, raytracer->hit_point_to_light.origin);
 }
 
-void	set_sphere_normal_vector(t_ray_tracing *raytracer, t_vector a, t_vector b)
+void	set_sphere_normal_vector(t_ray_tracing *raytracer, t_point a, t_point b)
 {
-	raytracer->normal = sub_vector(a, b);
+	raytracer->normal.dir = sub_point(a, b);
 }
 
 void	set_pixel_color(t_ray_tracing *raytracer, float brightness, color color)
@@ -102,7 +101,7 @@ void	trace_rays(t_window *window, t_scene *scene, t_shapes *shape)
 		while (++x != window->width)
 		{
 			set_pixel_center(window, &raytracer.pixel_center, x, y);
-			raytracer.camera_to_viewport.dir = sub_vector(raytracer.pixel_center, scene->camera.coordinates);
+			raytracer.camera_to_viewport.dir = sub_point(raytracer.pixel_center, scene->camera.coordinates);
 			raytracer.solution = sphere_intersection(&shape->center,
 							shape->size[0] / 2, &raytracer.camera_to_viewport);
 			if (raytracer.solution > 0.0)

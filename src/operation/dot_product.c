@@ -15,11 +15,11 @@
 /*
 	@dev: 3d vectors dot product implementation
  	@dev: vectors must share the same origin
- 	@param: a: vector pointer
- 	@param: b: vector pointer
+ 	@param: a: vector struct
+ 	@param: b: vector struct
 */
 
-float	dot_product(t_vector *a, t_vector *b)
+float	dot_product(t_vector a, t_vector b)
 {
-	return ((a->dir.x * b->dir.x) + (a->dir.y * b->dir.y) + (a->dir.z * b->dir.z));
+	return ((a.dir.x * b.dir.x) + (a.dir.y * b.dir.y) + (a.dir.z * b.dir.z));
 }

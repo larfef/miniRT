@@ -18,15 +18,15 @@
  	@param: n: the number to multiply the vector by.
  */
 
-t_vector	multiply_vector(t_vector *a, float n)
+t_vector	multiply_vector(t_vector a, float n)
 {
 	t_vector	result;
 
-	result.origin.x = a->origin.x * n;
-	result.origin.y = a->origin.y * n;
-	result.origin.z = a->origin.z * n;
-	result.dir.x = a->dir.x * n;
-	result.dir.y = a->dir.y * n;
-	result.dir.z = a->dir.z * n;
+	result.origin.x = a.origin.x * n;
+	result.origin.y = a.origin.y * n;
+	result.origin.z = a.origin.z * n;
+	result.dir.x = a.dir.x * n;
+	result.dir.y = a.dir.y * n;
+	result.dir.z = a.dir.z * n;
 	return (result);
 }
