@@ -1,10 +1,7 @@
 #ifndef INIT_STACK_H
 # define INIT_STACK_H
-# include "init_stack_constant.h"
-# include "init_stack_types.h"
-# include "init_stack_constant.h"
-# include "init_stack_types.h"
-# include "parsing_types.h"
+# include "types.h"
+# include "constant.h"
 void	___exit(char *s, t_shapes *list);
 void	free_list(t_shapes *list);
 void	extract_file_data(t_file *file, t_scene *scene);

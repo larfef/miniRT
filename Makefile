@@ -12,9 +12,10 @@ FILE_PARSING	= 	exit init_instructions init_parsing_functions init_file is_dupli
 GNL				=	get_next_line get_next_line_utils
 HOOKS			=	close_window init_hooks k_input
 INIT_STACK		=	_exit extract_file_data free_list init_stack set_element_type set_shape_type
-OPERATION		:=	add_vector at cross_product dot_product get_cos length multiply_point multiply_vector normalize sub_point sub_vector
+OPERATION		:=	add_point add_vector at cross_product dot_product get_cos length multiply_point multiply_vector normalize\
+					sub_point sub_vector
 RENDERING		=	set_color sphere_intersection
-WINDOW_MANAGEMENT = create_window degrees_to_radian display pixel00_loc get_vup set_aspect_ratio set_image_width set_pixel_delta set_viewport set_viewport_vectors upper_left_pixel
+WINDOW_MANAGEMENT = create_window display pixel00_loc get_vup set_aspect_ratio set_image_width set_pixel_delta set_viewport set_viewport_vectors upper_left_pixel
 SRC				=	main
 SRCS			=	$(addsuffix .c, $(addprefix src/, $(SRC))) \
 					$(addsuffix .c, $(addprefix src/gnl/, $(GNL))) \

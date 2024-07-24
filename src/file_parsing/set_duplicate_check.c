@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing_types.h"
+#include "../../inc/types.h"
 
 void	set_duplicate_check(t_file *file)
 {

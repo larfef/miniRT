@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../libft/inc/libft.h"
-#include "../../inc/parsing_types.h"
+#include "../../inc/types.h"
 
 void	set_current_line_type(t_file *file)
 {

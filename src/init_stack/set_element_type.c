@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/init_stack_types.h"
+#include "../../inc/types.h"
 
 void	set_element_type(char c, t_elements_types *element_type)
 {

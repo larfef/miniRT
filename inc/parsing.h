@@ -12,11 +12,8 @@
 
 #ifndef PARSING_H
 # define PARSING_H
-# include "parsing_types.h"
-# include "parsing_constant.h"
-# include "init_stack_types.h"
-# include <stdint.h>
-# include <stdbool.h>
+# include "constant.h"
+# include "types.h"
 # include <errno.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -30,7 +27,7 @@ void	init_parsing_functions(t_file *file);
 bool	is_brightness_valid(char **line, t_scene *scene, int option);
 bool	is_digit(char **p, t_scene *scene, int option);
 bool	is_fov_valid(char **p, t_scene *scene, int option);
-bool	is_length_valid(char *s, int8_t lenght_max);
+bool	is_length_valid(char *s, int8_t length_max);
 bool	is_light_ratio_valid(char **line, t_scene *scene, int option);
 bool	is_rgb_valid(char **p, t_scene *scene, int option);
 bool	is_size_valid(char **line, t_scene *scene, int option);

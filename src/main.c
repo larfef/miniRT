@@ -14,6 +14,7 @@
 #include "../inc/init_stack.h"
 #include "../inc/window_management.h"
 #include "../inc/hooks.h"
+#include "../mlx/mlx.h"
 #include "libft/inc/libft.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -28,13 +29,9 @@ static	void	check_argc(int argc)
 	}
 }
 
-void	window_management()
-{
-
-}
-
 int	main(int argc, char **argv)
 {
+	t_hook		hook;
 	t_scene		scene;
 	t_file		file;
 	t_window	window;
@@ -48,7 +45,7 @@ int	main(int argc, char **argv)
 	close(file.fd);
 	ft_memset(&window, 0, sizeof(window));
 	display(&scene, &window);
-	init_hooks(&window);
+	init_hooks(&hook,&window, &scene);
 	mlx_loop(window.mlx);
 	free_list(scene.shapes);
 	return (0);

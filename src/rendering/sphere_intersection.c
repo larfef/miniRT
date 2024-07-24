@@ -10,18 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/rendering.h"
+#include "../../inc/operation.h"
 #include <math.h>
 
-float sphere_intersection(t_vector *center, float radius, t_ray *ray) {
-    t_vector oc = sub_vector(ray->origin, *center);
+float sphere_intersection(t_point *center, float radius, t_vector *ray) {
+    t_vector oc = {{0,0,0},{0,0,0}};
+
+	oc.dir = sub_point(ray->origin, *center);
 
     // Ensure the ray direction is normalized
-    normalize(&ray->dir);
+    normalize(ray);
 
-    float a = dot_product(&ray->dir, &ray->dir);
-    float h = dot_product(&ray->dir, &oc);
-    float c = dot_product(&oc, &oc) - (radius * radius);
+    float a = dot_product(*ray, *ray);
+    float h = dot_product(*ray, oc);
+    float c = dot_product(oc, oc) - (radius * radius);
 
     float discriminant = (h * h) - (a * c);
     if (discriminant < 0) {

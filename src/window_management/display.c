@@ -12,7 +12,7 @@
 
 #include "../../inc/init_stack.h"
 #include "../../inc/window_management.h"
-#include "../../inc/rendering.h"
+#include "../../inc/operation.h"
 #include <stdlib.h>
 
 void	display(t_scene *scene, t_window *window)

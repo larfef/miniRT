@@ -10,11 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/window_management_types.h"
+#include "../../inc/types.h"
 #include "../../inc/hooks.h"
+#include "../mlx/mlx.h"
 
-void	init_hooks(t_window *window)
+void	init_hooks(t_hook *param, t_window *window, t_scene *scene)
 {
-	mlx_hook(window->window, 2, 0, &k_input, window);
-	mlx_hook(window->window, 17, 0, &close_window, window);
+	param->mlx = window->mlx;
+	param->window = window->window;
+	param->shapes = scene->shapes;
+	mlx_hook(window->window, 2, 0, &k_input, param);
+	mlx_hook(window->window, 17, 0, &close_window, param);
 }

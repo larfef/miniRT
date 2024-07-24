@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/init_stack_types.h"
+#include "../../inc/types.h"
 #include <stdlib.h>
 
 void	free_list(t_shapes *list)

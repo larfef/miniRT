@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #ifndef HOOKS_H
-#define HOOKS_H
-# include "window_management_types.h"
-int		close_window(void* param);
-void	init_hooks(t_window *window);
-int		k_input(int key, t_window *window);
+# define HOOKS_H
+# include "types.h"
+int		close_window(t_hook *ptr);
+void	init_hooks(t_hook *param, t_window *window, t_scene *scene);
+int		k_input(int key, t_hook *ptr);
 #endif

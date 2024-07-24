@@ -17,15 +17,15 @@
  	@param: a: vector struct
 */
 
-void	normalize(t_vector a)
+void	normalize(t_vector *a)
 {
 	float	len;
 
-	len = length(a);
+	len = length(*a);
 	if (len > 0)
 	{
-		a.dir.x /= len;
-		a.dir.y /= len;
-		a.dir.z /= len;
+		a->dir.x /= len;
+		a->dir.y /= len;
+		a->dir.z /= len;
 	}
 }

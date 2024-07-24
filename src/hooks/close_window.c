@@ -10,14 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/window_management_types.h"
+#include "../../inc/hooks.h"
+#include "../../inc/init_stack.h"
+#include "../mlx/mlx.h"
 #include <stdlib.h>
 
-int	close_window(void* param)
-{
-	t_window	*window = (t_window *)param;
+/*
+	@dev: close the window when clicking the red cross button
+	and free the shapes list
+ 	@param: ptr: structure with at least a pointer to the mlx instance,
+ 	the window instance and a list
+*/
 
-	mlx_clear_window(window->mlx, window->window);
+int	close_window(t_hook *ptr)
+{
+	mlx_clear_window(ptr->mlx, ptr->window);
+	free_list(ptr->shapes);
 	exit(0);
-	return (0);
 }

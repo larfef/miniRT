@@ -44,8 +44,8 @@ void	set_pixel_center(t_window *window, t_point *pixel_center, int x, int y)
 
 void	set_intersection_point(t_ray_tracing *raytracer)
 {
-	raytracer->hit_point_to_light.origin = add_vector(raytracer->camera_to_viewport.origin,
-					multiply_vector(raytracer->camera_to_viewport.dir,
+	raytracer->hit_point_to_light.origin = add_point(raytracer->camera_to_viewport.origin,
+					multiply_point(raytracer->camera_to_viewport.dir,
 					raytracer->solution));
 }
 
@@ -63,7 +63,7 @@ void	set_pixel_color(t_ray_tracing *raytracer, float brightness, color color)
 {
 	float cos;
 
-	cos = get_cos(&raytracer->hit_point_to_light.dir, &raytracer->normal);
+	cos = get_cos(raytracer->hit_point_to_light, raytracer->normal);
 	raytracer->color.t_rgba.alpha = 0;
 	if (cos >= 1.0 - brightness)
 	{
