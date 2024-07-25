@@ -17,4 +17,5 @@
 color		ray_color(t_vector *direction);
 color		set_color(float r, float g, float b);
 float 		sphere_intersection(t_point *center, float radius, t_vector *ray);
+float		cylinder_intersection(t_shapes *cylinder, t_vector *hit_point);
 #endif

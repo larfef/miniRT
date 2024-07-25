@@ -22,7 +22,7 @@
 //add check for mlx allocation fails
 
 #ifndef GRADIENT_END
-#define GRADIENT_END (float)-0.5
+#define GRADIENT_END (float)-1.0
 #endif
 
 typedef	struct s_ray_tracing
@@ -59,6 +59,11 @@ void	set_sphere_normal_vector(t_ray_tracing *raytracer, t_point a, t_point b)
 	raytracer->normal.dir = sub_point(a, b);
 }
 
+/*
+ * need to add a check weither the light coordinate is inside or outside the cylinder
+ * need to check if the visible part of the cylinder is the inside or the outside part
+ */
+
 void	set_pixel_color(t_ray_tracing *raytracer, float brightness, color color)
 {
 	float cos;
@@ -87,6 +92,28 @@ void	set_pixel_color(t_ray_tracing *raytracer, float brightness, color color)
 	}
 }
 
+t_vector cylinder_normal(t_shapes *cylinder, t_vector point) {
+	// Step 1: Calculate vector from cylinder center to point
+	t_vector cylinder_center = {{0,0,0}, cylinder->center};
+
+	t_vector CP = sub_vector(point, cylinder_center);
+
+	// Step 2: Project CP onto the cylinder's orientation vector
+
+	float t = dot_product(CP, cylinder->orientation) / dot_product(cylinder->orientation, cylinder->orientation);
+
+	// Step 3: Calculate the point Q on the cylinder's axis
+	t_vector Q = add_vector(cylinder_center, multiply_vector(cylinder->orientation, t));
+
+	// Step 4: Calculate the normal vector as the vector from Q to the point
+	t_vector N = sub_vector(point, Q);
+
+	// Step 5: Normalize the normal vector
+	normalize(&N);
+
+	return N;
+}
+
 void	trace_rays(t_window *window, t_scene *scene, t_shapes *shape)
 {
 	int32_t		x;
@@ -102,14 +129,17 @@ void	trace_rays(t_window *window, t_scene *scene, t_shapes *shape)
 		{
 			set_pixel_center(window, &raytracer.pixel_center, x, y);
 			raytracer.camera_to_viewport.dir = sub_point(raytracer.pixel_center, scene->camera.coordinates);
-			raytracer.solution = sphere_intersection(&shape->center,
-							shape->size[0] / 2, &raytracer.camera_to_viewport);
+//			raytracer.solution = sphere_intersection(&shape->center,
+//							shape->size[0] / 2, &raytracer.camera_to_viewport);
+			raytracer.solution = cylinder_intersection(shape, &raytracer.camera_to_viewport);
 			if (raytracer.solution > 0.0)
 			{
 				set_intersection_point(&raytracer);
 				set_hit_point_to_light_dir(&raytracer, scene->light.coordinates);
-				set_sphere_normal_vector(&raytracer, raytracer.hit_point_to_light.origin, shape->center);
+				raytracer.normal = cylinder_normal(shape, (t_vector){{0, 0, 0}, raytracer.hit_point_to_light.origin});
+//				set_sphere_normal_vector(&raytracer, raytracer.hit_point_to_light.origin, shape->center);
 				set_pixel_color(&raytracer, scene->light.brightness, shape->color);
+//				raytracer.color = shape->color;
 				mlx_pixel_put(window->mlx, window->window, x, y, raytracer.color.color);
 			}
 			// else
@@ -143,22 +173,5 @@ void	create_window(t_window *window, t_scene *scene)
 {
 	window->mlx = mlx_init();
 	window->window = mlx_new_window(window->mlx, window->width, window->height, "miniRT");
-//	window->image = mlx_new_image(window->window, window->width, window->height);
 	iterate_through_shapes_list(window, scene);
-//	mlx_put_image_to_window(window->mlx, window->window, window->image, 0, 0);
 }
-
-// if (cos >= 1.0 - brightness)
-// {
-// 	raytracer->color.t_rgba.red =  color.t_rgba.red;
-// 	raytracer->color.t_rgba.green = color.t_rgba.green;
-// 	raytracer->color.t_rgba.blue = color.t_rgba.blue;
-// }
-// if (cos < 1.0 - brightness && cos > 0) {
-// 	float brightness_factor = cos / (1.0 - brightness);
-// 	raytracer->color.t_rgba.red = color.t_rgba.red * brightness_factor;
-// 	raytracer->color.t_rgba.green = color.t_rgba.green * brightness_factor;
-// 	raytracer->color.t_rgba.blue = color.t_rgba.blue * brightness_factor;
-// }
-// else if (cos < 0)
-// 	raytracer->color.color = 0x000000FF;

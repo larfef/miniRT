@@ -26,4 +26,5 @@
 # define DIAMETER 0
 # define HEIGHT 1
 # define EXTRACT 1
+# define EPSILON (float) 0.001
 #endif

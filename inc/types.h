@@ -74,6 +74,7 @@ typedef struct s_scene
 	t_elements_types	element_type;
 }	t_scene;
 typedef bool	(*func_ptr_t)(char **, t_scene *, int);
+typedef float	(*intersection)(t_shapes *, t_vector *);
 typedef bool	mandatory_element[3];
 typedef enum s_element_type
 {
