@@ -11,27 +11,16 @@
 /* ************************************************************************** */
 
 #include "../../inc/window_management.h"
-#include <math.h>
-#include <rendering.h>
+#include "../../inc/rendering.h"
 #include "../../inc/operation.h"
+#include "../mlx/mlx.h"
 #include <stdio.h>
-
+#include <math.h>
 
 //change to make
 //calculate the radius only once
 //change color field name inside color enum by hexa
 //add check for mlx allocation fails
-
-#ifndef GRADIENT_END
-#define GRADIENT_END (float)-1.0
-#endif
-
-void	set_pixel_center(t_window *window, t_point *pixel_center, int x, int y)
-{
-	*pixel_center = add_point(multiply_point(window->pixel_delta[U].dir, x),
-					multiply_point(window->pixel_delta[V].dir, y));
-	*pixel_center = add_point(*pixel_center, window->pixel00_loc);
-}
 
 void	set_intersection_point(t_ray_tracing *raytracer)
 {
@@ -49,11 +38,6 @@ void	set_sphere_normal_vector(t_ray_tracing *raytracer, t_point a, t_point b)
 {
 	raytracer->normal.dir = sub_point(a, b);
 }
-
-/*
- * need to add a check weither the light coordinate is inside or outside the cylinder
- * need to check if the visible part of the cylinder is the inside or the outside part
- */
 
 void	set_pixel_color(t_ray_tracing *raytracer, float brightness, color color)
 {

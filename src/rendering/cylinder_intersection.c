@@ -3,6 +3,11 @@
 #include "../../inc/operation.h"
 #include <math.h>
 
+/*
+ * need to add a check weither the light coordinate is inside or outside the cylinder
+ * need to check if the visible part of the cylinder is the inside or the outside part
+ */
+
 float	cylinder_intersection(t_shapes *cylinder, t_vector *ray) {
 	t_vector CO = {0};
 	t_vector cylinder_center = {0};
