@@ -45,15 +45,15 @@ float get_quadratic_solution(t_quadratic *params)
 	return -1.0f;
 }
 
-float sphere_intersection(t_shapes *sphere, t_vector *ray) {
+float sphere_intersection(t_shapes *sphere, t_vector *hit_point) {
 	t_vector oc = {0};
 	float 	radius;
 	t_quadratic	params;
 
 	radius = sphere->size[DIAMETER] / 2;
-	oc.dir = sub_point(ray->origin, sphere->center);
-	normalize(ray);
-	get_discriminant(ray, oc, radius, &params);
+	oc.dir = sub_point(hit_point->origin, sphere->center);
+	normalize(hit_point);
+	get_discriminant(hit_point, oc, radius, &params);
 	if (params.discriminant > 0)
 		get_quadratic_solution(&params);
 	return (-1.0f);

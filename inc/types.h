@@ -2,6 +2,9 @@
 # define TYPES_H
 # include <stdint.h>
 # include <stdbool.h>
+typedef struct s_shapes	t_shapes;
+typedef struct s_vector t_vector;
+typedef float	(*intersection_t)(t_shapes *, t_vector *);
 typedef struct	s_point
 {
 	float	x;
@@ -14,7 +17,6 @@ typedef	struct	s_vector
 	t_point		dir;
 }	t_vector;
 typedef float	size[2];
-typedef struct s_shapes	t_shapes;
 typedef enum e_shape_types
 {
 	_CYLINDER,
@@ -39,6 +41,15 @@ typedef union	u_color
 		uint8_t alpha;
 	} t_rgba;
 } color;
+typedef	struct s_ray_tracing
+{
+	color		color;
+	t_vector	camera_to_viewport;
+	t_vector	hit_point_to_light;
+	t_point		pixel_center;
+	t_vector	normal;
+	float		solution;
+}	t_ray_tracing;
 typedef struct s_shapes
 {
 	t_point			center;
@@ -47,6 +58,7 @@ typedef struct s_shapes
 	size			size;
 	t_shape_type	type;
 	uint64_t		list_pos;
+
 	t_shapes		*next;
 }	t_shapes;
 typedef struct s_ambient
@@ -72,9 +84,10 @@ typedef struct s_scene
 	t_light				light;
 	t_shapes 			*shapes;
 	t_elements_types	element_type;
+	intersection_t		intersection[3];
 }	t_scene;
 typedef bool	(*func_ptr_t)(char **, t_scene *, int);
-typedef float	(*intersection)(t_shapes *, t_vector *);
+//typedef float	(*color)()
 typedef bool	mandatory_element[3];
 typedef enum s_element_type
 {

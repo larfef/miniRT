@@ -14,8 +14,11 @@
 # define RENDERING_H
 # include <stdint.h>
 # include "types.h"
+float		cylinder_intersection(t_shapes *cylinder, t_vector *hit_point);
+void		get_nearest_intersection(intersection_t *fct_ptr_array, t_shapes *shape, t_ray_tracing *raytracer);
+void		iterate_through_shapes_list(t_window *window, t_scene *scene, t_ray_tracing *raytracer);
+void		iterate_through_viewport(t_window *window, t_scene *scene, t_ray_tracing *raytracer);
 color		ray_color(t_vector *direction);
 color		set_color(float r, float g, float b);
-float 		sphere_intersection(t_point *center, float radius, t_vector *ray);
-float		cylinder_intersection(t_shapes *cylinder, t_vector *hit_point);
+float 		sphere_intersection(t_shapes *sphere, t_vector *hit_point);
 #endif

@@ -17,6 +17,7 @@
 void	init_stack(t_scene *scene, t_file *file)
 {
 	ft_memset(scene, '\0', sizeof(*scene));
+	init_fct_ptr(scene);
 	open_file(file);
 	read_file(scene, file, EXTRACT);
 }

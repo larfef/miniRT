@@ -11,7 +11,7 @@ FILE_PARSING	= 	exit init_instructions init_parsing_functions init_file is_dupli
 					is_size_valid open_file parse_line read_file set_current_line_type set_duplicate_check utils_check utils_skip
 GNL				=	get_next_line get_next_line_utils
 HOOKS			=	close_window init_hooks k_input
-INIT_STACK		=	_exit extract_file_data free_list init_stack set_element_type set_shape_type
+INIT_STACK		=	_exit extract_file_data free_list init_fct_ptr init_stack set_element_type set_shape_type
 OPERATION		:=	add_point add_vector at cross_product dot_product get_cos length multiply_point multiply_vector normalize\
 					sub_point sub_vector
 RENDERING		=	cylinder_intersection set_color sphere_intersection
