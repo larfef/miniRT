@@ -21,6 +21,7 @@
 //calculate the radius only once
 //change color field name inside color enum by hexa
 //add check for mlx allocation fails
+//test error protection
 
 void	set_intersection_point(t_ray_tracing *raytracer)
 {
@@ -112,18 +113,14 @@ void	trace_rays(t_window *window, t_scene *scene, t_shapes *shape, t_ray_tracing
 //	 mlx_pixel_put(window->mlx, window->window, x, y, raytracer.color.color);
 }
 
-void	set_window_height(float width, float aspect_ratio, int *height)
-{
-	*height = (int)roundf(width / aspect_ratio);
-	if (*height < 1)
-		*height = 1;
-}
-
 void	create_window(t_window *window, t_scene *scene)
 {
 	window->mlx = mlx_init();
+	if (!window->mlx)
+		exit_error(window, scene->shapes);
 	window->window = mlx_new_window(window->mlx, window->width, window->height, "miniRT");
-	iterate_through_viewport();
+	if (!window->window)
+		exit_error(window, scene->shapes);
 }
 
 //void	trace_rays(t_window *window, t_scene *scene, t_shapes *shape)

@@ -12,4 +12,5 @@ void	iterate_through_shapes_list(t_window *window, t_scene *scene, t_ray_tracing
 		get_nearest_intersection(scene->intersection, shape, raytracer);
 		shape = shape->next;
 	}
+	//color calculation logic
 }

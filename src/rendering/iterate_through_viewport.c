@@ -1,5 +1,7 @@
 #include "../../inc/types.h"
 #include "../../inc/rendering.h"
+#include "../../inc/window_management.h"
+#include "../../inc/operation.h"
 
 void	iterate_through_viewport(t_window *window, t_scene *scene, t_ray_tracing *raytracer)
 {
