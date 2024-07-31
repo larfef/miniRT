@@ -49,7 +49,17 @@ typedef	struct s_ray_tracing
 	t_point		pixel_center;
 	t_vector	normal;
 	float		solution;
+	t_shapes	*shape;
 }	t_ray_tracing;
+typedef struct	s_quadratic
+{
+	float	a;
+	float	c;
+	float	discriminant;
+	float	h;
+	float	t1;
+	float	t2;
+}	t_quadratic;
 typedef struct s_shapes
 {
 	t_point			center;

@@ -21,7 +21,7 @@
 
 t_vector	cross_product(t_vector a, t_vector b)
 {
-	t_vector	result;
+	t_vector	result = {0};
 
 	result.dir.x = (a.dir.y * b.dir.z) - (a.dir.z * b.dir.y);
 	result.dir.y = (a.dir.z * b.dir.x) - (a.dir.x * b.dir.z);

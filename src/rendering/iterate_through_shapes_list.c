@@ -1,7 +1,7 @@
 #include "../../inc/types.h"
 #include "../../inc/rendering.h"
 
-void	iterate_through_shapes_list(t_window *window, t_scene *scene, t_ray_tracing *raytracer)
+void	iterate_through_shapes_list(t_scene *scene, t_ray_tracing *raytracer)
 {
 	t_shapes *shape;
 
@@ -12,5 +12,4 @@ void	iterate_through_shapes_list(t_window *window, t_scene *scene, t_ray_tracing
 		get_nearest_intersection(scene->intersection, shape, raytracer);
 		shape = shape->next;
 	}
-	//color calculation logic
 }

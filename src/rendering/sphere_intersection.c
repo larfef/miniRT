@@ -11,39 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../inc/operation.h"
-#include "constant.h"
-#include <math.h>
-
-typedef struct	s_quadratic
-{
-	float	a;
-	float	c;
-	float	discriminant;
-	float	h;
-	float	t1;
-	float	t2;
-}	t_quadratic;
-
-void	get_discriminant(t_vector *ray, t_vector oc, float radius, t_quadratic *params)
-{
-	params->a = dot_product(*ray, *ray);
-	params->h = dot_product(*ray, oc);
-	params->c  = dot_product(oc, oc) - (radius * radius);
-	params->discriminant = (params->h * params->h) - (params->a * params->c);
-}
-
-float get_quadratic_solution(t_quadratic *params)
-{
-	params->t1 = (float)(-(params->h) - sqrt(params->discriminant)) / params->a;
-	params->t2 = (float)(-(params->h) + sqrt(params->discriminant)) / params->a;
-	if (params->t1 > 0 && params->t2 > 0)
-		return ((float)fmin((float)params->t1, (float)params->t2));
-	else if (params->t1 > 0)
-		return params->t1;
-	else if (params->t2 > 0)
-		return params->t2;
-	return -1.0f;
-}
+#include "../../inc/constant.h"
 
 float sphere_intersection(t_shapes *sphere, t_vector *hit_point) {
 	t_vector oc = {0};
@@ -55,7 +23,7 @@ float sphere_intersection(t_shapes *sphere, t_vector *hit_point) {
 	normalize(hit_point);
 	get_discriminant(hit_point, oc, radius, &params);
 	if (params.discriminant > 0)
-		get_quadratic_solution(&params);
+		return (get_quadratic_solution(&params));
 	return (-1.0f);
 }
 

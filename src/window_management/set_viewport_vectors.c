@@ -4,7 +4,7 @@
 void	set_viewport_vectors(float (*viewport)[2], t_vector (*viewport_vectors)[2], t_vector *w)
 {
 	t_vector	vup;
-	t_vector	u;
+	t_vector	u = {0};
 	t_vector	minus_v;
 
 	vup = get_vup(w);

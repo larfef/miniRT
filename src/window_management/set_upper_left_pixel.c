@@ -1,6 +1,6 @@
 #include "../../inc/operation.h"
 
-t_point upper_left_pixel(t_point camera_center, t_vector (*viewport_vectors)[2], t_vector w)
+void	set_upper_left_pixel(t_point camera_center, t_vector (*viewport_vectors)[2], t_vector w, t_point *pos)
 {
 	t_vector upper_left_pixel = {0};
 
@@ -9,5 +9,5 @@ t_point upper_left_pixel(t_point camera_center, t_vector (*viewport_vectors)[2],
 	upper_left_pixel.dir = add_point(camera_center, w.dir);
 	upper_left_pixel = sub_vector(upper_left_pixel, half_viewport_u);
 	upper_left_pixel = sub_vector(upper_left_pixel, half_viewport_v);
-	return (upper_left_pixel.dir);
+	*pos = upper_left_pixel.dir;
 }

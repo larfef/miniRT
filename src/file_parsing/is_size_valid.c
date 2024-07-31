@@ -34,7 +34,8 @@ bool	is_size_valid(char **line, t_scene *scene, int option)
 		else if (i == DIAMETER)
 		{
 			scene->shapes->size[DIAMETER] = tmp;
-			i = HEIGHT;
+			if (scene->shapes->type == _CYLINDER)
+				i = HEIGHT;
 		}
 	}
 	return (true);

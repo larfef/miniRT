@@ -16,9 +16,11 @@
 # include "types.h"
 float		cylinder_intersection(t_shapes *cylinder, t_vector *hit_point);
 void		get_nearest_intersection(intersection_t *fct_ptr_array, t_shapes *shape, t_ray_tracing *raytracer);
-void		iterate_through_shapes_list(t_window *window, t_scene *scene, t_ray_tracing *raytracer);
+void		iterate_through_shapes_list(t_scene *scene, t_ray_tracing *raytracer);
 void		iterate_through_viewport(t_window *window, t_scene *scene, t_ray_tracing *raytracer);
-color		ray_color(t_vector *direction);
-color		set_color(float r, float g, float b);
+void		set_pixel_color(t_ray_tracing *raytracer, float brightness, color color);
 float 		sphere_intersection(t_shapes *sphere, t_vector *hit_point);
+void		trace_rays(t_scene *scene, t_ray_tracing *raytracer);
 #endif
+//color		ray_color(t_vector *direction);
+//color		set_color(float r, float g, float b);
