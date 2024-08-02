@@ -1,11 +1,13 @@
 UNAME_S			:= $(shell uname -s)
 NAME			=	miniRT
 BIN				=	bin
+DEP				=	dep
 CC				=	cc
-CFLAGS			=	-Wall -Wextra -Werror -g
+CFLAGS			=	-Wall -Wextra -Werror -fsanitize=address
 LDFLAGS			:=
 INC				=	-Iinclude -Iinc -Isrc/libft/inc/ -Isrc/gnl/ -Isrc/mlx/
 OBJS			=	$(addprefix $(BIN)/, $(notdir $(SRCS:.c=.o)))
+DEPS			=	$(addprefix $(DEP)/, $(notdir $(SRCS:.c=.d)))
 FILE_PARSING	= 	exit init_instructions init_parsing_functions init_file is_duplicate is_length_valid is_line_valid is_orientation_valid is_rgb_valid ft_atof\
 					is_coordinates_valid is_brightness_valid is_end_of_line_valid is_file_valid is_filename_valid is_light_ratio_valid is_minimal_scene_valid\
 					is_size_valid open_file parse_line read_file set_current_line_type set_duplicate_check utils_check utils_skip
@@ -41,29 +43,42 @@ all: $(NAME)
 $(BIN):
 	mkdir -p $(BIN)
 
-$(BIN)/%.o:src/%.c | $(BIN)
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+$(DEP):
+	mkdir -p $(DEP)
 
-$(BIN)/%.o:src/file_parsing/%.c | $(BIN)
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+-include $(DEPS)
 
-$(BIN)/%.o:src/gnl/%.c | $(BIN)
+$(BIN)/%.o:src/%.c | $(BIN) $(DEP)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -MM $< > $(DEP)/$*.d
 
-$(BIN)/%.o:src/init_stack/%.c | $(BIN)
+$(BIN)/%.o:src/file_parsing/%.c | $(BIN) $(DEP)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -MM $< > $(DEP)/$*.d
 
-$(BIN)/%.o:src/rendering/%.c | $(BIN)
+$(BIN)/%.o:src/gnl/%.c | $(BIN) $(DEP)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -MM $< > $(DEP)/$*.d
 
-$(BIN)/%.o:src/window_management/%.c | $(BIN)
+$(BIN)/%.o:src/init_stack/%.c | $(BIN) $(DEP)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -MM $< > $(DEP)/$*.d
+
+$(BIN)/%.o:src/rendering/%.c | $(BIN) $(DEP)
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -MM $< > $(DEP)/$*.d
+
+$(BIN)/%.o:src/window_management/%.c | $(BIN) $(DEP)
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -MM $< > $(DEP)/$*.d
 
 $(BIN)/%.o:src/hooks/%.c | $(BIN)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -MM $< > $(DEP)/$*.d
 
-$(BIN)/%.o:src/operation/%.c | $(BIN)
+$(BIN)/%.o:src/operation/%.c | $(BIN) $(DEP)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -MM $< > $(DEP)/$*.d
 
 $(NAME): $(OBJS)
 	make -C src/libft
@@ -75,7 +90,7 @@ $(NAME): $(OBJS)
 clean:
 	make -C src/libft clean
 	#make -C src/mlx42/build clean
-	/bin/rm -rf $(BIN)
+	/bin/rm -rf $(BIN) $(DEP)
 
 fclean: clean
 	make -C src/libft fclean

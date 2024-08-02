@@ -105,8 +105,3 @@ void	trace_rays(t_scene *scene, t_ray_tracing *raytracer)
 	else
 		raytracer->color.color = scene->ambient.color.color;
 }
-//		if (check_intersection_with_shapes(&raytracer->hit_point_to_light, scene->shapes, scene->intersection, raytracer->shape))
-//		{
-//			raytracer->color.color = 0x00000000;
-//			return ;
-//		}

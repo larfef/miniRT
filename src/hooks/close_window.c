@@ -26,5 +26,6 @@ int	close_window(t_hook *ptr)
 {
 	mlx_clear_window(ptr->mlx, ptr->window);
 	free_list(ptr->shapes);
+	system("leaks miniRT");
 	exit(0);
 }
