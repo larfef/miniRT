@@ -46,18 +46,17 @@ t_vector	generate_grid_shadow_ray(t_vector *ray, t_jittering_grid *grid)
 	t_vector	shadow_ray;
 
 	shadow_ray.origin = ray->origin;
-	grid->offset_x = ((float)grid->x / (GRID_SIZE - 1) - 0.5f) * 0.1f;
-	grid->offset_y = ((float)grid->y / (GRID_SIZE - 1) - 0.5f) * 0.1f;
-	grid->offset_z = ((float)grid->z / (GRID_SIZE - 1) - 0.5f) * 0.1f;
+	grid->offset_x = ((float)grid->x / (GRID_SIZE - 1) - 0.5f) * 1.0f;
+	grid->offset_y = ((float)grid->y / (GRID_SIZE - 1) - 0.5f) * 1.0f;
+	grid->offset_z = ((float)grid->z / (GRID_SIZE - 1) - 0.5f) * 1.0f;
 	shadow_ray.dir.x = ray->dir.x + grid->offset_x;
 	shadow_ray.dir.y = ray->dir.y + grid->offset_y;
 	shadow_ray.dir.z = ray->dir.z + grid->offset_z;
 	return (shadow_ray);
 }
 
-float	jittering_grid(t_scene *scene, t_ray_tracing * raytracer)
+int	jittering_grid(t_scene *scene, t_ray_tracing * raytracer)
 {
-	float				shadow_factor;
 	t_vector			shadow_ray;
 	t_jittering_grid	grid = {0};
 
@@ -76,40 +75,38 @@ float	jittering_grid(t_scene *scene, t_ray_tracing * raytracer)
 			}
 		}
 	}
-	if (!grid.shadow_hits)
-		return (0.0f);
-	shadow_factor = (float)(NB_OF_RAY - grid.shadow_hits) / NB_OF_RAY;
-	return (shadow_factor);
+	return (grid.shadow_hits);
 }
 
 void	trace_rays(t_scene *scene, t_ray_tracing *raytracer)
 {
+	int		shadow_hits;
 	float	shadow_factor;
 
+	shadow_hits = 0;
 	if (raytracer->solution > 0.0)
 	{
 		set_intersection_point(raytracer);
 		raytracer->hit_point_to_light.dir = sub_point(scene->light.coordinates,
 													  raytracer->hit_point_to_light.origin);
-//		raytracer->normal = cylinder_normal(shape, (t_vector){{0, 0, 0}, raytracer.hit_point_to_light.origin});
+
+		if (raytracer->shape->type == _SPHERE)
+			set_sphere_normal_vector(raytracer, raytracer->hit_point_to_light.origin, raytracer->shape->center);
+		else if (raytracer->shape->type == _CYLINDER)
+			raytracer->normal = cylinder_normal(raytracer->shape, (t_vector){{0, 0, 0}, raytracer->hit_point_to_light.origin});
+		set_pixel_color(raytracer, scene->light.brightness, raytracer->shape->color);
+		if (get_cos(raytracer->hit_point_to_light, raytracer->normal) > -1.0f)
+			shadow_hits = jittering_grid(scene, raytracer);
+		shadow_factor = (float)(NB_OF_RAY - shadow_hits) / NB_OF_RAY;
+		raytracer->color.t_rgba.red = (uint8_t)(((float)raytracer->color.t_rgba.red) * shadow_factor);
+		raytracer->color.t_rgba.green = (uint8_t)(((float)raytracer->color.t_rgba.green) * shadow_factor);
+		raytracer->color.t_rgba.blue = (uint8_t)(((float)raytracer->color.t_rgba.blue) * shadow_factor);
+	}
+	else
+		raytracer->color.color = scene->ambient.color.color;
+}
 //		if (check_intersection_with_shapes(&raytracer->hit_point_to_light, scene->shapes, scene->intersection, raytracer->shape))
 //		{
 //			raytracer->color.color = 0x00000000;
 //			return ;
 //		}
-		shadow_factor = jittering_grid(scene, raytracer);
-		if (!shadow_factor)
-		{
-			set_sphere_normal_vector(raytracer, raytracer->hit_point_to_light.origin, raytracer->shape->center);
-			set_pixel_color(raytracer, scene->light.brightness, raytracer->shape->color);
-		}
-		else
-		{
-			raytracer->color.t_rgba.red = (uint8_t)(((float)raytracer->color.t_rgba.red) * shadow_factor);
-			raytracer->color.t_rgba.green = (uint8_t)(((float)raytracer->color.t_rgba.green) * shadow_factor);
-			raytracer->color.t_rgba.blue = (uint8_t)(((float)raytracer->color.t_rgba.blue) * shadow_factor);
-		}
-	}
-	else
-		raytracer->color.color = scene->ambient.color.color;
-}

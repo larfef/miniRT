@@ -12,7 +12,7 @@ FILE_PARSING	= 	exit init_instructions init_parsing_functions init_file is_dupli
 GNL				=	get_next_line get_next_line_utils
 HOOKS			=	close_window init_hooks k_input
 INIT_STACK		=	_exit extract_file_data free_list init_fct_ptr init_stack set_element_type set_shape_type
-OPERATION		:=	add_point add_vector at cross_product dot_product get_cos get_discriminant get_quadratic_solution length multiply_point\
+OPERATION		:=	add_point add_vector at cross_product cylinder_normal dot_product get_cos get_discriminant get_quadratic_solution length multiply_point\
 					multiply_vector normalize sub_point sub_vector
 RENDERING		=	cylinder_intersection get_nearest_intersection iterate_through_shapes_list iterate_through_viewport render_scene\
 					set_pixel_color sphere_intersection trace_rays vector_utils

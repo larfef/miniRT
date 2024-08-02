@@ -26,36 +26,3 @@ float sphere_intersection(t_shapes *sphere, t_vector *hit_point) {
 		return (get_quadratic_solution(&params));
 	return (-1.0f);
 }
-
-//float sphere_intersection(t_point *center, float radius, t_vector *ray) {
-//    t_vector oc = {{0,0,0},{0,0,0}};
-//
-//	oc.dir = sub_point(ray->origin, *center);
-//
-//    // Ensure the ray direction is normalized
-//    normalize(ray);
-//
-//    float a = dot_product(*ray, *ray);
-//    float h = dot_product(*ray, oc);
-//    float c = dot_product(oc, oc) - (radius * radius);
-//
-//    float discriminant = (h * h) - (a * c);
-//    if (discriminant < 0) {
-//        return -1.0f;
-//    }
-//
-//    // Calculate the two potential intersection points
-//    float t1 = (-h - sqrt(discriminant)) / a;
-//    float t2 = (-h + sqrt(discriminant)) / a;
-//
-//    // Return the nearest positive intersection point
-//    if (t1 > 0 && t2 > 0) {
-//        return fmin(t1, t2);
-//    } else if (t1 > 0) {
-//        return t1;
-//    } else if (t2 > 0) {
-//        return t2;
-//    }
-//
-//    return -1.0f;
-//}

@@ -25,7 +25,7 @@ float	cylinder_intersection(t_shapes *cylinder, t_vector *ray) {
 
 	float discriminant = b * b - 4 * a * c;
 	if (discriminant < 0) {
-		return ((float)0.0);
+		return ((float)-1.0);
 	}
 
 	float sqrt_discriminant = sqrt(discriminant);
@@ -49,5 +49,5 @@ float	cylinder_intersection(t_shapes *cylinder, t_vector *ray) {
 			return (t2);
 		}
 	}
-	return ((float)0.0);
+	return ((float)-1.0);
 }

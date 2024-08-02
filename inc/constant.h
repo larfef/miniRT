@@ -47,9 +47,9 @@
 #define GRADIENT_END -1.0f
 #endif
 #ifndef NB_OF_RAY
-#define NB_OF_RAY 27
+#define NB_OF_RAY 8000
 #endif
 #ifndef GRID_SIZE
-#define GRID_SIZE 3
+#define GRID_SIZE 20
 #endif
 # endif

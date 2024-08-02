@@ -30,3 +30,7 @@ modify the hit_point -> light vector direction
 check how many ray intersect another object
 set the shadow factor [0, 1] based on the number of intersection
 mulitply the shape color by the shadow factor
+
+//cylinder
+
+fix error with coordinate: coordinate must be the center of the cylinder instead of the center of the base of the cylinder
