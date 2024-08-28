@@ -6,21 +6,32 @@
     snprintf(command, sizeof(command), "lsof -p %d", getpid());
     system(command);
 
-//most important things to do 
-fix object deformation where center is not the center of the window
-handle all camera features
-
 //orientation
 add parsing rule to check if the given orientation is normalized
+
+check coordinate inversion
 
 //lighting
 
 handle case where lights is inside the object
 handle case where lights is behind the object
-handle case where ray from intersection to light and normal vector are not on the same origin
-Add coefficient to alpha to represent the brightness
-Normalize color value 
+check if the vector hit_point -> light intersect with an object, if so set the hit point color to black
 
 //ambient
 
 add ambient to the base color of each shapes in the scene
+
+//jittering grid
+
+set the number of ray
+set the grid size
+loop for each point in the 3d grid
+modify the hit_point -> light vector direction 
+check how many ray intersect another object
+set the shadow factor [0, 1] based on the number of intersection
+mulitply the shape color by the shadow factor
+
+//cylinder
+
+add a check for the 3d orientation who must be normalized
+fix error with coordinate: coordinate must be the center of the cylinder instead of the center of the base of the cylinder

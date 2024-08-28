@@ -21,18 +21,22 @@ bool	is_size_valid(char **line, t_scene *scene, int option)
 	if (option == PARSE && !is_length_valid(*line, LEN_MAX))
 		return (false);
 	tmp = ft_atof(*line);
-	if (option == _SHAPES && scene->shapes->type != _PLANE && i == DIAMETER)
-	{
-		scene->shapes->size[DIAMETER] = tmp;
-		// i = HEIGHT;
-	}
-	else if (option == _SHAPES && scene->shapes->type == _CYLINDER && i == HEIGHT)
-	{
-		scene->shapes->size[HEIGHT] = tmp;
-		i = DIAMETER;
-	}
 	if (option == PARSE
 		&& tmp <= 0.0)
 		return (false);
+	if (option == _SHAPES && scene->shapes->type != _PLANE)
+	{
+		if (i == HEIGHT)
+		{
+			scene->shapes->size[HEIGHT] = tmp;
+			i = DIAMETER;
+		}
+		else if (i == DIAMETER)
+		{
+			scene->shapes->size[DIAMETER] = tmp;
+			if (scene->shapes->type == _CYLINDER)
+				i = HEIGHT;
+		}
+	}
 	return (true);
 }

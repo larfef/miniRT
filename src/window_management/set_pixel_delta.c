@@ -1,5 +1,5 @@
 #include "../../inc/window_management.h"
-#include "../../inc/rendering.h"
+#include "../../inc/operation.h"
 
 void	set_pixel_delta(int32_t image_width, int32_t image_height, t_vector (*viewport_vectors)[2], t_vector (*pixel_delta)[2])
 {

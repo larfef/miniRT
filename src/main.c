@@ -12,9 +12,10 @@
 
 #include "../inc/parsing.h"
 #include "../inc/init_stack.h"
-#include "../inc/window_management.h"
 #include "../inc/hooks.h"
-#include "libft/inc/libft.h"
+#include "../mlx/mlx.h"
+#include "../inc/rendering.h"
+#include "../inc/window_management.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -28,16 +29,13 @@ static	void	check_argc(int argc)
 	}
 }
 
-void	window_management()
-{
-
-}
-
 int	main(int argc, char **argv)
 {
-	t_scene		scene;
-	t_file		file;
-	t_window	window;
+	t_hook			hook;
+	t_scene			scene;
+	t_file			file;
+	t_window		window;
+	t_ray_tracing	raytracer = {0};
 
 	check_argc(argc);
 	is_filename_valid(argv[1]);
@@ -46,9 +44,10 @@ int	main(int argc, char **argv)
 	is_file_valid(&file);
 	init_stack(&scene, &file);
 	close(file.fd);
-	ft_memset(&window, 0, sizeof(window));
-	display(&scene, &window);
-	init_hooks(&window);
+	init_window_struct(&scene, &window);
+	create_window(&window, &scene);
+	iterate_through_viewport(&window, &scene, &raytracer);
+	init_hooks(&hook,&window, &scene);
 	mlx_loop(window.mlx);
 	free_list(scene.shapes);
 	return (0);

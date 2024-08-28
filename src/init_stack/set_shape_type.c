@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../inc/init_stack_types.h"
+# include "../../inc/types.h"
 
 void	set_shape_type(t_shape_type *type, char c)
 {

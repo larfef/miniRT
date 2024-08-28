@@ -10,9 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/rendering.h"
+#include "../../inc/operation.h"
 #include <stdint.h>
-#include "../../inc/init_stack_types.h"
+#include "../../inc/types.h"
+
+/*
+ * @dev: utility function to set a gradient background color
+ */
 
 color	set_color(float r, float g, float b)
 {
@@ -31,11 +35,9 @@ color ray_color(t_vector *direction)
 	float		rgb[3];
 
 	normalize(direction);
-	a = 0.5 * (direction->y + 1.0);
+	a = 0.5 * (direction->dir.y + 1.0);
 	rgb[0] = ((1.0 - a) * 1.0) + (a * 0.5);
 	rgb[1] = ((1.0 - a) * 1.0) + (a * 0.7);
 	rgb[2] = ((1.0 - a) * 1.0) + (a * 1.0);
 	return (set_color(rgb[0], rgb[1], rgb[2]));
 }
-
-

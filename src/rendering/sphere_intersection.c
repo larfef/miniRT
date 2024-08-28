@@ -10,55 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/rendering.h"
+#include "../../inc/operation.h"
+#include "../../inc/constant.h"
 #include <math.h>
 
-float sphere_intersection(t_vector *center, float radius, t_ray *ray) {
-    t_vector oc = sub_vector(ray->origin, *center);
-
-    // Ensure the ray direction is normalized
-    normalize(&ray->dir);
-
-    float a = dot_product(&ray->dir, &ray->dir);
-    float h = dot_product(&ray->dir, &oc);
-    float c = dot_product(&oc, &oc) - (radius * radius);
-
-    float discriminant = (h * h) - (a * c);
-    if (discriminant < 0) {
-        return -1.0f;
-    }
-
-    // Calculate the two potential intersection points
-    float t1 = (-h - sqrt(discriminant)) / a;
-    float t2 = (-h + sqrt(discriminant)) / a;
-
-    // Return the nearest positive intersection point
-    if (t1 > 0 && t2 > 0) {
-        return fmin(t1, t2);
-    } else if (t1 > 0) {
-        return t1;
-    } else if (t2 > 0) {
-        return t2;
-    }
-
-    return -1.0f;
+static void	get_discriminant(t_vector *ray, t_vector oc, float radius, t_quadratic *params)
+{
+	params->a = dot_product(*ray, *ray);
+	params->h = dot_product(*ray, oc);
+	params->c  = dot_product(oc, oc) - (radius * radius);
+	params->discriminant = (params->h * params->h) - (params->a * params->c);
 }
 
-// float	sphere_intersection(t_vector *center, float radius, t_ray *ray)
-// {
-// 	float a;
-// 	float h;
-// 	float c;
-// 	float discriminant;
-// 	t_vector	oc;
-//
-// 	oc = sub_vector(*center, ray->origin);
-// 	a = length(&ray->dir) * length(&ray->dir);
-// 	h = dot_product(&ray->dir, &oc);
-// 	c = (length(&oc) * length(&oc)) - (radius * radius);
-// //	h *= -1;
-// 	discriminant = (h * h) - (a * c);
-// 	if (discriminant < 0)
-// 		return ((float)-1.0);
-// 	return ((h + sqrt(discriminant)) / a);
-// }
+static float	get_quadratic_solution(t_quadratic *params)
+{
+	params->t1 = (float)(-(params->h) - sqrt(params->discriminant)) / params->a;
+	params->t2 = (float)(-(params->h) + sqrt(params->discriminant)) / params->a;
+	if (params->t1 > 0 && params->t2 > 0)
+		return ((float)fmin((float)params->t1, (float)params->t2));
+	if (params->t1 > 0)
+		return params->t1;
+	if (params->t2 > 0)
+		return params->t2;
+	return -1.0f;
+}
+
+float sphere_intersection(t_shapes *sphere, t_vector *hit_point) {
+	t_vector oc = {0};
+	float 	radius;
+	t_quadratic	params;
+
+	radius = sphere->size[DIAMETER] / 2;
+	oc.dir = sub_point(hit_point->origin, sphere->center);
+	normalize(hit_point);
+	get_discriminant(hit_point, oc, radius, &params);
+	if (params.discriminant > 0)
+		return (get_quadratic_solution(&params));
+	return (-1.0f);
+}
