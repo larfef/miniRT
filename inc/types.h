@@ -43,6 +43,7 @@ typedef union	u_color
 } color;
 typedef	struct s_ray_tracing
 {
+	bool		is_inside;
 	color		color;
 	t_vector	camera_to_viewport;
 	t_vector	hit_point_to_light;
@@ -59,6 +60,7 @@ typedef struct	s_quadratic
 	float	h;
 	float	t1;
 	float	t2;
+	t_vector	v;
 }	t_quadratic;
 typedef struct s_shapes
 {
