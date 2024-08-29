@@ -1,5 +1,6 @@
 #include "../../inc/types.h"
 #include "../../inc/rendering.h"
+#include <stdlib.h>
 
 void	iterate_through_shapes_list(t_scene *scene, t_ray_tracing *raytracer)
 {

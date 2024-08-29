@@ -108,6 +108,8 @@ void	trace_rays(t_scene *scene, t_ray_tracing *raytracer)
 		}
 		else
 			raytracer->normal = raytracer->shape->orientation;
+		if (raytracer->shape->type == _PLANE && get_cos(raytracer->hit_point_to_light, raytracer->normal) < 0)
+			raytracer->normal = multiply_vector(raytracer->normal, -1);
 		set_pixel_color(raytracer, scene->light.brightness, raytracer->shape->color);
 		if (get_cos(raytracer->hit_point_to_light, raytracer->normal) > GRADIENT_END)
 			shadow_hits = jittering_grid(scene, raytracer);
