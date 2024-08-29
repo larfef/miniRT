@@ -72,7 +72,7 @@ $(BIN)/%.o:src/window_management/%.c | $(BIN) $(DEP)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 	$(CC) $(CFLAGS) $(INC) -MM $< > $(DEP)/$*.d
 
-$(BIN)/%.o:src/hooks/%.c | $(BIN)
+$(BIN)/%.o:src/hooks/%.c | $(BIN) $(DEP)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 	$(CC) $(CFLAGS) $(INC) -MM $< > $(DEP)/$*.d
 
