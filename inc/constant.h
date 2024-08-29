@@ -44,7 +44,7 @@
 # define PI 3.14159265358979323846f
 # define EPSILON (float) 0.001
 #ifndef GRADIENT_END
-#define GRADIENT_END -1.0f
+#define GRADIENT_END 0.0f
 #endif
 #ifndef NB_OF_RAY
 #define NB_OF_RAY 8

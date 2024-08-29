@@ -33,4 +33,5 @@ mulitply the shape color by the shadow factor
 
 //cylinder
 
+add a check for the 3d orientation who must be normalized
 fix error with coordinate: coordinate must be the center of the cylinder instead of the center of the base of the cylinder

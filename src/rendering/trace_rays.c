@@ -3,6 +3,8 @@
 #include "../inc/rendering.h"
 #include "../inc/constant.h"
 
+#include <stdio.h>
+
 void	set_sphere_normal_vector(t_ray_tracing *raytracer, t_point a, t_point b)
 {
 	raytracer->normal.dir = sub_point(a, b);
@@ -15,14 +17,14 @@ void	set_intersection_point(t_ray_tracing *raytracer)
 																	raytracer->solution));
 }
 
-bool	check_intersection_with_shapes(t_vector *ray, t_shapes *shapes, intersection_t *fct_ptr_array, t_shapes *current)
+bool	check_intersection_with_shapes(t_vector *ray, t_shapes *shapes, intersection_t *fct_ptr_array, t_shapes *current, bool is_inside)
 {
 	t_shapes	*shape;
 
 	shape = shapes;
 	while (shape)
 	{
-		if (shape != current)
+		if (shape != current || (current->type == _CYLINDER && is_inside == true))
 			if (fct_ptr_array[shape->type](shape, ray) != -1.0f)
 				return (true);
 		shape = shape->next;
@@ -70,7 +72,7 @@ int	jittering_grid(t_scene *scene, t_ray_tracing * raytracer)
 			while (++grid.z < GRID_SIZE)
 			{
 				shadow_ray = generate_grid_shadow_ray(&raytracer->hit_point_to_light, &grid);
-				if (check_intersection_with_shapes(&shadow_ray, scene->shapes, scene->intersection, raytracer->shape))
+				if (check_intersection_with_shapes(&shadow_ray, scene->shapes, scene->intersection, raytracer->shape, raytracer->is_inside))
 					grid.shadow_hits++;
 			}
 		}
@@ -84,6 +86,7 @@ void	trace_rays(t_scene *scene, t_ray_tracing *raytracer)
 	float	shadow_factor;
 
 	shadow_hits = 0;
+	raytracer->is_inside = false;
 	if (raytracer->solution > 0.0)
 	{
 		set_intersection_point(raytracer);
@@ -93,9 +96,20 @@ void	trace_rays(t_scene *scene, t_ray_tracing *raytracer)
 		if (raytracer->shape->type == _SPHERE)
 			set_sphere_normal_vector(raytracer, raytracer->hit_point_to_light.origin, raytracer->shape->center);
 		else if (raytracer->shape->type == _CYLINDER)
+		{
 			raytracer->normal = cylinder_normal(raytracer->shape, (t_vector){{0, 0, 0}, raytracer->hit_point_to_light.origin});
+			if (dot_product(raytracer->normal, raytracer->camera_to_viewport) > 0)
+			{
+				raytracer->is_inside = true;
+				raytracer->normal = multiply_vector(raytracer->normal, -1);
+			}
+			else
+				raytracer->is_inside = false;
+		}
+		else
+			raytracer->normal = raytracer->shape->orientation;
 		set_pixel_color(raytracer, scene->light.brightness, raytracer->shape->color);
-		if (get_cos(raytracer->hit_point_to_light, raytracer->normal) > -1.0f)
+		if (get_cos(raytracer->hit_point_to_light, raytracer->normal) > GRADIENT_END)
 			shadow_hits = jittering_grid(scene, raytracer);
 		shadow_factor = (float)(NB_OF_RAY - shadow_hits) / NB_OF_RAY;
 		raytracer->color.t_rgba.red = (uint8_t)(((float)raytracer->color.t_rgba.red) * shadow_factor);
