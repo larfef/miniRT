@@ -127,11 +127,11 @@ float cylinder_intersection(t_shapes *cylinder, t_vector *ray) {
 	get_solutions(&params);
 
 	// Ensure intersections are checked correctly within cylinder height
-	if (is_part_of_the_cylinder(ray, params.t1, &cy, cylinder->size[HEIGHT])) {
+	if (params.t1 >= 0 && is_part_of_the_cylinder(ray, params.t1, &cy, cylinder->size[HEIGHT])) {
 		return (params.t1);
 	}
 
-	if (is_part_of_the_cylinder(ray, params.t2, &cy, cylinder->size[HEIGHT])) {
+	if (params.t2 >= 0 && is_part_of_the_cylinder(ray, params.t2, &cy, cylinder->size[HEIGHT])) {
 		return (params.t2);
 	}
 
