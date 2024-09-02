@@ -3,7 +3,7 @@ NAME			=	miniRT
 BIN				=	bin
 DEP				=	dep
 CC				=	cc
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror -g
 LDFLAGS			:=
 INC				=	-Iinclude -Iinc -Isrc/libft/inc/ -Isrc/gnl/ -Isrc/mlx/
 OBJS			=	$(addprefix $(BIN)/, $(notdir $(SRCS:.c=.o)))
@@ -72,7 +72,7 @@ $(BIN)/%.o:src/window_management/%.c | $(BIN) $(DEP)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 	$(CC) $(CFLAGS) $(INC) -MM $< > $(DEP)/$*.d
 
-$(BIN)/%.o:src/hooks/%.c | $(BIN)
+$(BIN)/%.o:src/hooks/%.c | $(BIN) $(DEP)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 	$(CC) $(CFLAGS) $(INC) -MM $< > $(DEP)/$*.d
 

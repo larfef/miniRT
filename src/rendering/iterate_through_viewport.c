@@ -42,7 +42,7 @@ void	iterate_through_viewport(t_window *window, t_scene *scene, t_ray_tracing *r
 			trace_rays(scene, raytracer);
 			mlx_pixel_put(window->mlx, window->window, x, y, (int)raytracer->color.color);
 		}
-		// progress_bar(y, window->height);
+		 progress_bar(y, window->height);
 		x = -1;
 	}
 	printf("\n");

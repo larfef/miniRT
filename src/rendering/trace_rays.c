@@ -17,16 +17,44 @@ void	set_intersection_point(t_ray_tracing *raytracer)
 																	raytracer->solution));
 }
 
+//bool	check_intersection_with_shapes(t_vector *ray, t_shapes *shapes, intersection_t *fct_ptr_array, t_shapes *current, bool is_inside)
+//{
+//	t_shapes	*shape;
+//
+//	shape = shapes;
+//	while (shape)
+//	{
+//		if (shape != current || (current->type == _CYLINDER && is_inside == true))
+//			if (fct_ptr_array[shape->type](shape, ray) != -1.0f)
+//				return (true);
+//		shape = shape->next;
+//	}
+//	return (false);
+//}
+
+
+//version where we check if the intersection append if a distance smaller than the distance between the hit point and
+// the light
 bool	check_intersection_with_shapes(t_vector *ray, t_shapes *shapes, intersection_t *fct_ptr_array, t_shapes *current, bool is_inside)
 {
 	t_shapes	*shape;
+	t_vector	result;
+	float		ret;
 
 	shape = shapes;
 	while (shape)
 	{
 		if (shape != current || (current->type == _CYLINDER && is_inside == true))
-			if (fct_ptr_array[shape->type](shape, ray) != -1.0f)
-				return (true);
+		{
+			ret = fct_ptr_array[shape->type](shape, ray);
+			if (ret != -1.0f)
+			{
+				result = multiply_vector(*ray, ret);
+				if (length(result) <= length(*ray))
+					return (true);
+			}
+
+		}
 		shape = shape->next;
 	}
 	return (false);
@@ -108,6 +136,8 @@ void	trace_rays(t_scene *scene, t_ray_tracing *raytracer)
 		}
 		else
 			raytracer->normal = raytracer->shape->orientation;
+		if (raytracer->shape->type == _PLANE && get_cos(raytracer->hit_point_to_light, raytracer->normal) < 0)
+			raytracer->normal = multiply_vector(raytracer->normal, -1);
 		set_pixel_color(raytracer, scene->light.brightness, raytracer->shape->color);
 		if (get_cos(raytracer->hit_point_to_light, raytracer->normal) > GRADIENT_END)
 			shadow_hits = jittering_grid(scene, raytracer);
