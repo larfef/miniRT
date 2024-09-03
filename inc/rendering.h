@@ -19,7 +19,10 @@ void		get_nearest_intersection(intersection_t *fct_ptr_array, t_shapes *shape, t
 void		iterate_through_shapes_list(t_scene *scene, t_ray_tracing *raytracer);
 void		iterate_through_viewport(t_window *window, t_scene *scene, t_ray_tracing *raytracer);
 float       plane_intersection(t_shapes *plane, t_vector *hit_point);
+void	    set_cylinder_normal_vector(t_ray_tracing *rt);
 void		set_pixel_color(t_ray_tracing *raytracer, float brightness, color color);
+void	    set_plane_normal_vector(t_ray_tracing *rt);
+void	    set_sphere_normal_vector(t_ray_tracing *raytracer);
 float 		sphere_intersection(t_shapes *sphere, t_vector *hit_point);
 void		trace_rays(t_scene *scene, t_ray_tracing *raytracer);
 #endif

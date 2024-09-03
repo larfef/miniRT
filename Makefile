@@ -16,8 +16,8 @@ HOOKS			=	close_window init_hooks k_input
 INIT_STACK		=	_exit extract_file_data free_list init_fct_ptr init_stack set_element_type set_shape_type
 OPERATION		:=	add_point add_vector at cross_product cylinder_normal dot_product get_cos length multiply_point\
 					multiply_vector normalize sub_point sub_vector
-RENDERING		=	cylinder_intersection get_nearest_intersection iterate_through_shapes_list iterate_through_viewport plane_intersection render_scene\
-					set_pixel_color sphere_intersection trace_rays vector_utils
+RENDERING		=	cylinder_intersection get_nearest_intersection init_fct_ptr_normal iterate_through_shapes_list iterate_through_viewport plane_intersection render_scene\
+					set_normal set_pixel_color sphere_intersection trace_rays vector_utils
 WINDOW_MANAGEMENT = create_window exit_error get_vup init_window_struct set_pixel00_loc set_pixel_center set_pixel_delta set_upper_left_pixel\
 					set_viewport set_viewport_vectors set_window_height
 SRC				=	main

@@ -4,7 +4,9 @@
 # include <stdbool.h>
 typedef struct s_shapes	t_shapes;
 typedef struct s_vector t_vector;
+typedef struct s_ray_tracing t_ray_tracing;
 typedef float	(*intersection_t)(t_shapes *, t_vector *);
+typedef void (*fct_ptr_normal)(t_ray_tracing *rt);
 typedef struct	s_point
 {
 	float	x;
@@ -41,6 +43,17 @@ typedef union	u_color
 		uint8_t alpha;
 	} t_rgba;
 } color;
+typedef struct	s_jittering_grid
+{
+	int 	x;
+	int 	y;
+	int 	z;
+	int 	shadow_hits;
+	float	offset_x;
+	float	offset_y;
+	float	offset_z;
+	float	shadow_factor;
+}	t_jittering_grid;
 typedef	struct s_ray_tracing
 {
 	bool		is_inside;
@@ -51,6 +64,7 @@ typedef	struct s_ray_tracing
 	t_vector	normal;
 	float		solution;
 	t_shapes	*shape;
+	fct_ptr_normal	set_normal_vector[3];
 }	t_ray_tracing;
 typedef struct	s_quadratic
 {
