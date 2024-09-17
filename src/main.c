@@ -45,6 +45,7 @@ int	main(int argc, char **argv)
 	init_stack(&scene, &file);
 	close(file.fd);
 	init_window_struct(&scene, &window);
+	init_fct_ptr_normal(raytracer.set_normal_vector);
 	create_window(&window, &scene);
 	iterate_through_viewport(&window, &scene, &raytracer);
 	init_hooks(&hook,&window, &scene);
