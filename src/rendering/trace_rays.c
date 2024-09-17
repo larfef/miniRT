@@ -147,5 +147,10 @@ void	trace_rays(t_scene *scene, t_ray_tracing *raytracer)
 		raytracer->color.t_rgba.blue = (uint8_t)(((float)raytracer->color.t_rgba.blue) * shadow_factor);
 	}
 	else
-		raytracer->color.color = scene->ambient.color.color;
+	{
+		raytracer->color = scene->ambient.color;
+		raytracer->color.t_rgba.red = (uint8_t)(((float)scene->ambient.color.t_rgba.red) * scene->ambient.light_ratio);
+		raytracer->color.t_rgba.green = (uint8_t)(((float)scene->ambient.color.t_rgba.green) * scene->ambient.light_ratio);
+		raytracer->color.t_rgba.blue = (uint8_t)(((float)scene->ambient.color.t_rgba.blue) * scene->ambient.light_ratio);
+	}
 }

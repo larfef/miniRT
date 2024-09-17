@@ -27,13 +27,13 @@
 # define HEIGHT 1
 # define EXTRACT 1
 # ifndef IMAGE_WIDTH
-# define IMAGE_WIDTH 800
+# define IMAGE_WIDTH 1600
 # endif
 # ifndef WIDTH_RATIO
-# define WIDTH_RATIO 1.0f
+# define WIDTH_RATIO 16.0f
 # endif
 # ifndef HEIGHT_RATIO
-# define HEIGHT_RATIO 1.0f
+# define HEIGHT_RATIO 9.0f
 # endif
 # ifndef VIEWPORT_HEIGHT
 # define VIEWPORT_HEIGHT 1.0f

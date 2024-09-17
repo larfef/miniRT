@@ -31,11 +31,12 @@ void	iterate_through_viewport(t_window *window, t_scene *scene, t_ray_tracing *r
 
 	x = -1;
 	y = -1;
-	raytracer->camera_to_viewport.origin = scene->camera.coordinates;
 	while (++y != window->height)
 	{
 		while (++x != window->width)
 		{
+			ft_memset(raytracer, '\0', sizeof(*raytracer));
+			raytracer->camera_to_viewport.origin = scene->camera.coordinates;
 			set_pixel_center(window, &raytracer->pixel_center, x, y);
 			raytracer->camera_to_viewport.dir = sub_point(raytracer->pixel_center, scene->camera.coordinates);
 			iterate_through_shapes_list(scene, raytracer);

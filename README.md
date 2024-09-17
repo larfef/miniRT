@@ -9,6 +9,10 @@
 //orientation
 add parsing rule to check if the given orientation is normalized
 
+//parsing
+handle this case with color and coordinate
+255,,255
+
 check coordinate inversion
 
 //lighting
