@@ -13,8 +13,6 @@ static bool	check_conditions(const t_ray_tracing *rt, const t_shapes *shape)
     return (true);
 }
 
-//version where we check if the intersection append if a distance smaller than the distance between the hit point and
-// the light
 static bool	check_intersection_with_shapes(t_vector *ray, t_shapes *shapes, intersection_t *fct_ptr_array, t_ray_tracing *rt)
 {
     t_shapes	*shape;

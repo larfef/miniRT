@@ -2,6 +2,7 @@
 #include "../inc/operation.h"
 #include "../inc/rendering.h"
 #include "../inc/constant.h"
+#include "../libft/inc/libft.h"
 
 void	set_intersection_point(t_ray_tracing *raytracer)
 {
@@ -27,7 +28,7 @@ void	set_ambient_color(t_ray_tracing *rt, const uint32_t color, const float ambi
 
 void	trace_rays(t_scene *scene, t_ray_tracing *raytracer)
 {
-	t_jittering_grid	grid = {0};
+//	t_jittering_grid	grid = {0};
 
 	raytracer->is_inside = false;
 	if (raytracer->solution > 0.0f)
@@ -37,16 +38,17 @@ void	trace_rays(t_scene *scene, t_ray_tracing *raytracer)
 													  raytracer->hit_point_to_light.origin);
 		raytracer->set_normal_vector[raytracer->shape->type](raytracer);
 		set_pixel_color(raytracer, scene->light.brightness, raytracer->shape->color);
-		if (get_cos(raytracer->hit_point_to_light, raytracer->normal) > GRADIENT_END)
-			jittered_grid(scene, raytracer, &grid);
-		set_shadow_color(&raytracer->color, grid.shadow_factor);
+//		if (get_cos(raytracer->hit_point_to_light, raytracer->normal) > GRADIENT_END)
+//			jittered_grid(scene, raytracer, &grid);
+//		set_shadow_color(&raytracer->color, grid.shadow_factor);
 	}
 	else
-	{
-		raytracer->color = scene->ambient.color;
-		raytracer->color.t_rgba.red = (uint8_t)(((float)scene->ambient.color.t_rgba.red) * scene->ambient.light_ratio);
-		raytracer->color.t_rgba.green = (uint8_t)(((float)scene->ambient.color.t_rgba.green) * scene->ambient.light_ratio);
-		raytracer->color.t_rgba.blue = (uint8_t)(((float)scene->ambient.color.t_rgba.blue) * scene->ambient.light_ratio);
-	}
 		set_ambient_color(raytracer, scene->ambient.color.color, scene->ambient.light_ratio);
+//	else
+//	{
+//		raytracer->color = scene->ambient.color;
+//		raytracer->color.t_rgba.red = (uint8_t)(((float)scene->ambient.color.t_rgba.red) * scene->ambient.light_ratio);
+//		raytracer->color.t_rgba.green = (uint8_t)(((float)scene->ambient.color.t_rgba.green) * scene->ambient.light_ratio);
+//		raytracer->color.t_rgba.blue = (uint8_t)(((float)scene->ambient.color.t_rgba.blue) * scene->ambient.light_ratio);
+//	}
 }

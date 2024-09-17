@@ -107,6 +107,24 @@ static bool is_part_of_the_cylinder(t_vector *ray, float t, t_cylinder *cy, floa
 	return false;
 }
 
+//debug function
+#include <stdio.h>
+void	debug_brightness(float a)
+{
+	FILE *file = fopen("out1.txt", "a");
+
+	if (file == NULL) {
+		printf("Error opening file for writing.\n");
+		return;
+	}
+
+	// Write the brightness factor to the file
+	fprintf(file, "Brightness Factor: %f\n", a);
+
+	// Close the file
+	fclose(file);
+}
+
 float cylinder_intersection(t_shapes *cylinder, t_vector *ray) {
 	t_cylinder cy = {0};
 	t_vector DV = {0};
@@ -128,10 +146,12 @@ float cylinder_intersection(t_shapes *cylinder, t_vector *ray) {
 
 	// Ensure intersections are checked correctly within cylinder height
 	if (params.t1 >= 0 && is_part_of_the_cylinder(ray, params.t1, &cy, cylinder->size[HEIGHT])) {
+		debug_brightness(params.t1);
 		return (params.t1);
 	}
 
 	if (params.t2 >= 0 && is_part_of_the_cylinder(ray, params.t2, &cy, cylinder->size[HEIGHT])) {
+		debug_brightness(params.t2);
 		return (params.t2);
 	}
 

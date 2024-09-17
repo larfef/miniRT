@@ -13,6 +13,8 @@ add parsing rule to check if the given orientation is normalized
 handle this case with color and coordinate
 255,,255
 
+correct parsing error where file didnt end with /n
+
 check coordinate inversion
 
 //lighting
