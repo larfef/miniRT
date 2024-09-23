@@ -78,6 +78,7 @@ typedef struct	s_quadratic
 }	t_quadratic;
 typedef struct s_shapes
 {
+	t_vector		camera_to_center;
 	t_point			center;
 	t_vector		orientation;
 	color			color;
@@ -112,6 +113,19 @@ typedef struct s_scene
 	t_elements_types	element_type;
 	intersection_t		intersection[3];
 }	t_scene;
+typedef struct	s_solver
+{
+	t_vector	CO;
+	t_vector	center;
+	t_vector	v;
+	t_vector	D;
+	float r;
+}	t_solver;
+typedef struct s_intersection
+{
+	t_vector	ray;
+	t_solver	solver;
+}	t_intersection;
 typedef bool	(*func_ptr_t)(char **, t_scene *, int);
 //typedef float	(*color)()
 typedef bool	mandatory_element[3];

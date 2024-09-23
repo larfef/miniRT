@@ -17,11 +17,15 @@ typedef struct s_cy
 	float r;
 }	t_cylinder;
 
-static void	get_discriminant(t_vector *ray, t_vector oc, t_cylinder *cy, t_quadratic *params)
+static void	get_discriminant(t_vector *ray, t_vector oc, t_shapes *cy, t_quadratic *params)
 {
+	float	radius;
+
+	radius = cy->size[DIAMETER] / 2;
+
 	params->a = dot_product(*ray, *ray);
 	params->h = 2 * dot_product(*ray, oc);;
-	params->c = dot_product(oc, oc) - (cy->r * cy->r) * dot_product(cy->v, cy->v);
+	params->c = dot_product(oc, oc) - (radius * radius) * dot_product(cy->orientation, cy->orientation);
 	params->discriminant = (params->h * params->h) - (4 * params->a * params->c);
 }
 //
@@ -78,26 +82,21 @@ static void	get_solutions(t_quadratic *params)
 //	return (-1.0f);
 //}
 
-static void init_cylinder_struct(t_cylinder *cy, t_shapes *cylinder, t_vector *ray) {
-	cy->v = cylinder->orientation;  // Cylinder's orientation vector
-	cy->r = cylinder->size[DIAMETER] / 2;  // Radius of the cylinder
-	cy->center.dir = cylinder->center;  // Center of the cylinder, as given
-	cy->CO.dir = sub_point(ray->origin, cy->center.dir);  // Vector from ray origin to cylinder center
-	cy->D = *ray;  // Ray direction
-}
-
-static bool is_part_of_the_cylinder(t_vector *ray, float t, t_cylinder *cy, float height) {
+static bool is_part_of_the_cylinder(t_vector *ray, float t, t_shapes *cylinder, float height) {
 	t_vector P = {0};
 	t_vector CP = {0};
+	t_vector center = {0};
+
+	center.dir = cylinder->center;
 	float length;
 
 	// Compute intersection point P along the ray
 	P = add_vector(*ray, multiply_vector(*ray, t));
 	// Vector from the cylinder center to intersection point P
-	CP = sub_vector(P, cy->center);
+	CP = sub_vector(P, center);
 
 	// Project CP onto the cylinder's orientation vector to find its length along the cylinder's height
-	length = dot_product(CP, cy->v);
+	length = dot_product(CP, cylinder->orientation);
 
 	// Correct height check: check against half-height around center
 	if (length >= -height / 2 && length <= height / 2) {
@@ -108,6 +107,7 @@ static bool is_part_of_the_cylinder(t_vector *ray, float t, t_cylinder *cy, floa
 }
 
 //debug function
+
 #include <stdio.h>
 void	debug_brightness(float a)
 {
@@ -125,18 +125,24 @@ void	debug_brightness(float a)
 	fclose(file);
 }
 
+//static void init_cylinder_struct(t_cylinder *cy, t_shapes *cylinder, t_vector *ray) {
+//	cy->v = cylinder->orientation;  // Cylinder's orientation vector
+//	cy->r = cylinder->size[DIAMETER] / 2;  // Radius of the cylinder
+//	cy->center.dir = cylinder->center;  // Center of the cylinder, as given
+//	cy->CO.dir = sub_point(ray->origin, cy->center.dir);  // Vector from ray origin to cylinder center
+//	cy->D = *ray;  // Ray direction
+//}
+
 float cylinder_intersection(t_shapes *cylinder, t_vector *ray) {
-	t_cylinder cy = {0};
 	t_vector DV = {0};
 	t_vector COV;
 	t_quadratic params = {0};
 
-	init_cylinder_struct(&cy, cylinder, ray);
+	DV = cross_product(*ray, cylinder->orientation);
 
-	DV = cross_product(cy.D, cy.v);
-	COV = cross_product(cy.CO, cy.v);
+	COV = cross_product(cylinder->camera_to_center, cylinder->orientation);
 
-	get_discriminant(&DV, COV, &cy, &params);
+	get_discriminant(&DV, COV, cylinder, &params);
 
 	if (params.discriminant < 0) {
 		return (-1.0f);  // No intersection
@@ -145,12 +151,12 @@ float cylinder_intersection(t_shapes *cylinder, t_vector *ray) {
 	get_solutions(&params);
 
 	// Ensure intersections are checked correctly within cylinder height
-	if (params.t1 >= 0 && is_part_of_the_cylinder(ray, params.t1, &cy, cylinder->size[HEIGHT])) {
+	if (params.t1 >= 0 && is_part_of_the_cylinder(ray, params.t1, cylinder, cylinder->size[HEIGHT])) {
 		debug_brightness(params.t1);
 		return (params.t1);
 	}
 
-	if (params.t2 >= 0 && is_part_of_the_cylinder(ray, params.t2, &cy, cylinder->size[HEIGHT])) {
+	if (params.t2 >= 0 && is_part_of_the_cylinder(ray, params.t2, cylinder, cylinder->size[HEIGHT])) {
 		debug_brightness(params.t2);
 		return (params.t2);
 	}
