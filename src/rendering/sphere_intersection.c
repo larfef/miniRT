@@ -42,7 +42,6 @@ float sphere_intersection(t_shapes *sphere, t_vector *hit_point) {
 
 	radius = sphere->size[DIAMETER] / 2;
 	oc.dir = sub_point(hit_point->origin, sphere->center);
-	normalize(hit_point);
 	get_discriminant(hit_point, oc, radius, &params);
 	if (params.discriminant > 0)
 		return (get_quadratic_solution(&params));
