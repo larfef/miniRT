@@ -59,10 +59,12 @@ typedef	struct s_ray_tracing
 	bool		is_inside;
 	color		color;
 	t_vector	camera_to_viewport;
+	t_vector	camera_to_hit_point;
 	t_vector	hit_point_to_light;
 	t_point		pixel_center;
 	t_vector	normal;
 	float		solution;
+	float		distance_from_camera;
 	t_shapes	*shape;
 	fct_ptr_normal	set_normal_vector[3];
 }	t_ray_tracing;

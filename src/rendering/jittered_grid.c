@@ -4,8 +4,19 @@
 #include "../inc/operation.h"
 #include "../inc/constant.h"
 
-static bool	check_conditions(t_ray_tracing *rt, t_shapes *shape)
+/*
+    possible changes to handle plane border shadow glitch:
+    - implement a distance limit and beyond set the color to black
+    - implement light brightness decreasing with distance
+    - fine-tune the value used with the shadow grid, e.g. determine the size of
+      the perturbations based on the dimension of the object or the distance from the camera
+*/
+
+static bool	check_conditions(t_ray_tracing *rt, t_shapes *shape, t_vector *shadow_ray)
 {
+    //this condition give a similar result as using the distance from the camera
+    if (length(*shadow_ray) > MAX_RAY_DEPTH)
+        return (false);
     if (rt->shape->type == _CYLINDER && rt->is_inside == true)
         return (true);
     if (shape == rt->shape)
@@ -24,7 +35,7 @@ static bool	check_intersection_with_shapes(t_vector *ray, t_shapes *shapes, inte
     shape = shapes;
     while (shape)
     {
-        if (check_conditions(rt, shape) == true)
+        if (check_conditions(rt, shape, ray) == true)
         {
             ret = fct_ptr_array[shape->type](shape, ray);
             if (ret != -1.0f)
@@ -39,14 +50,17 @@ static bool	check_intersection_with_shapes(t_vector *ray, t_shapes *shapes, inte
     return (false);
 }
 
-static t_vector	generate_grid_shadow_ray(const t_vector *ray, t_jittering_grid *grid)
+static t_vector	generate_grid_shadow_ray(const t_vector *ray, t_jittering_grid *grid, float distance_from_camera)
 {
     t_vector	shadow_ray;
 
+    //need to find a max val from which the distance of the hit point from camera is used
+    distance_from_camera = 1.0f;
+
     shadow_ray.origin = ray->origin;
-    grid->offset_x = ((float)grid->x / (GRID_SIZE - 1) - 0.5f) * 1.0f;
-    grid->offset_y = ((float)grid->y / (GRID_SIZE - 1) - 0.5f) * 1.0f;
-    grid->offset_z = ((float)grid->z / (GRID_SIZE - 1) - 0.5f) * 1.0f;
+    grid->offset_x = ((float)grid->x / (GRID_SIZE - 1) - 0.5f) * distance_from_camera;
+    grid->offset_y = ((float)grid->y / (GRID_SIZE - 1) - 0.5f) * distance_from_camera;
+    grid->offset_z = ((float)grid->z / (GRID_SIZE - 1) - 0.5f) * distance_from_camera;
     shadow_ray.dir.x = ray->dir.x + grid->offset_x;
     shadow_ray.dir.y = ray->dir.y + grid->offset_y;
     shadow_ray.dir.z = ray->dir.z + grid->offset_z;
@@ -66,7 +80,7 @@ void	jittered_grid(t_scene *scene, t_ray_tracing * raytracer, t_jittering_grid *
             grid->z = -1;
             while (++grid->z < GRID_SIZE)
             {
-                shadow_ray = generate_grid_shadow_ray(&raytracer->hit_point_to_light, grid);
+                shadow_ray = generate_grid_shadow_ray(&raytracer->hit_point_to_light, grid, raytracer->distance_from_camera);
                 if (check_intersection_with_shapes(&shadow_ray, scene->shapes, scene->intersection, raytracer))
                     grid->shadow_hits++;
             }

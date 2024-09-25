@@ -30,9 +30,17 @@ void	trace_rays(t_scene *scene, t_ray_tracing *raytracer)
 {
 	t_jittering_grid	grid = {0};
 
+	//declare a vector camera to hit_point
+	t_vector	camera_to_hit_point = {0};
+
 	raytracer->is_inside = false;
 	if (raytracer->solution > 0.0f)
 	{
+		//set the vector
+		camera_to_hit_point = multiply_vector(raytracer->camera_to_viewport, raytracer->solution);
+		//compute his length and store it in the raytracer struct
+		raytracer->distance_from_camera = length(camera_to_hit_point);
+
 		set_intersection_point(raytracer);
 		raytracer->hit_point_to_light.dir = sub_point(scene->light.coordinates,
 													  raytracer->hit_point_to_light.origin);
