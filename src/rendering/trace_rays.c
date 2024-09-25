@@ -28,7 +28,7 @@ void	set_ambient_color(t_ray_tracing *rt, const uint32_t color, const float ambi
 
 void	trace_rays(t_scene *scene, t_ray_tracing *raytracer)
 {
-//	t_jittering_grid	grid = {0};
+	t_jittering_grid	grid = {0};
 
 	raytracer->is_inside = false;
 	if (raytracer->solution > 0.0f)
@@ -38,9 +38,9 @@ void	trace_rays(t_scene *scene, t_ray_tracing *raytracer)
 													  raytracer->hit_point_to_light.origin);
 		raytracer->set_normal_vector[raytracer->shape->type](raytracer);
 		set_pixel_color(raytracer, scene->light.brightness, raytracer->shape->color);
-//		if (get_cos(raytracer->hit_point_to_light, raytracer->normal) > GRADIENT_END)
-//			jittered_grid(scene, raytracer, &grid);
-//		set_shadow_color(&raytracer->color, grid.shadow_factor);
+		if (get_cos(raytracer->hit_point_to_light, raytracer->normal) > GRADIENT_END)
+			jittered_grid(scene, raytracer, &grid);
+		set_shadow_color(&raytracer->color, grid.shadow_factor);
 	}
 	else
 		set_ambient_color(raytracer, scene->ambient.color.color, scene->ambient.light_ratio);

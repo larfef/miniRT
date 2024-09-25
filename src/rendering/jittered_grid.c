@@ -1,8 +1,10 @@
+#include <rendering.h>
+
 #include "../inc/types.h"
 #include "../inc/operation.h"
 #include "../inc/constant.h"
 
-static bool	check_conditions(const t_ray_tracing *rt, const t_shapes *shape)
+static bool	check_conditions(t_ray_tracing *rt, t_shapes *shape)
 {
     if (rt->shape->type == _CYLINDER && rt->is_inside == true)
         return (true);

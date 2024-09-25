@@ -19,6 +19,7 @@ check coordinate inversion
 
 //lighting
 
+check if the light is behind a plane
 handle case where lights is inside the object
 handle case where lights is behind the object
 check if the vector hit_point -> light intersect with an object, if so set the hit point color to black
