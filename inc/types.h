@@ -160,6 +160,8 @@ typedef struct s_window
 	void		*window;
 	int 		width;
 	int 		height;
+	uint32_t	x;
+	uint32_t	y;
 	float		aspect_ratio;
 	viewport	viewport;
 	t_vector	viewport_vectors[2];

@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 	t_hook			hook;
 	t_scene			scene;
 	t_file			file;
-	t_window		window;
+	t_window		window = {0};
 	t_ray_tracing	raytracer = {0};
 
 	check_argc(argc);

@@ -6,6 +6,12 @@
     snprintf(command, sizeof(command), "lsof -p %d", getpid());
     system(command);
 
+## before defense
+
+- remove commentary in makefile
+- verify norminette
+- remove unecessary file
+
 //orientation
 add parsing rule to check if the given orientation is normalized
 

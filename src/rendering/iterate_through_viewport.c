@@ -24,26 +24,21 @@ void progress_bar(int y, int height)
 	write(1, "\r", 1);
 }
 
-void	iterate_through_viewport(t_window *window, t_scene *scene, t_ray_tracing *raytracer)
+void	iterate_through_viewport(t_window *win, t_scene *scene, t_ray_tracing *rt)
 {
-	int32_t		x;
-	int32_t		y;
-
-	x = -1;
-	y = -1;
-	raytracer->camera_to_viewport.origin = scene->camera.coordinates;
-	while (++y != window->height)
+	rt->camera_to_viewport.origin = scene->camera.coordinates;
+	while (++win->window_y != win->height)
 	{
-		while (++x != window->width)
+		while (++win->window_x != win->width)
 		{
-			set_pixel_center(window, &raytracer->pixel_center, x, y);
-			raytracer->camera_to_viewport.dir = sub_point(raytracer->pixel_center, scene->camera.coordinates);
-			iterate_through_shapes_list(scene, raytracer);
-			trace_rays(scene, raytracer);
-			mlx_pixel_put(window->mlx, window->window, x, y, (int)raytracer->color.color);
+			set_pixel_center(win, &rt->pixel_center, x, y);
+			rt->camera_to_viewport.dir = sub_point(rt->pixel_center, scene->camera.coordinates);
+			iterate_through_shapes_list(scene, rt);
+			trace_rays(scene, rt);
+			mlx_pixel_put(win->mlx, win->window, x, y, rt->color.color);
 		}
-		 progress_bar(y, window->height);
-		x = -1;
+		 progress_bar(y, win->height);
+		win->window_x = -1;
 	}
 	printf("\n");
 }
