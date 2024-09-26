@@ -9,7 +9,7 @@ t_vector	get_vup(t_vector *w);
 void		init_window_struct(t_scene *scene, t_window *win);
 color		ray_color(t_vector *direction);
 color		set_color(float r, float g, float b);
-void		set_pixel_center(t_window *window, t_point *pixel_center, int x, int y);
+void		set_pixel_center(t_window *win, t_point *pixel_center);
 void		set_pixel_delta(int32_t image_width, int32_t image_height,
 							t_vector (*viewport_vectors)[2], t_vector (*pixel_delta)[2]);
 void		set_pixel00_loc(t_vector (*pixel_delta)[2], t_point viewport_upper_left, t_point *pixel00_loc);

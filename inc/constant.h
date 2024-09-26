@@ -10,6 +10,7 @@
 # define E_EXT "invalid file extension: usage: <filename.rt>"
 # define E_INVALID_LINE "invalid file: invalid line"
 # define BRIGHTNESS 0
+# define BAR_WIDTH 50
 # define COORDINATES 1
 # define LIGHT_RATIO 2
 # define RGB 3
@@ -44,13 +45,13 @@
 # define PI 3.14159265358979323846f
 # define EPSILON (float) 0.001
 #ifndef GRADIENT_END
-#define GRADIENT_END -1.0f
+#define GRADIENT_END 0.0f
 #endif
 #ifndef NB_OF_RAY
-#define NB_OF_RAY 8
+#define NB_OF_RAY 343
 #endif
 #ifndef GRID_SIZE
-#define GRID_SIZE 2
+#define GRID_SIZE 7
 #endif
 #ifndef MAX_RAY_DEPTH
 #define MAX_RAY_DEPTH 1000.0f
