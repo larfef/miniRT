@@ -21,7 +21,7 @@
 bool	is_orientation_valid(char **p, t_scene *scene, int option);
 void	__exit(t_file *file, char *error_message);
 float	ft_atof(const char *str);
-void	init_file(t_file *file, char *filename);
+void	init_file(t_file *file, const char *filename);
 void	init_instructions(int **p);
 void	init_parsing_functions(t_file *file);
 bool	is_brightness_valid(char **line, t_scene *scene, int option);

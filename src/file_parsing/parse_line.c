@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gde-win <gde-win@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 13:55:12 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/31 16:42:57 by rkersten         ###   ########.fr       */
+/*   Created: 2024/07/23 16:25:32 by gde-win           #+#    #+#             */
+/*   Updated: 2024/09/27 14:50:53 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,4 @@ void	parse_line(t_file *file)
 	if (!is_line_valid(file->instructions, file))
 		__exit(file, E_INVALID_LINE);
 	set_duplicate_check(file);
-	return ;
 }

@@ -3,15 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   init_parsing_functions.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gde-win <gde-win@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 12:43:25 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/31 16:39:52 by rkersten         ###   ########.fr       */
+/*   Created: 2024/07/23 16:25:32 by gde-win           #+#    #+#             */
+/*   Updated: 2024/09/27 14:42:09 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parsing.h"
 #include "../libft/inc/libft.h"
+
+/*
+	@dev:	Initializes an array of function pointers in the `t_file` structure
+			with specific parsing and validation functions. Each function in
+			this array is responsible for validating or skipping a particular
+			element of the scene description (e.g., brightness, coordinates,
+			light ratio, RGB values, etc.). These functions are called during
+			the parsing process based on the instruction arrays.
+
+	@param:	file: a pointer to the `t_file` structure, where the parsing
+			functions will be stored in the `parsing_functions` array. This
+			array contains function pointers that validate or skip specific
+			data types (e.g., coordinates, sizes, orientation) in the scene.
+*/
 
 void	init_parsing_functions(t_file *file)
 {

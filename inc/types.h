@@ -7,6 +7,15 @@ typedef struct s_vector t_vector;
 typedef struct s_ray_tracing t_ray_tracing;
 typedef float	(*intersection_t)(t_shapes *, t_vector *);
 typedef void (*fct_ptr_normal)(t_ray_tracing *rt);
+typedef struct s_atof {
+	const char *str;
+	float integer_part;
+	float fractional_part;
+	float fraction_divisor;
+	float result;
+	int sign;
+	bool is_fraction;
+} t_atof;
 typedef struct	s_point
 {
 	float	x;
