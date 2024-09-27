@@ -3,7 +3,7 @@ NAME			=	miniRT
 BIN				=	bin
 DEP				=	dep
 CC				=	cc
-CFLAGS			=	-Wall -Wextra -Werror -g
+CFLAGS			=	-Wall -Wextra -Werror -g -fsanitize=address
 LDFLAGS			:=
 INC				=	-Iinclude -Iinc -Isrc/libft/inc/ -Isrc/gnl/ -Isrc/mlx/
 OBJS			=	$(addprefix $(BIN)/, $(notdir $(SRCS:.c=.o)))

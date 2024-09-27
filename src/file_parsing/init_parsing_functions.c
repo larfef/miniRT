@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../../inc/parsing.h"
-#include "../libft/inc/libft.h"
 
 /*
 	@dev:	Initializes an array of function pointers in the `t_file` structure

@@ -25,7 +25,7 @@
 			structure. This is stored in the `file->file` member.
 */
 
-void	init_file(t_file *file, const char *filename)
+void	init_file(t_file *file, char *filename)
 {
 	static int	*tab[6];
 
