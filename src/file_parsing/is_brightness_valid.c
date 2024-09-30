@@ -41,7 +41,7 @@ bool	is_brightness_valid(char **line, t_scene *scene, int option)
 	float	brightness;
 
 	if (option == PARSE
-		&&!is_length_valid(*line, 3))
+		&& !is_length_valid(*line, LEN_MAX))
 		return (1);
 	brightness = ft_atof(*line);
 	if (option == PARSE

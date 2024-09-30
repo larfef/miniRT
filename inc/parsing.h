@@ -41,7 +41,6 @@ bool	is_minimal_scene_valid(t_file *file);
 void	open_file(t_file *file);
 void	parse_line(t_file *file_data);
 void	read_file(t_scene *scene, t_file *file, int option);
-void	set_duplicate_check(t_file *file_data);
 void	set_current_line_type(t_file *file_data);
 void	skip_line_start(int type, char **p);
 bool	skip_digit(char **p, t_scene *scene, int option);

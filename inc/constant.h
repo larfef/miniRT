@@ -10,6 +10,10 @@
 # define E_EXT "invalid file extension: usage: <filename.rt>"
 # define E_INVALID_LINE "invalid file: invalid line"
 # define BRIGHTNESS 0
+# define LIGHT_RATIO_MIN 0.0f
+# define LIGHT_RATIO_MAX 1.0f
+# define FOV_MIN 0
+# define FOV_MAX 180
 # define BAR_WIDTH 50
 # define COORDINATES 1
 # define LIGHT_RATIO 2
@@ -18,6 +22,7 @@
 # define SKIP_SPACE 5
 # define EOL 6
 # define ORIENTATION 7
+# define MANDATORY_ELEM 3
 # define IS_DIGIT 8
 # define FOV 9
 # define SKIP_DIGIT 10

@@ -13,6 +13,42 @@
 #include "../../inc/parsing.h"
 #include "../../inc/init_stack.h"
 
+/*
+	@dev:	Validates and parses the size of a shape in the scene.
+			For cylinders, it ensures both the height and diameter
+			are properly assigned. The size is validated to be a
+			positive number and stored accordingly in the shape's
+			structure if valid.
+
+	@param:	line:	A double pointer to the input string containing
+					the size value. The string is updated as values
+					are parsed.
+	@param:	scene:	A pointer to the `t_scene` structure, where the
+					parsed size values are stored for the current
+					shape.
+	@param:	option:	A flag indicating the context in which the
+					size is being parsed:
+					- If `_SHAPES`, the size value is applied to the
+					  current shape.
+					- If `PARSE`, it ensures the size is positive
+					  and correctly formatted.
+
+	@behavior:
+		1. Checks if the length of the input is valid using
+		   `is_length_valid()`.
+		2. Parses the size value using `ft_atof()`.
+		3. For shapes that are not planes, assigns the parsed
+		   size to either the height or diameter field, based
+		   on the shape's type.
+		4. If parsing a cylinder, alternates between height
+		   and diameter for each call.
+		5. Ensures the parsed size is greater than 0.
+
+	@return:	Returns `true` if the size is valid and greater
+				than 0; otherwise, returns `false` for invalid
+				values or incorrect formatting.
+*/
+
 bool	is_size_valid(char **line, t_scene *scene, int option)
 {
 	float		tmp;

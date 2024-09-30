@@ -49,24 +49,12 @@ bool	skip_digit(char **p, t_scene *scene, int option)
 	return (1);
 }
 
-#include <stdio.h>
-
 bool	skip_space(char **p, t_scene *scene, int option)
 {
 	(void)scene;
 	(void)option;
 	while (*p && **p != '\n' && (**p == 32
-		|| (**p >= 8 && **p <= 12)))
+			|| (**p >= 8 && **p <= 12)))
 		(*p)++;
 	return (1);
 }
-
-// bool	skip_space(char **p, t_scene *scene, int option)
-// {
-// 	(void)scene;
-// 	(void)option;
-// 	while (**p == 32
-// 		|| (**p >= 8 && **p <= 12 && **p != '\n'))
-// 		(*p)++;
-// 	return (1);
-// }
