@@ -34,7 +34,8 @@ bool	is_rgb_valid(char **p, t_scene *scene, int option)
 		if (option == PARSE
 			&& i < 2 && **p != ',')
 			return (false);
-		(*p)++;
+		if (**p != '\0')
+			(*p)++;
 	}
 	return (true);
 }

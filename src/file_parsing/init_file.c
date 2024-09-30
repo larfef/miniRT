@@ -29,7 +29,7 @@ void	init_file(t_file *file, char *filename)
 {
 	static int	*tab[6];
 
-	ft_memset(file, '\0', sizeof(*file));
+	// ft_memset(file, '\0', sizeof(file));
 	file->file = filename;
 	file->instructions = tab;
 	init_instructions(file->instructions);

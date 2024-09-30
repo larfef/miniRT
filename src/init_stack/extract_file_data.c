@@ -45,5 +45,4 @@ void	extract_file_data(t_file *file, t_scene *scene)
 	i = -1;
 	while (file->instructions[file->current_line][++i] != EOL
 		   && file->parsing_functions[file->instructions[file->current_line][i]](&file->line, scene, scene->element_type));
-	return ;
 }
