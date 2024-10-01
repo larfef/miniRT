@@ -8,15 +8,6 @@
  * need to check if the visible part of the cylinder is the inside or the outside part
  */
 
-typedef struct s_cy
-{
-	t_vector CO;
-	t_vector center;
-	t_vector v;
-	t_vector D;
-	float r;
-}	t_cylinder;
-
 static void	get_discriminant(t_vector *ray, t_vector oc, t_shapes *cy, t_quadratic *params)
 {
 	float	radius;

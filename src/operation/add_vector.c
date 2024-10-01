@@ -13,12 +13,18 @@
 #include "../../inc/types.h"
 
 /*
-	@dev: 3d vectors addition
- 	@param: a: vector struct
- 	@param: b: vector struct
+	@dev:	Performs a component-wise addition of two 3D vectors. The function
+			adds both the origin and direction components (x, y, z) of two
+			t_vector structures and returns the resulting vector.
+
+	@param: a: The first 3D vector (t_vector) used in the addition.
+	@param: b: The second 3D vector (t_vector) used in the addition.
+
+	@return: A t_vector representing the sum of both the origin and direction
+			 components of the two input vectors.
 */
 
-t_vector	add_vector(t_vector a, t_vector b)
+t_vector	add_vector(const t_vector a, const t_vector b)
 {
 	t_vector	result;
 

@@ -13,8 +13,11 @@
 #include "../../inc/operation.h"
 
 /*
-	@dev: normalize (vector length equal to 1 unit length) a given vector
- 	@param: a: vector struct
+	@dev:	Normalizes a vector's direction.
+
+	@param: a: Pointer to the t_vector to normalize.
+
+	@return: None (modifies the vector in place).
 */
 
 void	normalize(t_vector *a)

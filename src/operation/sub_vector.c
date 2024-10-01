@@ -13,12 +13,15 @@
 #include "../../inc/types.h"
 
 /*
-	@dev: 3d vectors substraction implementation
-	@param: a: vector pointer
-	@param: b: vector pointer
+	@dev:	Subtracts two vectors.
+
+	@param: a: The minuend vector.
+	@param: b: The subtrahend vector.
+
+	@return: The resulting vector after subtraction.
 */
 
-t_vector	sub_vector(t_vector a, t_vector b)
+t_vector	sub_vector(const t_vector a, const t_vector b)
 {
 	t_vector	result;
 

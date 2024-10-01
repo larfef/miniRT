@@ -5,6 +5,7 @@
 - remove commentary in makefile and in is_light_ratio_valid
 - verify norminette
 - remove unecessary file
+- clone the correct mlx (macos, linux)
 
 ### check open file descriptor in the current process
 	

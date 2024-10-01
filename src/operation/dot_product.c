@@ -13,13 +13,15 @@
 #include "../../inc/types.h"
 
 /*
-	@dev: 3d vectors dot product implementation
- 	@dev: vectors must share the same origin
- 	@param: a: vector struct
- 	@param: b: vector struct
+	@dev:	Calculates the dot product of two vectors.
+
+	@param: a: The first t_vector.
+	@param: b: The second t_vector.
+
+	@return: The dot product as a float.
 */
 
-float	dot_product(t_vector a, t_vector b)
+float	dot_product(const t_vector a, const t_vector b)
 {
 	return ((a.dir.x * b.dir.x) + (a.dir.y * b.dir.y) + (a.dir.z * b.dir.z));
 }

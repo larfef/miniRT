@@ -6,19 +6,22 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:48:00 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/31 12:49:19 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/08/28 18:31:04 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/types.h"
 
 /*
-	@dev: multiply a vector by a float.
- 	@param: a: the vector to multiply
- 	@param: n: the number to multiply the vector by.
- */
+	@dev:	Multiplies a vector's origin and direction by a scalar.
 
-t_vector	multiply_vector(t_vector a, float n)
+	@param: a: The t_vector to be multiplied.
+	@param: n: The scalar multiplier.
+
+	@return: The resulting t_vector after multiplication.
+*/
+
+t_vector	multiply_vector(const t_vector a, const float n)
 {
 	t_vector	result;
 

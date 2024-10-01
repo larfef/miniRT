@@ -3,16 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   init_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gde-win <gde-win@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 09:46:04 by rkersten          #+#    #+#             */
-/*   Updated: 2024/05/31 09:49:36 by rkersten         ###   ########.fr       */
+/*   Created: 2024/08/28 18:31:04 by gde-win           #+#    #+#             */
+/*   Updated: 2024/10/01 13:15:57 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/init_stack.h"
 #include "../../inc/parsing.h"
 #include "../libft/inc/libft.h"
+
+/*
+	@dev:	Initializes the scene data structure and sets up the file for
+			parsing. It clears the memory for the scene, initializes function
+			pointers, opens the specified file, and reads its contents to
+			extract the scene data.
+
+	@param: scene: Pointer to the scene structure to be initialized.
+	@param: file:  Pointer to the file structure containing the file
+				  information to be opened and parsed.
+*/
 
 void	init_stack(t_scene *scene, t_file *file)
 {
