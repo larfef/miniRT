@@ -31,10 +31,10 @@ static	void	check_argc(int argc)
 
 int	main(int argc, char **argv)
 {
-	// t_hook			hook;
-	// t_scene			scene;
-	// t_window		window = {0};
-	// t_ray_tracing	raytracer = {0};
+	t_window		window = {0};
+	t_hook			hook;
+	t_scene			scene;
+	t_ray_tracing	raytracer = {0};
 	t_file			file = {0};
 
 	check_argc(argc);
@@ -42,14 +42,14 @@ int	main(int argc, char **argv)
 	init_parsing_functions(&file);
 	init_file(&file, argv[1]);
 	is_file_valid(&file);
-	// init_stack(&scene, &file);
+	init_stack(&scene, &file);
 	close(file.fd);
-	// init_window_struct(&scene, &window);
-	// init_fct_ptr_normal(raytracer.set_normal_vector);
-	// create_window(&window, &scene);
-	// iterate_through_viewport(&window, &scene, &raytracer);
-	// init_hooks(&hook,&window, &scene);
-	// mlx_loop(window.mlx);
-	// free_list(scene.shapes);
+	init_window_struct(&scene, &window);
+	init_fct_ptr_normal(raytracer.set_normal_vector);
+	create_window(&window, &scene);
+	iterate_through_viewport(&window, &scene, &raytracer);
+	init_hooks(&hook,&window, &scene);
+	mlx_loop(window.mlx);
+	free_list(scene.shapes);
 	return (0);
 }

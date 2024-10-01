@@ -50,13 +50,13 @@
 # define PI 3.14159265358979323846f
 # define EPSILON (float) 0.001
 #ifndef GRADIENT_END
-#define GRADIENT_END 0.0f
+#define GRADIENT_END -1.0f
 #endif
 #ifndef NB_OF_RAY
-#define NB_OF_RAY 343
+#define NB_OF_RAY 8
 #endif
 #ifndef GRID_SIZE
-#define GRID_SIZE 7
+#define GRID_SIZE 2
 #endif
 #ifndef MAX_RAY_DEPTH
 #define MAX_RAY_DEPTH 1000.0f
