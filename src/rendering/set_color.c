@@ -34,7 +34,7 @@
 		3. Alpha is set to 0.
 */
 
-color	set_color(float r, float g, float b)
+color	set_color(const float r, const float g, const float b)
 {
 	color	color;
 
