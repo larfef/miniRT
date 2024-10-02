@@ -47,6 +47,7 @@
 # define WIDTH 0
 # define U 0
 # define V 1
+# define OFFSET_RATIO 1.0f
 # define PI 3.14159265358979323846f
 # define EPSILON (float) 0.001
 # ifndef UNIT_VECTOR_EPSILON

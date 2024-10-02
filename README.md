@@ -6,7 +6,7 @@
 - verify norminette
 - remove unecessary file
 - clone the correct mlx (macos, linux)
-
+---
 ### check open file descriptor in the current process
 	
 ```
@@ -15,8 +15,19 @@ char command[256];
 snprintf(command, sizeof(command), "lsof -p %d", getpid());
 system(command);
 ```
-
+---
 ### light
 
 - check if the light is behind a plane
 - handle case where lights is inside the object
+---
+### Jittered grid
+
+#### possible changes to handle plane border shadow glitch:
+
+- implement a distance limit and beyond set the color to black
+- implement light brightness decreasing with distance
+- fine-tune the value used with the shadow grid, e.g. determine the size of
+  the perturbations based on the dimension of the object or the distance from the camera
+---
+
