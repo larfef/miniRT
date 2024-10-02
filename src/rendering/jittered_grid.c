@@ -17,6 +17,8 @@ static bool	check_conditions(t_ray_tracing *rt, t_shapes *shape, t_vector *shado
     //this condition give a similar result as using the distance from the camera
     if (length(*shadow_ray) > MAX_RAY_DEPTH)
         return (false);
+    //inverse with next if statement to have jittered grid inside the same cylinder
+    // if there is only one shape in the scene
     if (rt->shape->type == _CYLINDER && rt->is_inside == true)
         return (true);
     if (shape == rt->shape)

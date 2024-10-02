@@ -1,23 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cylinder_intersection.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/01 13:59:35 by rkersten          #+#    #+#             */
+/*   Updated: 2024/10/02 12:35:26 by rkersten         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <libft.h>
+
 #include "../../inc/types.h"
 #include "../../inc/constant.h"
 #include "../../inc/operation.h"
 #include <math.h>
 
-/*
- * need to add a check weither the light coordinate is inside or outside the cylinder
- * need to check if the visible part of the cylinder is the inside or the outside part
- */
-
-static void	get_discriminant(t_vector *ray, t_vector oc, t_shapes *cy, t_quadratic *params)
+static void	get_discriminant(t_vector *ray, t_vector oc, t_shapes *cy,
+								t_quadratic *solver)
 {
 	float	radius;
 
 	radius = cy->size[DIAMETER] / 2;
-
-	params->a = dot_product(*ray, *ray);
-	params->h = 2 * dot_product(*ray, oc);;
-	params->c = dot_product(oc, oc) - (radius * radius) * dot_product(cy->orientation, cy->orientation);
-	params->discriminant = (params->h * params->h) - (4 * params->a * params->c);
+	solver->a = dot_product(*ray, *ray);
+	solver->h = 2 * dot_product(*ray, oc);;
+	solver->c = dot_product(oc, oc) - (radius * radius)
+				* dot_product(cy->orientation, cy->orientation);
+	solver->discriminant = (solver->h * solver->h)
+							- (4 * solver->a * solver->c);
 }
 
 static void	get_solutions(t_quadratic *params)
@@ -29,31 +40,26 @@ static void	get_solutions(t_quadratic *params)
 	params->t2 = (-params->h + sqrt_discriminant) / (2 * params->a);
 }
 
-static bool is_part_of_the_cylinder(t_vector *ray, float t, t_shapes *cylinder, float height) {
-	t_vector P = {0};
-	t_vector CP = {0};
-	t_vector center = {0};
+static bool is_part_of_the_cylinder(t_vector *ray, float t,
+										t_shapes *cylinder, float height)
+{
+	t_vector center;
 
+	ft_memset(&center, 0, sizeof(center));
 	center.dir = cylinder->center;
 	float length;
 
-	// Compute intersection point P along the ray
 	P = add_vector(*ray, multiply_vector(*ray, t));
-	// Vector from the cylinder center to intersection point P
 	CP = sub_vector(P, center);
 
-	// Project CP onto the cylinder's orientation vector to find its length along the cylinder's height
 	length = dot_product(CP, cylinder->orientation);
 
-	// Correct height check: check against half-height around center
 	if (length >= -height / 2 && length <= height / 2) {
 		return true;
 	}
 
 	return false;
 }
-
-//debug function
 
 #include <stdio.h>
 void	debug_brightness(float a)

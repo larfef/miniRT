@@ -28,7 +28,8 @@ static bool is_vector_normalized(const t_point p)
 	t_vector	v = {0};
 
 	v.dir = p;
-	if (length(v) != 1.0f)
+	if (length(v) > 1.0f + UNIT_VECTOR_EPSILON
+		|| length(v) < 1.0f - UNIT_VECTOR_EPSILON)
 		return (false);
 	return (true);
 }
