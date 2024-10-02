@@ -7,6 +7,7 @@ void		create_window(t_window *window, t_scene *scene);
 void		exit_error(t_window *ptr, t_shapes *list);
 t_vector	get_vup(t_vector *w);
 void		init_window_struct(t_scene *scene, t_window *win);
+void		init_struct(t_window *win, t_ray_tracing *rt, t_file *file);
 color		ray_color(t_vector *direction);
 color		set_color(float r, float g, float b);
 void		set_pixel_center(t_window *win, t_point *pixel_center);
