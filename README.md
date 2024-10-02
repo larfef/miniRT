@@ -6,6 +6,7 @@
 - verify norminette
 - remove unecessary file
 - clone the correct mlx (macos, linux)
+- test malloc protection and external functions error protection
 ---
 ### check open file descriptor in the current process
 	
