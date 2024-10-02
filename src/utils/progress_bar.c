@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   progress_bar.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/27 14:15:44 by rkersten          #+#    #+#             */
+/*   Updated: 2024/09/27 14:15:44 by rkersten         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../libft/inc/libft.h"
 #include "../../inc/constant.h"
 #include <stdio.h>
@@ -25,6 +37,6 @@ void progress_bar(int y, int height)
 	bar[BAR_WIDTH] = '\0';
 	printf("\rProgress: [%s] %d%%", bar, progress);
 	write(1, "\r", 1);
-	if (y == height)
+	if (y == height - 1)
 		write(1, "\n", 1);
 }

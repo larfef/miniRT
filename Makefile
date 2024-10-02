@@ -18,7 +18,7 @@ OPERATION		:=	add_point add_vector at cross_product cylinder_normal dot_product 
 					multiply_vector normalize sub_point sub_vector
 UTILS			=	progress_bar
 RENDERING		=	cylinder_intersection get_nearest_intersection init_fct_ptr_normal iterate_through_shapes_list iterate_through_viewport jittered_grid plane_intersection \
-					set_normal set_pixel_color sphere_intersection trace_rays vector_utils
+					set_normal set_pixel_color sphere_intersection trace_rays
 WINDOW_MANAGEMENT = create_window exit_error get_vup init_window_struct set_pixel00_loc set_pixel_center set_pixel_delta set_upper_left_pixel\
 					set_viewport set_viewport_vectors set_window_height
 SRC				=	main
