@@ -37,7 +37,8 @@
 		   scaling them by the viewport's width and height.
 */
 
-void	set_window_height(const float width, const float aspect_ratio, int *height)
+void	set_window_height(const float width,
+	const float aspect_ratio, int *height)
 {
 	*height = (int)roundf(width / aspect_ratio);
 	if (*height < 1)

@@ -1,11 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   types.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/30 11:08:38 by rkersten          #+#    #+#             */
+/*   Updated: 2024/10/02 22:03:20 by rkersten         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef TYPES_H
 # define TYPES_H
 # include <stdint.h>
 # include <stdbool.h>
-typedef struct s_shapes	t_shapes;
-typedef struct s_vector t_vector;
-typedef struct s_ray_tracing t_ray_tracing;
-typedef float	(*intersection_t)(t_shapes *, t_vector *);
+
+typedef struct s_shapes			t_shapes;
+typedef struct s_vector			t_vector;
+typedef struct s_ray_tracing	t_ray_tracing;
+typedef float					(*intersection_t)(t_shapes *, t_vector *);
 typedef void (*fct_ptr_normal)(t_ray_tracing *rt);
 typedef struct s_atof {
 	const char *str;

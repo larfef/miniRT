@@ -12,12 +12,9 @@
 
 #ifndef PARSING_H
 # define PARSING_H
-# include "constant.h"
 # include "types.h"
-# include <errno.h>
-# include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
+
 bool	is_orientation_valid(char **p, t_scene *scene, int option);
 void	__exit(t_file *file, char *error_message);
 float	ft_atof(const char *str);
