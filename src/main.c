@@ -20,7 +20,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-static	void	check_argc(int argc)
+static	void	check_argc(const int argc)
 {
 	if (argc != 2)
 	{
@@ -31,14 +31,15 @@ static	void	check_argc(int argc)
 
 int	main(int argc, char **argv)
 {
-	t_window		window = {0};
 	t_hook			hook;
 	t_scene			scene;
-	t_ray_tracing	raytracer = {0};
-	t_file			file = {0};
+	t_window		window;
+	t_ray_tracing	raytracer;
+	t_file			file;
 
 	check_argc(argc);
 	is_filename_valid(argv[1]);
+	init_struct(&window, &raytracer, &file);
 	init_parsing_functions(&file);
 	init_file(&file, argv[1]);
 	is_file_valid(&file);
@@ -48,7 +49,7 @@ int	main(int argc, char **argv)
 	init_fct_ptr_normal(raytracer.set_normal_vector);
 	create_window(&window, &scene);
 	iterate_through_viewport(&window, &scene, &raytracer);
-	init_hooks(&hook,&window, &scene);
+	init_hooks(&hook, &window, &scene);
 	mlx_loop(window.mlx);
 	free_list(scene.shapes);
 	return (0);

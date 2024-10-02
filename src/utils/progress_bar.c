@@ -16,19 +16,32 @@
 #include <stdint.h>
 
 /*
-	@dev:	Displays a progress bar in the terminal, reflecting the rendering progress
-			based on the current row being processed. The bar is updated as the rendering
-			loop progresses through each pixel row in the viewport.
-	@param:	y: the current row being rendered, used to calculate the rendering progress.
-	@param:	height: the total number of rows in the viewport (window height), used to
-			determine the percentage of progress made.
+	@dev: Displays a progress bar in the console based on the
+		  current iteration of a process.
+
+	@params: y: The current iteration or progress value.
+			  height: The total number of iterations or the
+					  maximum value of progress.
+
+	@return: None.
+
+	@behavior:
+		1. Calculate the progress percentage based on the current
+		   iteration `y` and total `height`.
+		2. Determine the position of the progress indicator within
+		   the bar using the `BAR_WIDTH`.
+		3. Fill the progress bar with '=' characters for completed
+		   progress and spaces for remaining progress.
+		4. Update the console output with the progress bar and
+		   percentage value.
+		5. If the process reaches the last iteration, move to a new line.
 */
 
-void progress_bar(int y, int height)
+void	progress_bar(int y, int height)
 {
-	int32_t progress;
-	int32_t pos;
-	char bar[BAR_WIDTH + 1];
+	int32_t	progress;
+	int32_t	pos;
+	char	bar[BAR_WIDTH + 1];
 
 	progress = ((y * 100) / height);
 	pos = (BAR_WIDTH * progress) / 100;
