@@ -31,12 +31,11 @@
 	@behavior:
 		1. Calculate the cosine of the angle between the
 		   light vector and the normal.
-		2. Set the alpha value of the color to 0 (transparent).
-		3. If the cosine is above a threshold, set the color
+		2. If the cosine is above a threshold, set the color
 		   to the provided color.
-		4. If the cosine is within a gradient range, adjust
+		3. If the cosine is within a gradient range, adjust
 		   the color based on the brightness factor.
-		5. If the cosine is below the gradient threshold,
+		4. If the cosine is below the gradient threshold,
 		   set the color to transparent black.
 */
 
@@ -47,7 +46,6 @@ void	set_pixel_color(t_ray_tracing *raytracer, const float brightness,
 	float	brightness_factor;
 
 	cos = get_cos(raytracer->hit_point_to_light, raytracer->normal);
-	// raytracer->color.t_rgba.alpha = 0;
 	if (cos >= 1.0 - brightness)
 	{
 		raytracer->color.t_rgba.red = color.t_rgba.red;
