@@ -64,7 +64,7 @@ color	set_color(const float r, const float g, const float b)
 		4. Returns the resulting color.
 */
 
-color ray_color(t_vector *direction)
+color	ray_color(t_vector *direction)
 {
 	float		a;
 	float		rgb[3];
