@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <libft.h>
+
 #include "../../inc/window_management.h"
 #include "../../inc/operation.h"
 
@@ -17,9 +19,10 @@ void	set_viewport_vectors(float (*viewport)[2],
 	t_vector (*viewport_vectors)[2], t_vector *w)
 {
 	t_vector	vup;
-	t_vector	u = {0};
+	t_vector	u;
 	t_vector	minus_v;
 
+	ft_memset(&u, 0, sizeof(u));
 	vup = get_vup(w);
 	u = cross_product(vup, *w);
 	normalize(&u);

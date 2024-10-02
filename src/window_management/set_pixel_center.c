@@ -40,7 +40,7 @@
 void	set_pixel_center(t_window *win, t_point *pixel_center)
 {
 	*pixel_center = add_point(multiply_point(win->pixel_delta[U].dir,
-		(float)win->x), multiply_point(win->pixel_delta[V].dir,
-			(float)win->y));
+			(float)win->x), multiply_point(win->pixel_delta[V].dir,
+				(float)win->y));
 	*pixel_center = add_point(*pixel_center, win->pixel00_loc);
 }

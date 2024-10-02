@@ -12,7 +12,8 @@
 
 #include "../../inc/parsing.h"
 #include "../../inc/init_stack.h"
-#include <operation.h>
+#include "../../inc/operation.h"
+#include "../libft/inc/libft.h"
 
 /*
 	@dev:	Checks whether a given vector has been normalized. A vector is
@@ -23,10 +24,11 @@
 	@return: Returns true if the vector is normalized, false otherwise.
 */
 
-static bool is_vector_normalized(const t_point p)
+static bool	is_vector_normalized(const t_point p)
 {
-	t_vector	v = {0};
+	t_vector	v;
 
+	ft_memset(&v, 0, sizeof(v));
 	v.dir = p;
 	if (length(v) > 1.0f + UNIT_VECTOR_EPSILON
 		|| length(v) < 1.0f - UNIT_VECTOR_EPSILON)
@@ -44,7 +46,7 @@ static bool is_vector_normalized(const t_point p)
 	@param: option: Specifies if the orientation applies to a camera or shape.
 */
 
-static void extract_orientation(t_scene *scene, const float n,
+static void	extract_orientation(t_scene *scene, const float n,
 									const int i, const int option)
 {
 	if (option == _CAMERA)
@@ -75,8 +77,9 @@ bool	is_orientation_valid(char **p, t_scene *scene, int option)
 {
 	float		tmp;
 	int8_t		i;
-	t_point		orientation = {0};
+	t_point		orientation;
 
+	ft_memset(&orientation, 0, sizeof(orientation));
 	i = -1;
 	while (++i != 3)
 	{

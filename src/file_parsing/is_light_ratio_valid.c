@@ -60,8 +60,6 @@ bool	is_light_ratio_valid(char **line, t_scene *scene, int option)
 	tmp = ft_atof(*line);
 	if (option == _AMBIENT)
 		scene->ambient.light_ratio = tmp;
-	// if (option == PARSE)
-	// 	*line += 3;
 	if (option == PARSE
 		&& (tmp < LIGHT_RATIO_MIN
 			|| tmp > LIGHT_RATIO_MAX))
