@@ -55,7 +55,7 @@ void	iterate_through_viewport(t_window *win, t_scene *scene,
 			iterate_through_shapes_list(scene, rt);
 			trace_rays(scene, rt);
 			mlx_pixel_put(win->mlx, win->window,
-				win->x, win->y, rt->color.color);
+				win->x, win->y, (int)rt->color.color);
 		}
 		progress_bar(win->y, win->height);
 		win->x = -1;
