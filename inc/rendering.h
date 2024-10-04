@@ -14,6 +14,7 @@
 # define RENDERING_H
 # include "types.h"
 
+void	check_light_coordinates(t_scene *scene);
 float	cylinder_intersection(t_shapes *cylinder, t_vector *hit_point);
 void	get_nearest_intersection(t_intersection *fct_ptr_array,
 			t_shapes *shape, t_ray_tracing *raytracer);

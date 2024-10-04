@@ -135,6 +135,7 @@ typedef struct s_light
 }	t_light;
 typedef struct s_scene
 {
+	bool				light_hidden;
 	t_ambient			ambient;
 	t_camera			camera;
 	t_light				light;

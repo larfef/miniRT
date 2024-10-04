@@ -45,6 +45,7 @@ int	main(int argc, char **argv)
 	is_file_valid(&file);
 	init_stack(&scene, &file);
 	close(file.fd);
+	check_light_coordinates(&scene);
 	init_window_struct(&scene, &window);
 	init_fct_ptr_normal(raytracer.set_normal_vector);
 	create_window(&window, &scene);

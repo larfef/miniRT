@@ -124,7 +124,7 @@ void	trace_rays(t_scene *scene, t_ray_tracing *rt)
 
 	ft_memset(&grid, 0, sizeof(grid));
 	rt->is_inside = false;
-	if (rt->solution > 0.0f)
+	if (rt->solution > 0.0f && !scene->light_hidden)
 	{
 		camera_to_hit_point = multiply_vector(rt->camera_to_viewport,
 				rt->solution);
@@ -139,6 +139,8 @@ void	trace_rays(t_scene *scene, t_ray_tracing *rt)
 			jittered_grid(scene, rt, &grid);
 		set_shadow_color(&rt->color, grid.shadow_factor);
 	}
+	else if (rt->solution > 0.0f)
+		rt->color.color = 0;
 	else
 		set_ambient_color(rt, scene->ambient.color.color,
 			scene->ambient.light_ratio);
