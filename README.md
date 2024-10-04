@@ -20,7 +20,13 @@ system(command);
 ### light
 
 - check if the light is behind a plane
-- handle case where lights is inside the object
+#### handle case where lights is inside a sphere:
+1. add a boolean inside 'scene'
+2. iterate trought the shape list
+3. check if the light coordinates are inside a sphere
+4. update the boolean accordingly
+5. in 'trace rays' update the pixel coloro to fully black if the light is insde a sphere
+
 ---
 ### Jittered grid
 

@@ -57,7 +57,7 @@ void	iterate_through_viewport(t_window *win, t_scene *scene,
 			mlx_pixel_put(win->mlx, win->window,
 				win->x, win->y, rt->color.color);
 		}
-		// progress_bar(win->y, win->height);
+		progress_bar(win->y, win->height);
 		win->x = -1;
 	}
 }
