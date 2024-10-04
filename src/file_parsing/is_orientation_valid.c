@@ -14,6 +14,7 @@
 #include "../../inc/init_stack.h"
 #include "../../inc/operation.h"
 #include "../libft/inc/libft.h"
+#include "../../inc/constant.h"
 
 /*
 	@dev:	Checks whether a given vector has been normalized. A vector is

@@ -13,6 +13,7 @@
 #include "../../inc/init_stack.h"
 #include "../../inc/parsing.h"
 #include "../libft/inc/libft.h"
+#include "../../inc/constant.h"
 
 /*
 	@dev:	Initializes the scene data structure and sets up the file for

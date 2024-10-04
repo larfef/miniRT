@@ -12,6 +12,7 @@
 
 #include "../../inc/parsing.h"
 #include "../../inc/init_stack.h"
+#include "../../inc/constant.h"
 
 /*
 	@dev:	Validates and optionally parses the brightness value from the input

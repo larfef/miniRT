@@ -12,6 +12,7 @@
 
 #include "../../inc/parsing.h"
 #include "../libft/inc/libft.h"
+#include "../../inc/constant.h"
 
 void	skip_line_start(int type, char **p)
 {

@@ -12,6 +12,8 @@
 
 #include "../inc/parsing.h"
 #include "../libft/inc/libft.h"
+#include "../../inc/constant.h"
+#include <stdio.h>
 
 /*
 	@dev:	Validates the file extension of the provided filename to ensure

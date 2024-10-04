@@ -10,8 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
 #include "parsing.h"
+#include <fcntl.h>
+#include <errno.h>
+#include <string.h>
+#include <stdio.h>
 
 /*
 	@dev:	Attempts to open a file specified in the `t_file`

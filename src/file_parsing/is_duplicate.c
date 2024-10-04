@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../inc/parsing.h"
+#include "../../inc/constant.h"
 
 /*
 	@dev:	Checks for duplicate entries in the scene description based on

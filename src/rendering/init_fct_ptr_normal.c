@@ -33,7 +33,7 @@
 		   to the third index.
 */
 
-void	init_fct_ptr_normal(fct_ptr_normal *fct_ptr)
+void	init_fct_ptr_normal(t_normal *fct_ptr)
 {
 	fct_ptr[0] = set_cylinder_normal_vector;
 	fct_ptr[1] = set_plane_normal_vector;

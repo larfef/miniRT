@@ -13,8 +13,10 @@
 #include "../../inc/parsing.h"
 #include "../../inc/init_stack.h"
 #include "../gnl/get_next_line.h"
-#include "../libft/inc/libft.h"
+#include "../../inc/constant.h"
 #include <stdlib.h>
+#include <string.h>
+#include <errno.h>
 
 /*
 	@dev: Reads lines from a file specified in the `t_file` structure

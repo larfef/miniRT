@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../inc/parsing.h"
+#include "../../inc/constant.h"
 
 /*
 	@dev:	Checks if the minimal scene requirements are satisfied by ensuring

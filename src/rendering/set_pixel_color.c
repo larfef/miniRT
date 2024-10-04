@@ -40,7 +40,7 @@
 */
 
 void	set_pixel_color(t_ray_tracing *raytracer, const float brightness,
-	const color color)
+	const t_color color)
 {
 	float	cos;
 	float	brightness_factor;

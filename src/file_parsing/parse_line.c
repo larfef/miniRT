@@ -12,6 +12,7 @@
 
 #include "../libft/inc/libft.h"
 #include "../../inc/parsing.h"
+#include "../../inc/constant.h"
 
 /*
 	@dev: Parses a line from the file specified in the `t_file`

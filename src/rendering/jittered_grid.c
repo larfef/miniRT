@@ -31,7 +31,7 @@ static bool	check_conditions(t_ray_tracing *rt, t_shapes *shape,
 }
 
 static bool	check_intersection_with_shapes(t_vector *ray, t_shapes *shapes,
-	intersection_t *fct_ptr_array, t_ray_tracing *rt)
+	t_intersection *fct_ptr_array, t_ray_tracing *rt)
 {
 	t_shapes	*shape;
 	t_vector	result;

@@ -13,6 +13,7 @@
 #include "../../inc/parsing.h"
 #include "../../inc/init_stack.h"
 #include "../libft/inc/libft.h"
+#include "../../inc/constant.h"
 
 /*
 	@dev:	Parses the current line from the file, extracting scene elements

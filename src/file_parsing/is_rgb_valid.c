@@ -13,6 +13,7 @@
 #include "../libft/inc/libft.h"
 #include "../../inc/parsing.h"
 #include "../../inc/init_stack.h"
+#include "../../inc/constant.h"
 
 /*
 	@dev:	Validates and parses RGB color values for different scene

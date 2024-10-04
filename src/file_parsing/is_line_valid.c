@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../inc/parsing.h"
+#include "../../inc/constant.h"
 
 /*
 	@dev:	Validates a line in the scene description file by iterating through

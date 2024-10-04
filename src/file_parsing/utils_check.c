@@ -12,6 +12,7 @@
 
 #include "../../inc/parsing.h"
 #include "../libft/inc/libft.h"
+#include "../../inc/constant.h"
 
 /*
 	@dev: Validates the field of view (FOV) value extracted from a string.

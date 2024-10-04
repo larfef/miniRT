@@ -56,7 +56,7 @@ void	set_intersection_point(t_ray_tracing *raytracer)
 		2. Store the modified values back in the color structure.
 */
 
-void	set_shadow_color(color *color, const float shadow_factor)
+void	set_shadow_color(t_color *color, const float shadow_factor)
 {
 	color->t_rgba.red = (uint8_t)(((float)color->t_rgba.red) * shadow_factor);
 	color->t_rgba.green = (uint8_t)(((float)color->t_rgba.green)

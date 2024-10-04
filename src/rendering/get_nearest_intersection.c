@@ -29,7 +29,7 @@
 			(`solution`) and the referenced shape.
 */
 
-void	get_nearest_intersection(intersection_t *fct_ptr_array,
+void	get_nearest_intersection(t_intersection *fct_ptr_array,
 									t_shapes *shape, t_ray_tracing *rt)
 {
 	float	solution;
