@@ -45,7 +45,7 @@ at least ambient light and camera"
 # define HEIGHT 1
 # define EXTRACT 1
 # ifndef IMAGE_WIDTH
-#  define IMAGE_WIDTH 200
+#  define IMAGE_WIDTH 700
 # endif
 # ifndef WIDTH_RATIO
 #  define WIDTH_RATIO 1.0f

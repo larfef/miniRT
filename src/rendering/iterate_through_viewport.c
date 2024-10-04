@@ -15,7 +15,6 @@
 #include "../../inc/window_management.h"
 #include "../../inc/operation.h"
 #include "../mlx/mlx.h"
-#include "../libft/inc/libft.h"
 #include <stdio.h>
 
 /*
@@ -60,4 +59,5 @@ void	iterate_through_viewport(t_window *win, t_scene *scene,
 		progress_bar(win->y, win->height);
 		win->x = -1;
 	}
+	printf("\n");
 }

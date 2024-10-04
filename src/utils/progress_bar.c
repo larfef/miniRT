@@ -50,6 +50,4 @@ void	progress_bar(int y, int height)
 	bar[BAR_WIDTH] = '\0';
 	printf("\rProgress: [%s] %d%%", bar, progress);
 	write(1, "\r", 1);
-	if (y == height - 1)
-		write(1, "\n", 1);
 }

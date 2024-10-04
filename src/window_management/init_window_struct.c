@@ -44,6 +44,8 @@
 
 void	init_window_struct(t_scene *scene, t_window *win)
 {
+	win->x = -1;
+	win->y = -1;
 	win->width = IMAGE_WIDTH;
 	win->aspect_ratio = (float)WIDTH_RATIO / HEIGHT_RATIO;
 	set_window_height((float)win->width, win->aspect_ratio, &win->height);
