@@ -25,7 +25,7 @@ static bool	check_conditions(t_ray_tracing *rt, t_shapes *shape,
 		return (true);
 	if (shape == rt->shape)
 		return (false);
-	if (get_cos(rt->normal, rt->hit_point_to_light) < GRADIENT_END)
+	if (get_cos(rt->normal, rt->hit_point_to_light) <= GRADIENT_END)
 		return (false);
 	return (true);
 }

@@ -66,7 +66,7 @@ at least ambient light and camera"
 #  define UNIT_VECTOR_EPSILON 1
 # endif
 # ifndef GRADIENT_END
-#  define GRADIENT_END -0.9f
+#  define GRADIENT_END 0.0f
 # endif
 # ifndef NB_OF_RAY
 #  define NB_OF_RAY 8

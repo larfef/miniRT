@@ -21,11 +21,11 @@ static bool	is_point_inside_a_sphere(const t_point light_pos,
 	float	res;
 
 	res = ((light_pos.x - sphere->center.x)
-		* (light_pos.x - sphere->center.x))
+			* (light_pos.x - sphere->center.x))
 		+ ((light_pos.y - sphere->center.y)
-		* (light_pos.y - sphere->center.y))
+			* (light_pos.y - sphere->center.y))
 		+ ((light_pos.z - sphere->center.z)
-		* (light_pos.z - sphere->center.z));
+			* (light_pos.z - sphere->center.z));
 	if (sqrtf(res) < sphere->size[DIAMETER] / 2)
 		return (true);
 	return (false);
