@@ -21,10 +21,10 @@ static bool	check_conditions(t_ray_tracing *rt, t_shapes *shape,
 {
 	if (length(*shadow_ray) > MAX_RAY_DEPTH)
 		return (false);
-	if (rt->shape->type == _CYLINDER && rt->is_inside == true)
-		return (true);
 	if (shape == rt->shape)
 		return (false);
+	if (rt->shape->type == _CYLINDER && rt->is_inside == true)
+		return (true);
 	if (get_cos(rt->normal, rt->hit_point_to_light) <= GRADIENT_END)
 		return (false);
 	return (true);
