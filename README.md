@@ -33,7 +33,6 @@ Key features include:
 
 ```bash
 
-# Example installation by cloning a git repo and building from source.
 git clone https://github.com/larfef/miniRT.git
 cd project-name
 make
